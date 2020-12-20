@@ -2,32 +2,33 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
- * 
+ * 后台用户角色权限关系表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value="后台用户角色权限关系")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UmsRolePermissionRelation implements Serializable {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="自增主键")
     private Long id;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="角色ID")
     private Long roleId;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="权限ID")
     private Long permissionId;
 
     private static final long serialVersionUID = 1L;

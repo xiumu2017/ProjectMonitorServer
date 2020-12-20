@@ -1,6 +1,7 @@
 package com.paradise.core.example;
 
 import com.paradise.core.model.UmsResourceCategory;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -234,96 +235,6 @@ public class UmsResourceCategoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeEqualToColumn(UmsResourceCategory.Column column) {
-            addCriterion(new StringBuilder("create_time = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotEqualToColumn(UmsResourceCategory.Column column) {
-            addCriterion(new StringBuilder("create_time <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThanColumn(UmsResourceCategory.Column column) {
-            addCriterion(new StringBuilder("create_time > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThanOrEqualToColumn(UmsResourceCategory.Column column) {
-            addCriterion(new StringBuilder("create_time >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThanColumn(UmsResourceCategory.Column column) {
-            addCriterion(new StringBuilder("create_time < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThanOrEqualToColumn(UmsResourceCategory.Column column) {
-            addCriterion(new StringBuilder("create_time <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
         public Criteria andNameIsNull() {
             addCriterion("`name` is null");
             return (Criteria) this;
@@ -511,6 +422,456 @@ public class UmsResourceCategoryExample {
 
         public Criteria andSortNotBetween(Integer value1, Integer value2) {
             addCriterion("sort not between", value1, value2, "sort");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIsNull() {
+            addCriterion("`enable` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIsNotNull() {
+            addCriterion("`enable` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableEqualTo(Integer value) {
+            addCriterion("`enable` =", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("`enable` = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotEqualTo(Integer value) {
+            addCriterion("`enable` <>", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("`enable` <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThan(Integer value) {
+            addCriterion("`enable` >", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("`enable` > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`enable` >=", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("`enable` >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThan(Integer value) {
+            addCriterion("`enable` <", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("`enable` < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanOrEqualTo(Integer value) {
+            addCriterion("`enable` <=", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("`enable` <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIn(List<Integer> values) {
+            addCriterion("`enable` in", values, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotIn(List<Integer> values) {
+            addCriterion("`enable` not in", values, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableBetween(Integer value1, Integer value2) {
+            addCriterion("`enable` between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotBetween(Integer value1, Integer value2) {
+            addCriterion("`enable` not between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIsNull() {
+            addCriterion("create_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIsNotNull() {
+            addCriterion("create_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtEqualTo(Date value) {
+            addCriterion("create_at =", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_at = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotEqualTo(Date value) {
+            addCriterion("create_at <>", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_at <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThan(Date value) {
+            addCriterion("create_at >", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_at > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_at >=", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_at >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThan(Date value) {
+            addCriterion("create_at <", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_at < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanOrEqualTo(Date value) {
+            addCriterion("create_at <=", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_at <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIn(List<Date> values) {
+            addCriterion("create_at in", values, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotIn(List<Date> values) {
+            addCriterion("create_at not in", values, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtBetween(Date value1, Date value2) {
+            addCriterion("create_at between", value1, value2, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotBetween(Date value1, Date value2) {
+            addCriterion("create_at not between", value1, value2, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIsNull() {
+            addCriterion("update_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIsNotNull() {
+            addCriterion("update_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtEqualTo(Date value) {
+            addCriterion("update_at =", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_at = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotEqualTo(Date value) {
+            addCriterion("update_at <>", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_at <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThan(Date value) {
+            addCriterion("update_at >", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_at > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_at >=", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_at >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThan(Date value) {
+            addCriterion("update_at <", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_at < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanOrEqualTo(Date value) {
+            addCriterion("update_at <=", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_at <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIn(List<Date> values) {
+            addCriterion("update_at in", values, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotIn(List<Date> values) {
+            addCriterion("update_at not in", values, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtBetween(Date value1, Date value2) {
+            addCriterion("update_at between", value1, value2, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotBetween(Date value1, Date value2) {
+            addCriterion("update_at not between", value1, value2, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByIsNull() {
+            addCriterion("create_by is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByIsNotNull() {
+            addCriterion("create_by is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByEqualTo(Long value) {
+            addCriterion("create_by =", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_by = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotEqualTo(Long value) {
+            addCriterion("create_by <>", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_by <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThan(Long value) {
+            addCriterion("create_by >", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_by > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThanOrEqualTo(Long value) {
+            addCriterion("create_by >=", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_by >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThan(Long value) {
+            addCriterion("create_by <", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_by < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThanOrEqualTo(Long value) {
+            addCriterion("create_by <=", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("create_by <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByIn(List<Long> values) {
+            addCriterion("create_by in", values, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotIn(List<Long> values) {
+            addCriterion("create_by not in", values, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByBetween(Long value1, Long value2) {
+            addCriterion("create_by between", value1, value2, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotBetween(Long value1, Long value2) {
+            addCriterion("create_by not between", value1, value2, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByIsNull() {
+            addCriterion("update_by is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByIsNotNull() {
+            addCriterion("update_by is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByEqualTo(Long value) {
+            addCriterion("update_by =", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_by = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotEqualTo(Long value) {
+            addCriterion("update_by <>", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_by <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThan(Long value) {
+            addCriterion("update_by >", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_by > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThanOrEqualTo(Long value) {
+            addCriterion("update_by >=", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_by >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThan(Long value) {
+            addCriterion("update_by <", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThanColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_by < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThanOrEqualTo(Long value) {
+            addCriterion("update_by <=", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThanOrEqualToColumn(UmsResourceCategory.Column column) {
+            addCriterion(new StringBuilder("update_by <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByIn(List<Long> values) {
+            addCriterion("update_by in", values, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotIn(List<Long> values) {
+            addCriterion("update_by not in", values, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByBetween(Long value1, Long value2) {
+            addCriterion("update_by between", value1, value2, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotBetween(Long value1, Long value2) {
+            addCriterion("update_by not between", value1, value2, "updateBy");
             return (Criteria) this;
         }
     }

@@ -6,10 +6,8 @@ import com.paradise.core.mapper.UmsPermissionMapper;
 import com.paradise.core.model.UmsPermission;
 import com.paradise.core.service.UmsPermissionService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +27,7 @@ public class UmsPermissionServiceImpl implements UmsPermissionService {
 
     @Override
     public int create(UmsPermission permission) {
-        permission.setStatus(1);
-        permission.setCreateTime(new Date());
+        permission.setEnable(1);
         permission.setSort(0);
         return permissionMapper.insert(permission);
     }

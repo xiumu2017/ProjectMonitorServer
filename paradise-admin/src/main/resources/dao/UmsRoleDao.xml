@@ -6,7 +6,7 @@
         SELECT
             m.id id,
             m.parent_id parentId,
-            m.create_time createTime,
+            m.create_at createTime,
             m.title title,
             m.level level,
             m.sort sort,
@@ -28,7 +28,7 @@
         SELECT
             m.id id,
             m.parent_id parentId,
-            m.create_time createTime,
+            m.create_at createTime,
             m.title title,
             m.level level,
             m.sort sort,
@@ -47,7 +47,7 @@
     <select id="getResourceListByRoleId" resultType="com.paradise.core.model.UmsResource">
         SELECT
             r.id id,
-            r.create_time createTime,
+            r.create_at createTime,
             r.`name` `name`,
             r.url url,
             r.description description,

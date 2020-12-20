@@ -8,10 +8,16 @@
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="enable" jdbcType="INTEGER" property="enable" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, `password`, icon, email, nick_name, note, create_time, login_time, 
-    `status`
+    id, username, `password`, icon, email, nick_name, real_name, phone, remark, login_time, 
+    `status`, `enable`, create_at, update_at, create_by, update_by
   </sql>
   <select id="selectByExample" parameterType="com.paradise.core.example.UmsAdminExample" resultMap="BaseResultMap">
     select
@@ -148,12 +154,16 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into ums_admin (username, `password`, icon, 
-      email, nick_name, note, 
-      create_time, login_time, `status`
+      email, nick_name, real_name, 
+      phone, remark, login_time, 
+      `status`, `enable`, create_at, 
+      update_at, create_by, update_by
       )
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      #{email,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="map">
@@ -184,17 +194,35 @@
           <if test="record.nickName != null">
             nick_name,
           </if>
-          <if test="record.note != null">
-            note,
+          <if test="record.realName != null">
+            real_name,
           </if>
-          <if test="record.createTime != null">
-            create_time,
+          <if test="record.phone != null">
+            phone,
+          </if>
+          <if test="record.remark != null">
+            remark,
           </if>
           <if test="record.loginTime != null">
             login_time,
           </if>
           <if test="record.status != null">
             `status`,
+          </if>
+          <if test="record.enable != null">
+            `enable`,
+          </if>
+          <if test="record.createAt != null">
+            create_at,
+          </if>
+          <if test="record.updateAt != null">
+            update_at,
+          </if>
+          <if test="record.createBy != null">
+            create_by,
+          </if>
+          <if test="record.updateBy != null">
+            update_by,
           </if>
         </trim>
         <trim prefix="(" suffix=")" suffixOverrides="," />
@@ -224,17 +252,35 @@
           <if test="record.nickName != null">
             #{record.nickName,jdbcType=VARCHAR},
           </if>
-          <if test="record.note != null">
-            #{record.note,jdbcType=VARCHAR},
+          <if test="record.realName != null">
+            #{record.realName,jdbcType=VARCHAR},
           </if>
-          <if test="record.createTime != null">
-            #{record.createTime,jdbcType=TIMESTAMP},
+          <if test="record.phone != null">
+            #{record.phone,jdbcType=VARCHAR},
+          </if>
+          <if test="record.remark != null">
+            #{record.remark,jdbcType=VARCHAR},
           </if>
           <if test="record.loginTime != null">
             #{record.loginTime,jdbcType=TIMESTAMP},
           </if>
           <if test="record.status != null">
             #{record.status,jdbcType=INTEGER},
+          </if>
+          <if test="record.enable != null">
+            #{record.enable,jdbcType=INTEGER},
+          </if>
+          <if test="record.createAt != null">
+            #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.createBy != null">
+            #{record.createBy,jdbcType=BIGINT},
+          </if>
+          <if test="record.updateBy != null">
+            #{record.updateBy,jdbcType=BIGINT},
           </if>
         </trim>
       </otherwise>
@@ -275,17 +321,35 @@
           <if test="record.nickName != null">
             nick_name = #{record.nickName,jdbcType=VARCHAR},
           </if>
-          <if test="record.note != null">
-            note = #{record.note,jdbcType=VARCHAR},
+          <if test="record.realName != null">
+            real_name = #{record.realName,jdbcType=VARCHAR},
           </if>
-          <if test="record.createTime != null">
-            create_time = #{record.createTime,jdbcType=TIMESTAMP},
+          <if test="record.phone != null">
+            phone = #{record.phone,jdbcType=VARCHAR},
+          </if>
+          <if test="record.remark != null">
+            remark = #{record.remark,jdbcType=VARCHAR},
           </if>
           <if test="record.loginTime != null">
             login_time = #{record.loginTime,jdbcType=TIMESTAMP},
           </if>
           <if test="record.status != null">
             `status` = #{record.status,jdbcType=INTEGER},
+          </if>
+          <if test="record.enable != null">
+            `enable` = #{record.enable,jdbcType=INTEGER},
+          </if>
+          <if test="record.createAt != null">
+            create_at = #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.createBy != null">
+            create_by = #{record.createBy,jdbcType=BIGINT},
+          </if>
+          <if test="record.updateBy != null">
+            update_by = #{record.updateBy,jdbcType=BIGINT},
           </if>
         </trim>
       </otherwise>
@@ -302,10 +366,16 @@
       icon = #{record.icon,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       nick_name = #{record.nickName,jdbcType=VARCHAR},
-      note = #{record.note,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
       login_time = #{record.loginTime,jdbcType=TIMESTAMP},
-      `status` = #{record.status,jdbcType=INTEGER}
+      `status` = #{record.status,jdbcType=INTEGER},
+      `enable` = #{record.enable,jdbcType=INTEGER},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      update_by = #{record.updateBy,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -336,17 +406,35 @@
           <if test="record.nickName != null">
             nick_name = #{record.nickName,jdbcType=VARCHAR},
           </if>
-          <if test="record.note != null">
-            note = #{record.note,jdbcType=VARCHAR},
+          <if test="record.realName != null">
+            real_name = #{record.realName,jdbcType=VARCHAR},
           </if>
-          <if test="record.createTime != null">
-            create_time = #{record.createTime,jdbcType=TIMESTAMP},
+          <if test="record.phone != null">
+            phone = #{record.phone,jdbcType=VARCHAR},
+          </if>
+          <if test="record.remark != null">
+            remark = #{record.remark,jdbcType=VARCHAR},
           </if>
           <if test="record.loginTime != null">
             login_time = #{record.loginTime,jdbcType=TIMESTAMP},
           </if>
           <if test="record.status != null">
             `status` = #{record.status,jdbcType=INTEGER},
+          </if>
+          <if test="record.enable != null">
+            `enable` = #{record.enable,jdbcType=INTEGER},
+          </if>
+          <if test="record.createAt != null">
+            create_at = #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.createBy != null">
+            create_by = #{record.createBy,jdbcType=BIGINT},
+          </if>
+          <if test="record.updateBy != null">
+            update_by = #{record.updateBy,jdbcType=BIGINT},
           </if>
         </trim>
       </otherwise>
@@ -360,10 +448,16 @@
       icon = #{icon,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       nick_name = #{nickName,jdbcType=VARCHAR},
-      note = #{note,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+      real_name = #{realName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
       login_time = #{loginTime,jdbcType=TIMESTAMP},
-      `status` = #{status,jdbcType=INTEGER}
+      `status` = #{status,jdbcType=INTEGER},
+      `enable` = #{enable,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectOneByExample" parameterType="com.paradise.core.example.UmsAdminExample" resultMap="BaseResultMap">
@@ -401,13 +495,15 @@
   </select>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     insert into ums_admin
-    (username, `password`, icon, email, nick_name, note, create_time, login_time, `status`
-      )
+    (username, `password`, icon, email, nick_name, real_name, phone, remark, login_time, 
+      `status`, `enable`, create_at, update_at, create_by, update_by)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR}, #{item.icon,jdbcType=VARCHAR}, 
-        #{item.email,jdbcType=VARCHAR}, #{item.nickName,jdbcType=VARCHAR}, #{item.note,jdbcType=VARCHAR}, 
-        #{item.createTime,jdbcType=TIMESTAMP}, #{item.loginTime,jdbcType=TIMESTAMP}, #{item.status,jdbcType=INTEGER}
+        #{item.email,jdbcType=VARCHAR}, #{item.nickName,jdbcType=VARCHAR}, #{item.realName,jdbcType=VARCHAR}, 
+        #{item.phone,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.loginTime,jdbcType=TIMESTAMP}, 
+        #{item.status,jdbcType=INTEGER}, #{item.enable,jdbcType=INTEGER}, #{item.createAt,jdbcType=TIMESTAMP}, 
+        #{item.updateAt,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=BIGINT}, #{item.updateBy,jdbcType=BIGINT}
         )
     </foreach>
   </insert>
@@ -436,17 +532,35 @@
         <if test="'nick_name'.toString() == column.value">
           #{item.nickName,jdbcType=VARCHAR}
         </if>
-        <if test="'note'.toString() == column.value">
-          #{item.note,jdbcType=VARCHAR}
+        <if test="'real_name'.toString() == column.value">
+          #{item.realName,jdbcType=VARCHAR}
         </if>
-        <if test="'create_time'.toString() == column.value">
-          #{item.createTime,jdbcType=TIMESTAMP}
+        <if test="'phone'.toString() == column.value">
+          #{item.phone,jdbcType=VARCHAR}
+        </if>
+        <if test="'remark'.toString() == column.value">
+          #{item.remark,jdbcType=VARCHAR}
         </if>
         <if test="'login_time'.toString() == column.value">
           #{item.loginTime,jdbcType=TIMESTAMP}
         </if>
         <if test="'status'.toString() == column.value">
           #{item.status,jdbcType=INTEGER}
+        </if>
+        <if test="'enable'.toString() == column.value">
+          #{item.enable,jdbcType=INTEGER}
+        </if>
+        <if test="'create_at'.toString() == column.value">
+          #{item.createAt,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'update_at'.toString() == column.value">
+          #{item.updateAt,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'create_by'.toString() == column.value">
+          #{item.createBy,jdbcType=BIGINT}
+        </if>
+        <if test="'update_by'.toString() == column.value">
+          #{item.updateBy,jdbcType=BIGINT}
         </if>
       </foreach>
       )

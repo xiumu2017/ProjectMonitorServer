@@ -1,10 +1,10 @@
 server:
-  port: 8994
+  port: 8005
   servlet:
-    context-path: /er-admin
+    context-path: /pm
 spring:
   application:
-    name: er-admin
+    name: pm
   profiles:
     active: dev #默认为开发环境
   servlet:
@@ -41,6 +41,7 @@ secure:
       - /**/swagger-resources/**
       - /**/swagger/**
       - /**/v2/api-docs
+      - /**/v2/api-docs-ext
       - /**/*.js
       - /**/*.css
       - /**/*.png

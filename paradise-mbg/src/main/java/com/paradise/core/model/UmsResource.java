@@ -2,31 +2,29 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+
 /**
- * 
+ * 后台资源表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value="后台资源")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UmsResource implements Serializable {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="自增主键")
     private Long id;
-
-    @ApiModelProperty(value="创建时间")
-    private Date createTime;
 
     @ApiModelProperty(value="资源名称")
     private String name;
@@ -40,15 +38,34 @@ public class UmsResource implements Serializable {
     @ApiModelProperty(value="资源分类ID")
     private Long categoryId;
 
+    @ApiModelProperty(value="启用禁用")
+    private Integer enable;
+
+    @ApiModelProperty(value="创建时间")
+    private Date createAt;
+
+    @ApiModelProperty(value="更新时间")
+    private Date updateAt;
+
+    @ApiModelProperty(value="创建管理员ID")
+    private Long createBy;
+
+    @ApiModelProperty(value="更新管理员ID")
+    private Long updateBy;
+
     private static final long serialVersionUID = 1L;
 
     public enum Column {
         id("id", "id", "BIGINT", false),
-        createTime("create_time", "createTime", "TIMESTAMP", false),
         name("name", "name", "VARCHAR", true),
         url("url", "url", "VARCHAR", false),
         description("description", "description", "VARCHAR", false),
-        categoryId("category_id", "categoryId", "BIGINT", false);
+        categoryId("category_id", "categoryId", "BIGINT", false),
+        enable("enable", "enable", "INTEGER", true),
+        createAt("create_at", "createAt", "TIMESTAMP", false),
+        updateAt("update_at", "updateAt", "TIMESTAMP", false),
+        createBy("create_by", "createBy", "BIGINT", false),
+        updateBy("update_by", "updateBy", "BIGINT", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

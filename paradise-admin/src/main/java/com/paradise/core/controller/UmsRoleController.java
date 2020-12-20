@@ -97,7 +97,7 @@ public class UmsRoleController {
     @PostMapping(value = "/updateStatus/{id}")
     public Result<Integer> updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
         UmsRole umsRole = new UmsRole();
-        umsRole.setStatus(status);
+        umsRole.setEnable(status);
         int count = roleService.update(id, umsRole);
         if (count > 0) {
             return Result.success(count);

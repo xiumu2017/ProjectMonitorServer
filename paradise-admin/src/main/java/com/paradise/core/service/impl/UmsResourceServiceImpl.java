@@ -30,7 +30,7 @@ public class UmsResourceServiceImpl implements UmsResourceService {
 
     @Override
     public int create(UmsResource umsResource) {
-        umsResource.setCreateTime(new Date());
+        umsResource.setCreateAt(new Date());
         return resourceMapper.insert(umsResource);
     }
 

@@ -42,8 +42,7 @@ public class UmsRoleServiceImpl implements UmsRoleService {
 
     @Override
     public int create(UmsRole role) {
-        role.setCreateTime(new Date());
-        role.setAdminCount(0);
+        role.setCreateAt(new Date());
         role.setSort(0);
         return roleMapper.insert(role);
     }

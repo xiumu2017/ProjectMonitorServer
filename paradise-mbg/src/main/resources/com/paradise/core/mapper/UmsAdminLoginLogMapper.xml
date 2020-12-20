@@ -4,10 +4,11 @@
   <resultMap id="BaseResultMap" type="com.paradise.core.model.UmsAdminLoginLog">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="admin_id" jdbcType="BIGINT" property="adminId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="ip" jdbcType="VARCHAR" property="ip" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
     <result column="user_agent" jdbcType="VARCHAR" property="userAgent" />
+    <result column="login_status" jdbcType="INTEGER" property="loginStatus" />
+    <result column="fail_reason" jdbcType="CHAR" property="failReason" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, admin_id, create_time, ip, address, user_agent
+    id, admin_id, login_time, ip_addr, user_agent, login_status, fail_reason
   </sql>
   <select id="selectByExample" parameterType="com.paradise.core.example.UmsAdminLoginLogExample" resultMap="BaseResultMap">
     select
@@ -142,10 +143,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_admin_login_log (admin_id, create_time, ip, 
-      address, user_agent)
-    values (#{adminId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR})
+    insert into ums_admin_login_log (admin_id, login_time, ip_addr, 
+      user_agent, login_status, fail_reason
+      )
+    values (#{adminId,jdbcType=BIGINT}, #{loginTime,jdbcType=TIMESTAMP}, #{ipAddr,jdbcType=VARCHAR}, 
+      #{userAgent,jdbcType=VARCHAR}, #{loginStatus,jdbcType=INTEGER}, #{failReason,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="map">
     <selectKey keyProperty="record.id" order="AFTER" resultType="java.lang.Long">
@@ -163,17 +166,20 @@
           <if test="record.adminId != null">
             admin_id,
           </if>
-          <if test="record.createTime != null">
-            create_time,
+          <if test="record.loginTime != null">
+            login_time,
           </if>
-          <if test="record.ip != null">
-            ip,
-          </if>
-          <if test="record.address != null">
-            address,
+          <if test="record.ipAddr != null">
+            ip_addr,
           </if>
           <if test="record.userAgent != null">
             user_agent,
+          </if>
+          <if test="record.loginStatus != null">
+            login_status,
+          </if>
+          <if test="record.failReason != null">
+            fail_reason,
           </if>
         </trim>
         <trim prefix="(" suffix=")" suffixOverrides="," />
@@ -191,17 +197,20 @@
           <if test="record.adminId != null">
             #{record.adminId,jdbcType=BIGINT},
           </if>
-          <if test="record.createTime != null">
-            #{record.createTime,jdbcType=TIMESTAMP},
+          <if test="record.loginTime != null">
+            #{record.loginTime,jdbcType=TIMESTAMP},
           </if>
-          <if test="record.ip != null">
-            #{record.ip,jdbcType=VARCHAR},
-          </if>
-          <if test="record.address != null">
-            #{record.address,jdbcType=VARCHAR},
+          <if test="record.ipAddr != null">
+            #{record.ipAddr,jdbcType=VARCHAR},
           </if>
           <if test="record.userAgent != null">
             #{record.userAgent,jdbcType=VARCHAR},
+          </if>
+          <if test="record.loginStatus != null">
+            #{record.loginStatus,jdbcType=INTEGER},
+          </if>
+          <if test="record.failReason != null">
+            #{record.failReason,jdbcType=CHAR},
           </if>
         </trim>
       </otherwise>
@@ -230,17 +239,20 @@
           <if test="record.adminId != null">
             admin_id = #{record.adminId,jdbcType=BIGINT},
           </if>
-          <if test="record.createTime != null">
-            create_time = #{record.createTime,jdbcType=TIMESTAMP},
+          <if test="record.loginTime != null">
+            login_time = #{record.loginTime,jdbcType=TIMESTAMP},
           </if>
-          <if test="record.ip != null">
-            ip = #{record.ip,jdbcType=VARCHAR},
-          </if>
-          <if test="record.address != null">
-            address = #{record.address,jdbcType=VARCHAR},
+          <if test="record.ipAddr != null">
+            ip_addr = #{record.ipAddr,jdbcType=VARCHAR},
           </if>
           <if test="record.userAgent != null">
             user_agent = #{record.userAgent,jdbcType=VARCHAR},
+          </if>
+          <if test="record.loginStatus != null">
+            login_status = #{record.loginStatus,jdbcType=INTEGER},
+          </if>
+          <if test="record.failReason != null">
+            fail_reason = #{record.failReason,jdbcType=CHAR},
           </if>
         </trim>
       </otherwise>
@@ -253,10 +265,11 @@
     update ums_admin_login_log
     set id = #{record.id,jdbcType=BIGINT},
       admin_id = #{record.adminId,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      ip = #{record.ip,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
-      user_agent = #{record.userAgent,jdbcType=VARCHAR}
+      login_time = #{record.loginTime,jdbcType=TIMESTAMP},
+      ip_addr = #{record.ipAddr,jdbcType=VARCHAR},
+      user_agent = #{record.userAgent,jdbcType=VARCHAR},
+      login_status = #{record.loginStatus,jdbcType=INTEGER},
+      fail_reason = #{record.failReason,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -275,17 +288,20 @@
           <if test="record.adminId != null">
             admin_id = #{record.adminId,jdbcType=BIGINT},
           </if>
-          <if test="record.createTime != null">
-            create_time = #{record.createTime,jdbcType=TIMESTAMP},
+          <if test="record.loginTime != null">
+            login_time = #{record.loginTime,jdbcType=TIMESTAMP},
           </if>
-          <if test="record.ip != null">
-            ip = #{record.ip,jdbcType=VARCHAR},
-          </if>
-          <if test="record.address != null">
-            address = #{record.address,jdbcType=VARCHAR},
+          <if test="record.ipAddr != null">
+            ip_addr = #{record.ipAddr,jdbcType=VARCHAR},
           </if>
           <if test="record.userAgent != null">
             user_agent = #{record.userAgent,jdbcType=VARCHAR},
+          </if>
+          <if test="record.loginStatus != null">
+            login_status = #{record.loginStatus,jdbcType=INTEGER},
+          </if>
+          <if test="record.failReason != null">
+            fail_reason = #{record.failReason,jdbcType=CHAR},
           </if>
         </trim>
       </otherwise>
@@ -295,10 +311,11 @@
   <update id="updateByPrimaryKey" parameterType="com.paradise.core.model.UmsAdminLoginLog">
     update ums_admin_login_log
     set admin_id = #{adminId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      ip = #{ip,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      user_agent = #{userAgent,jdbcType=VARCHAR}
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      ip_addr = #{ipAddr,jdbcType=VARCHAR},
+      user_agent = #{userAgent,jdbcType=VARCHAR},
+      login_status = #{loginStatus,jdbcType=INTEGER},
+      fail_reason = #{failReason,jdbcType=CHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectOneByExample" parameterType="com.paradise.core.example.UmsAdminLoginLogExample" resultMap="BaseResultMap">
@@ -336,11 +353,12 @@
   </select>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     insert into ums_admin_login_log
-    (admin_id, create_time, ip, address, user_agent)
+    (admin_id, login_time, ip_addr, user_agent, login_status, fail_reason)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.adminId,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.ip,jdbcType=VARCHAR}, 
-        #{item.address,jdbcType=VARCHAR}, #{item.userAgent,jdbcType=VARCHAR})
+      (#{item.adminId,jdbcType=BIGINT}, #{item.loginTime,jdbcType=TIMESTAMP}, #{item.ipAddr,jdbcType=VARCHAR}, 
+        #{item.userAgent,jdbcType=VARCHAR}, #{item.loginStatus,jdbcType=INTEGER}, #{item.failReason,jdbcType=CHAR}
+        )
     </foreach>
   </insert>
   <insert id="batchInsertSelective" keyColumn="id" keyProperty="list.id" parameterType="map" useGeneratedKeys="true">
@@ -356,17 +374,20 @@
         <if test="'admin_id'.toString() == column.value">
           #{item.adminId,jdbcType=BIGINT}
         </if>
-        <if test="'create_time'.toString() == column.value">
-          #{item.createTime,jdbcType=TIMESTAMP}
+        <if test="'login_time'.toString() == column.value">
+          #{item.loginTime,jdbcType=TIMESTAMP}
         </if>
-        <if test="'ip'.toString() == column.value">
-          #{item.ip,jdbcType=VARCHAR}
-        </if>
-        <if test="'address'.toString() == column.value">
-          #{item.address,jdbcType=VARCHAR}
+        <if test="'ip_addr'.toString() == column.value">
+          #{item.ipAddr,jdbcType=VARCHAR}
         </if>
         <if test="'user_agent'.toString() == column.value">
           #{item.userAgent,jdbcType=VARCHAR}
+        </if>
+        <if test="'login_status'.toString() == column.value">
+          #{item.loginStatus,jdbcType=INTEGER}
+        </if>
+        <if test="'fail_reason'.toString() == column.value">
+          #{item.failReason,jdbcType=CHAR}
         </if>
       </foreach>
       )

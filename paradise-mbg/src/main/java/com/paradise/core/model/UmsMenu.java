@@ -2,21 +2,22 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+
 /**
- * 
+ * 后台菜单表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value="后台菜单")
 @Data
 @Builder
 @AllArgsConstructor
@@ -27,9 +28,6 @@ public class UmsMenu implements Serializable {
 
     @ApiModelProperty(value="父级ID")
     private Long parentId;
-
-    @ApiModelProperty(value="创建时间")
-    private Date createTime;
 
     @ApiModelProperty(value="菜单名称")
     private String title;
@@ -46,21 +44,36 @@ public class UmsMenu implements Serializable {
     @ApiModelProperty(value="前端图标")
     private String icon;
 
-    @ApiModelProperty(value="前端隐藏")
+    @ApiModelProperty(value="是否隐藏")
     private Integer hidden;
+
+    @ApiModelProperty(value="创建时间")
+    private Date createAt;
+
+    @ApiModelProperty(value="更新时间")
+    private Date updateAt;
+
+    @ApiModelProperty(value="创建管理员ID")
+    private Long createBy;
+
+    @ApiModelProperty(value="更新管理员ID")
+    private Long updateBy;
 
     private static final long serialVersionUID = 1L;
 
     public enum Column {
         id("id", "id", "BIGINT", false),
         parentId("parent_id", "parentId", "BIGINT", false),
-        createTime("create_time", "createTime", "TIMESTAMP", false),
         title("title", "title", "VARCHAR", false),
         level("level", "level", "INTEGER", true),
         sort("sort", "sort", "INTEGER", false),
         name("name", "name", "VARCHAR", true),
         icon("icon", "icon", "VARCHAR", false),
-        hidden("hidden", "hidden", "INTEGER", false);
+        hidden("hidden", "hidden", "INTEGER", false),
+        createAt("create_at", "createAt", "TIMESTAMP", false),
+        updateAt("update_at", "updateAt", "TIMESTAMP", false),
+        createBy("create_by", "createBy", "BIGINT", false),
+        updateBy("update_by", "updateBy", "BIGINT", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

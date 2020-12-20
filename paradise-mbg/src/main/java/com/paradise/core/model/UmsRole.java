@@ -2,27 +2,28 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+
 /**
- * 
+ * 后台用户角色表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value="后台用户角色")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UmsRole implements Serializable {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="自增主键")
     private Long id;
 
     @ApiModelProperty(value="名称")
@@ -31,17 +32,23 @@ public class UmsRole implements Serializable {
     @ApiModelProperty(value="描述")
     private String description;
 
-    @ApiModelProperty(value="后台用户数量")
-    private Integer adminCount;
-
-    @ApiModelProperty(value="创建时间")
-    private Date createTime;
-
-    @ApiModelProperty(value="启用状态：0->禁用；1->启用")
-    private Integer status;
-
     @ApiModelProperty(value="")
     private Integer sort;
+
+    @ApiModelProperty(value="启用禁用")
+    private Integer enable;
+
+    @ApiModelProperty(value="创建时间")
+    private Date createAt;
+
+    @ApiModelProperty(value="更新时间")
+    private Date updateAt;
+
+    @ApiModelProperty(value="创建管理员ID")
+    private Long createBy;
+
+    @ApiModelProperty(value="更新管理员ID")
+    private Long updateBy;
 
     private static final long serialVersionUID = 1L;
 
@@ -49,10 +56,12 @@ public class UmsRole implements Serializable {
         id("id", "id", "BIGINT", false),
         name("name", "name", "VARCHAR", true),
         description("description", "description", "VARCHAR", false),
-        adminCount("admin_count", "adminCount", "INTEGER", false),
-        createTime("create_time", "createTime", "TIMESTAMP", false),
-        status("status", "status", "INTEGER", true),
-        sort("sort", "sort", "INTEGER", false);
+        sort("sort", "sort", "INTEGER", false),
+        enable("enable", "enable", "INTEGER", true),
+        createAt("create_at", "createAt", "TIMESTAMP", false),
+        updateAt("update_at", "updateAt", "TIMESTAMP", false),
+        createBy("create_by", "createBy", "BIGINT", false),
+        updateBy("update_by", "updateBy", "BIGINT", false);
 
         private static final String BEGINNING_DELIMITER = "`";
 

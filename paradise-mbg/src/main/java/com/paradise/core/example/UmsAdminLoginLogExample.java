@@ -1,6 +1,7 @@
 package com.paradise.core.example;
 
 import com.paradise.core.model.UmsAdminLoginLog;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -324,293 +325,193 @@ public class UmsAdminLoginLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
+        public Criteria andLoginTimeIsNull() {
+            addCriterion("login_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
+        public Criteria andLoginTimeIsNotNull() {
+            addCriterion("login_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
+        public Criteria andLoginTimeEqualTo(Date value) {
+            addCriterion("login_time =", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("create_time = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andLoginTimeEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_time = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
+        public Criteria andLoginTimeNotEqualTo(Date value) {
+            addCriterion("login_time <>", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("create_time <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andLoginTimeNotEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_time <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
+        public Criteria andLoginTimeGreaterThan(Date value) {
+            addCriterion("login_time >", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("create_time > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andLoginTimeGreaterThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_time > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
+        public Criteria andLoginTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("login_time >=", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("create_time >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andLoginTimeGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_time >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
+        public Criteria andLoginTimeLessThan(Date value) {
+            addCriterion("login_time <", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("create_time < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andLoginTimeLessThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_time < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
+        public Criteria andLoginTimeLessThanOrEqualTo(Date value) {
+            addCriterion("login_time <=", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("create_time <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andLoginTimeLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_time <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
+        public Criteria andLoginTimeIn(List<Date> values) {
+            addCriterion("login_time in", values, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
+        public Criteria andLoginTimeNotIn(List<Date> values) {
+            addCriterion("login_time not in", values, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+        public Criteria andLoginTimeBetween(Date value1, Date value2) {
+            addCriterion("login_time between", value1, value2, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
+        public Criteria andLoginTimeNotBetween(Date value1, Date value2) {
+            addCriterion("login_time not between", value1, value2, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andIpIsNull() {
-            addCriterion("ip is null");
+        public Criteria andIpAddrIsNull() {
+            addCriterion("ip_addr is null");
             return (Criteria) this;
         }
 
-        public Criteria andIpIsNotNull() {
-            addCriterion("ip is not null");
+        public Criteria andIpAddrIsNotNull() {
+            addCriterion("ip_addr is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIpEqualTo(String value) {
-            addCriterion("ip =", value, "ip");
+        public Criteria andIpAddrEqualTo(String value) {
+            addCriterion("ip_addr =", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("ip = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andIpAddrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("ip_addr = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andIpNotEqualTo(String value) {
-            addCriterion("ip <>", value, "ip");
+        public Criteria andIpAddrNotEqualTo(String value) {
+            addCriterion("ip_addr <>", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("ip <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andIpAddrNotEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("ip_addr <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andIpGreaterThan(String value) {
-            addCriterion("ip >", value, "ip");
+        public Criteria andIpAddrGreaterThan(String value) {
+            addCriterion("ip_addr >", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpGreaterThanColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("ip > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andIpAddrGreaterThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("ip_addr > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andIpGreaterThanOrEqualTo(String value) {
-            addCriterion("ip >=", value, "ip");
+        public Criteria andIpAddrGreaterThanOrEqualTo(String value) {
+            addCriterion("ip_addr >=", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("ip >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andIpAddrGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("ip_addr >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andIpLessThan(String value) {
-            addCriterion("ip <", value, "ip");
+        public Criteria andIpAddrLessThan(String value) {
+            addCriterion("ip_addr <", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpLessThanColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("ip < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andIpAddrLessThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("ip_addr < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andIpLessThanOrEqualTo(String value) {
-            addCriterion("ip <=", value, "ip");
+        public Criteria andIpAddrLessThanOrEqualTo(String value) {
+            addCriterion("ip_addr <=", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("ip <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andIpAddrLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("ip_addr <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andIpLike(String value) {
-            addCriterion("ip like", value, "ip");
+        public Criteria andIpAddrLike(String value) {
+            addCriterion("ip_addr like", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotLike(String value) {
-            addCriterion("ip not like", value, "ip");
+        public Criteria andIpAddrNotLike(String value) {
+            addCriterion("ip_addr not like", value, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpIn(List<String> values) {
-            addCriterion("ip in", values, "ip");
+        public Criteria andIpAddrIn(List<String> values) {
+            addCriterion("ip_addr in", values, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotIn(List<String> values) {
-            addCriterion("ip not in", values, "ip");
+        public Criteria andIpAddrNotIn(List<String> values) {
+            addCriterion("ip_addr not in", values, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpBetween(String value1, String value2) {
-            addCriterion("ip between", value1, value2, "ip");
+        public Criteria andIpAddrBetween(String value1, String value2) {
+            addCriterion("ip_addr between", value1, value2, "ipAddr");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotBetween(String value1, String value2) {
-            addCriterion("ip not between", value1, value2, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressIsNull() {
-            addCriterion("address is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressIsNotNull() {
-            addCriterion("address is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressEqualTo(String value) {
-            addCriterion("address =", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("address = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressNotEqualTo(String value) {
-            addCriterion("address <>", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressNotEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("address <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressGreaterThan(String value) {
-            addCriterion("address >", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressGreaterThanColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("address > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("address >=", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("address >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressLessThan(String value) {
-            addCriterion("address <", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressLessThanColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("address < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressLessThanOrEqualTo(String value) {
-            addCriterion("address <=", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
-            addCriterion(new StringBuilder("address <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressLike(String value) {
-            addCriterion("address like", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressNotLike(String value) {
-            addCriterion("address not like", value, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressIn(List<String> values) {
-            addCriterion("address in", values, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressNotIn(List<String> values) {
-            addCriterion("address not in", values, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressBetween(String value1, String value2) {
-            addCriterion("address between", value1, value2, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressNotBetween(String value1, String value2) {
-            addCriterion("address not between", value1, value2, "address");
+        public Criteria andIpAddrNotBetween(String value1, String value2) {
+            addCriterion("ip_addr not between", value1, value2, "ipAddr");
             return (Criteria) this;
         }
 
@@ -711,6 +612,196 @@ public class UmsAdminLoginLogExample {
 
         public Criteria andUserAgentNotBetween(String value1, String value2) {
             addCriterion("user_agent not between", value1, value2, "userAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusIsNull() {
+            addCriterion("login_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusIsNotNull() {
+            addCriterion("login_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusEqualTo(Integer value) {
+            addCriterion("login_status =", value, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_status = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusNotEqualTo(Integer value) {
+            addCriterion("login_status <>", value, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusNotEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_status <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusGreaterThan(Integer value) {
+            addCriterion("login_status >", value, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusGreaterThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_status > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("login_status >=", value, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_status >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusLessThan(Integer value) {
+            addCriterion("login_status <", value, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusLessThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_status < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("login_status <=", value, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("login_status <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusIn(List<Integer> values) {
+            addCriterion("login_status in", values, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusNotIn(List<Integer> values) {
+            addCriterion("login_status not in", values, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusBetween(Integer value1, Integer value2) {
+            addCriterion("login_status between", value1, value2, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("login_status not between", value1, value2, "loginStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonIsNull() {
+            addCriterion("fail_reason is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonIsNotNull() {
+            addCriterion("fail_reason is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonEqualTo(String value) {
+            addCriterion("fail_reason =", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("fail_reason = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonNotEqualTo(String value) {
+            addCriterion("fail_reason <>", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonNotEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("fail_reason <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonGreaterThan(String value) {
+            addCriterion("fail_reason >", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonGreaterThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("fail_reason > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonGreaterThanOrEqualTo(String value) {
+            addCriterion("fail_reason >=", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonGreaterThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("fail_reason >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonLessThan(String value) {
+            addCriterion("fail_reason <", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonLessThanColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("fail_reason < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonLessThanOrEqualTo(String value) {
+            addCriterion("fail_reason <=", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonLessThanOrEqualToColumn(UmsAdminLoginLog.Column column) {
+            addCriterion(new StringBuilder("fail_reason <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonLike(String value) {
+            addCriterion("fail_reason like", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonNotLike(String value) {
+            addCriterion("fail_reason not like", value, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonIn(List<String> values) {
+            addCriterion("fail_reason in", values, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonNotIn(List<String> values) {
+            addCriterion("fail_reason not in", values, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonBetween(String value1, String value2) {
+            addCriterion("fail_reason between", value1, value2, "failReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andFailReasonNotBetween(String value1, String value2) {
+            addCriterion("fail_reason not between", value1, value2, "failReason");
             return (Criteria) this;
         }
     }

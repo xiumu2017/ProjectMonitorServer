@@ -2,27 +2,27 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
- * 
+ * 后台用户权限表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value="后台用户权限")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UmsPermission implements Serializable {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="自增主键")
     private Long id;
 
     @ApiModelProperty(value="父级权限id")
@@ -44,10 +44,7 @@ public class UmsPermission implements Serializable {
     private String uri;
 
     @ApiModelProperty(value="启用状态；0->禁用；1->启用")
-    private Integer status;
-
-    @ApiModelProperty(value="创建时间")
-    private Date createTime;
+    private Integer enable;
 
     @ApiModelProperty(value="排序")
     private Integer sort;
@@ -62,8 +59,7 @@ public class UmsPermission implements Serializable {
         icon("icon", "icon", "VARCHAR", false),
         type("type", "type", "INTEGER", true),
         uri("uri", "uri", "VARCHAR", false),
-        status("status", "status", "INTEGER", true),
-        createTime("create_time", "createTime", "TIMESTAMP", false),
+        enable("enable", "enable", "INTEGER", true),
         sort("sort", "sort", "INTEGER", false);
 
         private static final String BEGINNING_DELIMITER = "`";

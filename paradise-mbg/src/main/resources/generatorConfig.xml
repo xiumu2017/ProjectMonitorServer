@@ -47,6 +47,8 @@
         </plugin>
         <!-- 查询结果选择性返回插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin"/>
+        <!--  状态枚举生成插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.EnumTypeStatusPlugin"/>
         <!-- Table重命名插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.TableRenamePlugin">
             <!-- 可根据具体需求确定是否配置 -->
@@ -108,6 +110,7 @@
                         password="${jdbc.password}">
             <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
             <property name="nullCatalogMeansCurrent" value="true"/>
+            <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="com.paradise.core.model" targetProject=".\paradise-mbg\src\main\java"/>
@@ -120,7 +123,10 @@
         <!-- pms_product_category yxx_order yxx_product_comment yxx_product_comment_label-->
         <!-- pms_product yxx_order_status_record yxx_order_item yxx_region yxx_worker -->
         <!--        yxx_worker_order_count -->
-        <table tableName="ums_member">
+        <table tableName="ums_%">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="pm_%">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

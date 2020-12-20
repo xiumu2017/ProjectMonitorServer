@@ -29,7 +29,7 @@ public class UmsMenuServiceImpl implements UmsMenuService {
 
     @Override
     public int create(UmsMenu umsMenu) {
-        umsMenu.setCreateTime(new Date());
+        umsMenu.setCreateAt(new Date());
         updateLevel(umsMenu);
         return menuMapper.insert(umsMenu);
     }

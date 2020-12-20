@@ -4,13 +4,16 @@
   <resultMap id="BaseResultMap" type="com.paradise.core.model.UmsMenu">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="hidden" jdbcType="INTEGER" property="hidden" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, parent_id, create_time, title, `level`, sort, `name`, icon, hidden
+    id, parent_id, title, `level`, sort, `name`, icon, hidden, create_at, update_at, 
+    create_by, update_by
   </sql>
   <select id="selectByExample" parameterType="com.paradise.core.example.UmsMenuExample" resultMap="BaseResultMap">
     select
@@ -145,12 +149,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_menu (parent_id, create_time, title, 
-      `level`, sort, `name`, 
-      icon, hidden)
-    values (#{parentId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
-      #{level,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{icon,jdbcType=VARCHAR}, #{hidden,jdbcType=INTEGER})
+    insert into ums_menu (parent_id, title, `level`, 
+      sort, `name`, icon, hidden, 
+      create_at, update_at, create_by, 
+      update_by)
+    values (#{parentId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{hidden,jdbcType=INTEGER}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
+      #{updateBy,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="map">
     <selectKey keyProperty="record.id" order="AFTER" resultType="java.lang.Long">
@@ -167,9 +173,6 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
           <if test="record.parentId != null">
             parent_id,
-          </if>
-          <if test="record.createTime != null">
-            create_time,
           </if>
           <if test="record.title != null">
             title,
@@ -189,6 +192,18 @@
           <if test="record.hidden != null">
             hidden,
           </if>
+          <if test="record.createAt != null">
+            create_at,
+          </if>
+          <if test="record.updateAt != null">
+            update_at,
+          </if>
+          <if test="record.createBy != null">
+            create_by,
+          </if>
+          <if test="record.updateBy != null">
+            update_by,
+          </if>
         </trim>
         <trim prefix="(" suffix=")" suffixOverrides="," />
       </otherwise>
@@ -204,9 +219,6 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
           <if test="record.parentId != null">
             #{record.parentId,jdbcType=BIGINT},
-          </if>
-          <if test="record.createTime != null">
-            #{record.createTime,jdbcType=TIMESTAMP},
           </if>
           <if test="record.title != null">
             #{record.title,jdbcType=VARCHAR},
@@ -225,6 +237,18 @@
           </if>
           <if test="record.hidden != null">
             #{record.hidden,jdbcType=INTEGER},
+          </if>
+          <if test="record.createAt != null">
+            #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.createBy != null">
+            #{record.createBy,jdbcType=BIGINT},
+          </if>
+          <if test="record.updateBy != null">
+            #{record.updateBy,jdbcType=BIGINT},
           </if>
         </trim>
       </otherwise>
@@ -253,9 +277,6 @@
           <if test="record.parentId != null">
             parent_id = #{record.parentId,jdbcType=BIGINT},
           </if>
-          <if test="record.createTime != null">
-            create_time = #{record.createTime,jdbcType=TIMESTAMP},
-          </if>
           <if test="record.title != null">
             title = #{record.title,jdbcType=VARCHAR},
           </if>
@@ -274,6 +295,18 @@
           <if test="record.hidden != null">
             hidden = #{record.hidden,jdbcType=INTEGER},
           </if>
+          <if test="record.createAt != null">
+            create_at = #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.createBy != null">
+            create_by = #{record.createBy,jdbcType=BIGINT},
+          </if>
+          <if test="record.updateBy != null">
+            update_by = #{record.updateBy,jdbcType=BIGINT},
+          </if>
         </trim>
       </otherwise>
     </choose>
@@ -285,13 +318,16 @@
     update ums_menu
     set id = #{record.id,jdbcType=BIGINT},
       parent_id = #{record.parentId,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       title = #{record.title,jdbcType=VARCHAR},
       `level` = #{record.level,jdbcType=INTEGER},
       sort = #{record.sort,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
-      hidden = #{record.hidden,jdbcType=INTEGER}
+      hidden = #{record.hidden,jdbcType=INTEGER},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      update_by = #{record.updateBy,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -310,9 +346,6 @@
           <if test="record.parentId != null">
             parent_id = #{record.parentId,jdbcType=BIGINT},
           </if>
-          <if test="record.createTime != null">
-            create_time = #{record.createTime,jdbcType=TIMESTAMP},
-          </if>
           <if test="record.title != null">
             title = #{record.title,jdbcType=VARCHAR},
           </if>
@@ -331,6 +364,18 @@
           <if test="record.hidden != null">
             hidden = #{record.hidden,jdbcType=INTEGER},
           </if>
+          <if test="record.createAt != null">
+            create_at = #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.createBy != null">
+            create_by = #{record.createBy,jdbcType=BIGINT},
+          </if>
+          <if test="record.updateBy != null">
+            update_by = #{record.updateBy,jdbcType=BIGINT},
+          </if>
         </trim>
       </otherwise>
     </choose>
@@ -339,13 +384,16 @@
   <update id="updateByPrimaryKey" parameterType="com.paradise.core.model.UmsMenu">
     update ums_menu
     set parent_id = #{parentId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=VARCHAR},
       `level` = #{level,jdbcType=INTEGER},
       sort = #{sort,jdbcType=INTEGER},
       `name` = #{name,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
-      hidden = #{hidden,jdbcType=INTEGER}
+      hidden = #{hidden,jdbcType=INTEGER},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectOneByExample" parameterType="com.paradise.core.example.UmsMenuExample" resultMap="BaseResultMap">
@@ -383,12 +431,14 @@
   </select>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     insert into ums_menu
-    (parent_id, create_time, title, `level`, sort, `name`, icon, hidden)
+    (parent_id, title, `level`, sort, `name`, icon, hidden, create_at, update_at, create_by, 
+      update_by)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.parentId,jdbcType=BIGINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.title,jdbcType=VARCHAR}, 
-        #{item.level,jdbcType=INTEGER}, #{item.sort,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR}, 
-        #{item.icon,jdbcType=VARCHAR}, #{item.hidden,jdbcType=INTEGER})
+      (#{item.parentId,jdbcType=BIGINT}, #{item.title,jdbcType=VARCHAR}, #{item.level,jdbcType=INTEGER}, 
+        #{item.sort,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR}, #{item.icon,jdbcType=VARCHAR}, 
+        #{item.hidden,jdbcType=INTEGER}, #{item.createAt,jdbcType=TIMESTAMP}, #{item.updateAt,jdbcType=TIMESTAMP}, 
+        #{item.createBy,jdbcType=BIGINT}, #{item.updateBy,jdbcType=BIGINT})
     </foreach>
   </insert>
   <insert id="batchInsertSelective" keyColumn="id" keyProperty="list.id" parameterType="map" useGeneratedKeys="true">
@@ -403,9 +453,6 @@
       <foreach collection="selective" item="column" separator=",">
         <if test="'parent_id'.toString() == column.value">
           #{item.parentId,jdbcType=BIGINT}
-        </if>
-        <if test="'create_time'.toString() == column.value">
-          #{item.createTime,jdbcType=TIMESTAMP}
         </if>
         <if test="'title'.toString() == column.value">
           #{item.title,jdbcType=VARCHAR}
@@ -424,6 +471,18 @@
         </if>
         <if test="'hidden'.toString() == column.value">
           #{item.hidden,jdbcType=INTEGER}
+        </if>
+        <if test="'create_at'.toString() == column.value">
+          #{item.createAt,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'update_at'.toString() == column.value">
+          #{item.updateAt,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'create_by'.toString() == column.value">
+          #{item.createBy,jdbcType=BIGINT}
+        </if>
+        <if test="'update_by'.toString() == column.value">
+          #{item.updateBy,jdbcType=BIGINT}
         </if>
       </foreach>
       )

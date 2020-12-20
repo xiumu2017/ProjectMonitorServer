@@ -1,6 +1,7 @@
 package com.paradise.core.example;
 
 import com.paradise.core.model.UmsRole;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -434,276 +435,6 @@ public class UmsRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andAdminCountIsNull() {
-            addCriterion("admin_count is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountIsNotNull() {
-            addCriterion("admin_count is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountEqualTo(Integer value) {
-            addCriterion("admin_count =", value, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("admin_count = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountNotEqualTo(Integer value) {
-            addCriterion("admin_count <>", value, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountNotEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("admin_count <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountGreaterThan(Integer value) {
-            addCriterion("admin_count >", value, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountGreaterThanColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("admin_count > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("admin_count >=", value, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountGreaterThanOrEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("admin_count >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountLessThan(Integer value) {
-            addCriterion("admin_count <", value, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountLessThanColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("admin_count < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountLessThanOrEqualTo(Integer value) {
-            addCriterion("admin_count <=", value, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountLessThanOrEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("admin_count <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountIn(List<Integer> values) {
-            addCriterion("admin_count in", values, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountNotIn(List<Integer> values) {
-            addCriterion("admin_count not in", values, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountBetween(Integer value1, Integer value2) {
-            addCriterion("admin_count between", value1, value2, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andAdminCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("admin_count not between", value1, value2, "adminCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("create_time = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("create_time <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThanColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("create_time > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeGreaterThanOrEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("create_time >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThanColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("create_time < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeLessThanOrEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("create_time <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNull() {
-            addCriterion("`status` is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNotNull() {
-            addCriterion("`status` is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("`status` =", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("`status` = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("`status` <>", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("`status` <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("`status` >", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThanColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("`status` > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("`status` >=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThanOrEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("`status` >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("`status` <", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThanColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("`status` < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("`status` <=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThanOrEqualToColumn(UmsRole.Column column) {
-            addCriterion(new StringBuilder("`status` <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("`status` in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("`status` not in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("`status` between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("`status` not between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
         public Criteria andSortIsNull() {
             addCriterion("sort is null");
             return (Criteria) this;
@@ -791,6 +522,456 @@ public class UmsRoleExample {
 
         public Criteria andSortNotBetween(Integer value1, Integer value2) {
             addCriterion("sort not between", value1, value2, "sort");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIsNull() {
+            addCriterion("`enable` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIsNotNull() {
+            addCriterion("`enable` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableEqualTo(Integer value) {
+            addCriterion("`enable` =", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("`enable` = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotEqualTo(Integer value) {
+            addCriterion("`enable` <>", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("`enable` <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThan(Integer value) {
+            addCriterion("`enable` >", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("`enable` > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`enable` >=", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("`enable` >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThan(Integer value) {
+            addCriterion("`enable` <", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("`enable` < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanOrEqualTo(Integer value) {
+            addCriterion("`enable` <=", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("`enable` <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIn(List<Integer> values) {
+            addCriterion("`enable` in", values, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotIn(List<Integer> values) {
+            addCriterion("`enable` not in", values, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableBetween(Integer value1, Integer value2) {
+            addCriterion("`enable` between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotBetween(Integer value1, Integer value2) {
+            addCriterion("`enable` not between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIsNull() {
+            addCriterion("create_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIsNotNull() {
+            addCriterion("create_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtEqualTo(Date value) {
+            addCriterion("create_at =", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_at = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotEqualTo(Date value) {
+            addCriterion("create_at <>", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_at <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThan(Date value) {
+            addCriterion("create_at >", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_at > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_at >=", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtGreaterThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_at >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThan(Date value) {
+            addCriterion("create_at <", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_at < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanOrEqualTo(Date value) {
+            addCriterion("create_at <=", value, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtLessThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_at <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtIn(List<Date> values) {
+            addCriterion("create_at in", values, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotIn(List<Date> values) {
+            addCriterion("create_at not in", values, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtBetween(Date value1, Date value2) {
+            addCriterion("create_at between", value1, value2, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateAtNotBetween(Date value1, Date value2) {
+            addCriterion("create_at not between", value1, value2, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIsNull() {
+            addCriterion("update_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIsNotNull() {
+            addCriterion("update_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtEqualTo(Date value) {
+            addCriterion("update_at =", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_at = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotEqualTo(Date value) {
+            addCriterion("update_at <>", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_at <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThan(Date value) {
+            addCriterion("update_at >", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_at > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_at >=", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_at >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThan(Date value) {
+            addCriterion("update_at <", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_at < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanOrEqualTo(Date value) {
+            addCriterion("update_at <=", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_at <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIn(List<Date> values) {
+            addCriterion("update_at in", values, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotIn(List<Date> values) {
+            addCriterion("update_at not in", values, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtBetween(Date value1, Date value2) {
+            addCriterion("update_at between", value1, value2, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotBetween(Date value1, Date value2) {
+            addCriterion("update_at not between", value1, value2, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByIsNull() {
+            addCriterion("create_by is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByIsNotNull() {
+            addCriterion("create_by is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByEqualTo(Long value) {
+            addCriterion("create_by =", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_by = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotEqualTo(Long value) {
+            addCriterion("create_by <>", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_by <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThan(Long value) {
+            addCriterion("create_by >", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_by > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThanOrEqualTo(Long value) {
+            addCriterion("create_by >=", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByGreaterThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_by >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThan(Long value) {
+            addCriterion("create_by <", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_by < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThanOrEqualTo(Long value) {
+            addCriterion("create_by <=", value, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByLessThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("create_by <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByIn(List<Long> values) {
+            addCriterion("create_by in", values, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotIn(List<Long> values) {
+            addCriterion("create_by not in", values, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByBetween(Long value1, Long value2) {
+            addCriterion("create_by between", value1, value2, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateByNotBetween(Long value1, Long value2) {
+            addCriterion("create_by not between", value1, value2, "createBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByIsNull() {
+            addCriterion("update_by is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByIsNotNull() {
+            addCriterion("update_by is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByEqualTo(Long value) {
+            addCriterion("update_by =", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_by = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotEqualTo(Long value) {
+            addCriterion("update_by <>", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_by <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThan(Long value) {
+            addCriterion("update_by >", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_by > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThanOrEqualTo(Long value) {
+            addCriterion("update_by >=", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByGreaterThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_by >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThan(Long value) {
+            addCriterion("update_by <", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThanColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_by < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThanOrEqualTo(Long value) {
+            addCriterion("update_by <=", value, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByLessThanOrEqualToColumn(UmsRole.Column column) {
+            addCriterion(new StringBuilder("update_by <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByIn(List<Long> values) {
+            addCriterion("update_by in", values, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotIn(List<Long> values) {
+            addCriterion("update_by not in", values, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByBetween(Long value1, Long value2) {
+            addCriterion("update_by between", value1, value2, "updateBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateByNotBetween(Long value1, Long value2) {
+            addCriterion("update_by not between", value1, value2, "updateBy");
             return (Criteria) this;
         }
     }

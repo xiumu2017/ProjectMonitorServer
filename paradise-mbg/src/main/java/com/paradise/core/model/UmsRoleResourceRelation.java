@@ -2,26 +2,27 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
- * 
+ * 后台角色资源关系表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value="后台角色资源关系")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UmsRoleResourceRelation implements Serializable {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value="自增主键")
     private Long id;
 
     @ApiModelProperty(value="角色ID")

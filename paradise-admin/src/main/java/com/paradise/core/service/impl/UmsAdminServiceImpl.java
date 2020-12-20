@@ -93,7 +93,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public UmsAdmin register(UmsAdminParam umsAdminParam) {
         UmsAdmin umsAdmin = new UmsAdmin();
         BeanUtils.copyProperties(umsAdminParam, umsAdmin);
-        umsAdmin.setCreateTime(new Date());
+        umsAdmin.setCreateBy(new Date().getTime());
         umsAdmin.setStatus(1);
         //查询是否有相同用户名的用户
         UmsAdminExample example = new UmsAdminExample();
@@ -144,12 +144,13 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
         UmsAdminLoginLog loginLog = new UmsAdminLoginLog();
         loginLog.setAdminId(admin.getId());
-        loginLog.setCreateTime(new Date());
+        loginLog.setLoginTime(new Date());
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
-        loginLog.setIp(request.getRemoteAddr());
-        loginLogMapper.insert(loginLog);
+        loginLog.setIpAddr(request.getRemoteAddr());
+        loginLog.setUserAgent(request.getHeader("user-agent"));
+        loginLogMapper.insertSelective(loginLog);
     }
 
     /**
