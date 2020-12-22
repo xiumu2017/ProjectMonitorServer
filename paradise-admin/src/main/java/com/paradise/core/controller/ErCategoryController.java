@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  *
  * @author Paradise
  */
+@ApiIgnore
 @Api(tags = "文章类别管理")
 @RestController
 @AllArgsConstructor

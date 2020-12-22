@@ -1,7 +1,7 @@
 package com.paradise.core.security.config;
 
-import com.paradise.core.common.api.Result;
 import com.paradise.core.common.api.IErrorCode;
+import com.paradise.core.common.api.Result;
 import com.paradise.core.common.exception.ApiException;
 import com.paradise.core.common.exception.AppServiceException;
 import com.paradise.core.common.exception.ParamValidateFailException;
@@ -73,14 +73,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = RuntimeException.class)
     public Result<Object> handleRuntimeException(RuntimeException e) {
         log.error(e.getLocalizedMessage(), e);
-        return Result.failed(e.getLocalizedMessage());
+        return Result.failed("服务器出错了~");
     }
 
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Result<Object> handleException(Exception e) {
         log.error(e.getLocalizedMessage(), e);
-        return Result.failed(e.getLocalizedMessage());
+        return Result.failed("服务器出错了~");
     }
 
     private String getMsg(BindingResult bindingResult) {

@@ -19,6 +19,7 @@ import java.util.List;
  *
  * @author Paradise
  */
+@ApiIgnore
 @Api(tags = "人员管理")
 @RestController
 @AllArgsConstructor

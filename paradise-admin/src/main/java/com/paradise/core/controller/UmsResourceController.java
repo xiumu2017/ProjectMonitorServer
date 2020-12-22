@@ -22,7 +22,7 @@ import java.util.List;
  */
 @ApiIgnore
 @Controller
-@Api(tags = "后台资源管理",hidden = true)
+@Api(tags = "1.7 后台资源管理")
 @RequestMapping("/resource")
 @AllArgsConstructor
 public class UmsResourceController {
@@ -33,7 +33,7 @@ public class UmsResourceController {
     @ApiOperation("添加后台资源")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public Result create(@RequestBody UmsResource umsResource) {
+    public Result<Integer> create(@RequestBody UmsResource umsResource) {
         int count = resourceService.create(umsResource);
         dynamicSecurityMetadataSource.clearDataSource();
         if (count > 0) {
@@ -46,8 +46,8 @@ public class UmsResourceController {
     @ApiOperation("修改后台资源")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public Result update(@PathVariable Long id,
-                         @RequestBody UmsResource umsResource) {
+    public Result<Integer> update(@PathVariable Long id,
+                                  @RequestBody UmsResource umsResource) {
         int count = resourceService.update(id, umsResource);
         dynamicSecurityMetadataSource.clearDataSource();
         if (count > 0) {
@@ -68,7 +68,7 @@ public class UmsResourceController {
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public Result delete(@PathVariable Long id) {
+    public Result<Integer> delete(@PathVariable Long id) {
         int count = resourceService.delete(id);
         dynamicSecurityMetadataSource.clearDataSource();
         if (count > 0) {

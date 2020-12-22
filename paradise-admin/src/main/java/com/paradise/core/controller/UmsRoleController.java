@@ -19,7 +19,7 @@ import java.util.List;
  * @author Paradise
  * @date 2018/9/30
  */
-@Api(tags = "4. 后台用户角色管理")
+@Api(tags = "1.5 UMS-后台用户角色管理")
 @RestController
 @RequestMapping("/role")
 public class UmsRoleController {

@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  * @author Paradise
  * @date 2018/4/26
  */
-@Api(tags = "1. 后台用户管理")
+@Api(tags = "1.1 UMS-后台用户管理")
 @RestController
 @RequestMapping("/admin")
 public class UmsAdminController {

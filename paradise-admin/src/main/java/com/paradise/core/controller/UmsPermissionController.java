@@ -16,7 +16,7 @@ import java.util.List;
  * @author Paradise
  * @date 2018/9/29
  */
-@Api(tags = "3. 后台用户权限管理")
+@Api(tags = "1.4 UMS-后台用户权限管理")
 @RestController
 @RequestMapping("/permission")
 public class UmsPermissionController {

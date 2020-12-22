@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2020/2/4
  */
 @Controller
-@Api(tags = "2. 后台菜单管理")
+@Api(tags = "1.3 UMS-后台菜单管理")
 @RequestMapping("/menu")
 public class UmsMenuController {
 
@@ -43,7 +43,7 @@ public class UmsMenuController {
     @ApiOperation("修改后台菜单")
     @PostMapping(value = "/update/{id}")
     public Result<Integer> update(@PathVariable Long id,
-                         @RequestBody UmsMenu umsMenu) {
+                                  @RequestBody UmsMenu umsMenu) {
         int count = menuService.update(id, umsMenu);
         if (count > 0) {
             return Result.success(count);

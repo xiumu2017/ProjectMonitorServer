@@ -3,14 +3,17 @@ package com.paradise.core.service;
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.common.api.ResultCode;
+import com.paradise.core.dto.body.PmServerSshBody;
 import com.paradise.core.example.PmServerSshExample;
 import com.paradise.core.mapper.PmServerSshMapper;
 import com.paradise.core.model.PmServerSsh;
 import com.paradise.core.utils.ssh.LinuxCmdUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,24 +28,34 @@ public class PmServerSshService {
     private final PmServerSshMapper pmServerSshMapper;
 
     public int deleteByPrimaryKey(Long id) {
-        return this.pmServerSshMapper.deleteByPrimaryKey(id);
+        PmServerSsh serverSsh = PmServerSsh.builder().id(id).enable(-1).build();
+        return this.pmServerSshMapper.updateByPrimaryKeySelective(serverSsh);
     }
 
-    public int insert(PmServerSsh record) {
-        return this.pmServerSshMapper.insert(record);
+    public int insert(PmServerSshBody record) {
+        PmServerSsh serverSsh = new PmServerSsh();
+        BeanUtils.copyProperties(record, serverSsh);
+        serverSsh.setCreateAt(new Date());
+        serverSsh.setUpdateAt(new Date());
+        return this.pmServerSshMapper.insertSelective(serverSsh);
     }
 
     public PmServerSsh selectByPrimaryKey(Long id) {
         return this.pmServerSshMapper.selectByPrimaryKey(id);
     }
 
-    public int updateByPrimaryKey(PmServerSsh record) {
-        return this.pmServerSshMapper.updateByPrimaryKey(record);
+    public int updateByPrimaryKey(Long id, PmServerSshBody record) {
+        PmServerSsh serverSsh = new PmServerSsh();
+        BeanUtils.copyProperties(record, serverSsh);
+        serverSsh.setUpdateAt(new Date());
+        serverSsh.setId(id);
+        return this.pmServerSshMapper.updateByPrimaryKey(serverSsh);
     }
 
     public List<PmServerSsh> selectByPage(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        return this.pmServerSshMapper.selectByExample(new PmServerSshExample());
+        return this.pmServerSshMapper.selectByExample(new PmServerSshExample().createCriteria()
+                .andEnableNotEqualTo(-1).example().orderBy(PmServerSsh.Column.createAt.desc()));
     }
 
     public Result<String> serverConnectTest(Long id) {

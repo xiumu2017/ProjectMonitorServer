@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 项目监控数据库信息表控制器 
+ * 项目监控数据库信息表控制器
  *
  * @author Paradise
  */
 @RestController
 @AllArgsConstructor
-@Api(tags="com.paradise.core.model.PmDb")
-@RequestMapping("/pmDbs")
+@Api(tags = "2.3 数据库管理")
+@RequestMapping("/db")
 public class PmDbController {
     private final PmDbService pmDbService;
 
     @ApiOperation(value = "分页查询")
     @GetMapping(value = "/page")
     public Result<CommonPage<PmDb>> selectByPage(Integer pageNum, Integer pageSize) {
-        List<PmDb> result = this.pmDbService.selectByPage(pageNum,pageSize);
+        List<PmDb> result = this.pmDbService.selectByPage(pageNum, pageSize);
         return Result.success(CommonPage.restPage(result));
     }
 

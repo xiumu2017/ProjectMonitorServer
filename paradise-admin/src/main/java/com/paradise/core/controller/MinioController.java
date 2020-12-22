@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * MinIO对象存储管理
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Paradise
  * @date 2019/12/25
  */
+@ApiIgnore
 @Slf4j
 @Api(tags = "MinIO对象存储管理")
 @RestController

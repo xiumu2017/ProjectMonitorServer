@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 钉钉群组管理控制器 
+ * 钉钉群组管理控制器
  *
  * @author Paradise
  */
 @RestController
 @AllArgsConstructor
-@Api(tags="com.paradise.core.model.PmDingTalkRobot")
-@RequestMapping("/pmDingTalkRobots")
+@Api(tags = "3.2 钉钉机器人管理")
+@RequestMapping("/ding-talk-robot")
 public class PmDingTalkRobotController {
     private final PmDingTalkRobotService pmDingTalkRobotService;
 
     @ApiOperation(value = "分页查询")
     @GetMapping(value = "/page")
     public Result<CommonPage<PmDingTalkRobot>> selectByPage(Integer pageNum, Integer pageSize) {
-        List<PmDingTalkRobot> result = this.pmDingTalkRobotService.selectByPage(pageNum,pageSize);
+        List<PmDingTalkRobot> result = this.pmDingTalkRobotService.selectByPage(pageNum, pageSize);
         return Result.success(CommonPage.restPage(result));
     }
 
