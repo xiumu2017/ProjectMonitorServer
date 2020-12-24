@@ -36,7 +36,7 @@ public class PmServerSshController {
 
     @ApiOperationSupport(order = 2)
     @ApiOperation("添加")
-    @PostMapping(value = "/")
+    @PostMapping
     public Result<Integer> insert(@RequestBody @Validated PmServerSshBody record) {
         int count = this.pmServerSshService.insert(record);
         if (count > 0) {
@@ -88,7 +88,7 @@ public class PmServerSshController {
     @ApiOperationSupport(order = 7)
     @ApiOperation("查询服务器类别列表")
     @GetMapping("/types")
-    public Result<PmServerSsh.ServerType[]> serverTypes(){
+    public Result<PmServerSsh.ServerType[]> serverTypes() {
         return Result.success(PmServerSsh.ServerType.values());
     }
 }
