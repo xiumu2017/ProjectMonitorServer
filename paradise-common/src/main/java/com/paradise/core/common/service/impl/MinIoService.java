@@ -6,7 +6,6 @@ import com.paradise.core.common.api.Result;
 import com.paradise.core.common.domain.BucketPolicyConfigDto;
 import com.paradise.core.common.domain.MinIoConfiguration;
 import com.paradise.core.common.domain.MinioUploadDto;
-import com.paradise.core.common.utils.DateUtil;
 import com.paradise.core.common.utils.GeneratorUtil;
 import io.minio.*;
 import lombok.AllArgsConstructor;
@@ -47,7 +46,7 @@ public class MinIoService {
                         .build();
                 minioClient.setBucketPolicy(setBucketPolicyArgs);
             }
-            String filename = fileNamePrefix() + file.getOriginalFilename();
+            String filename = GeneratorUtil.generateFileName(file.getOriginalFilename());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             // 设置存储对象名称
             String objectName = sdf.format(new Date()) + "/" + filename;
@@ -68,10 +67,6 @@ public class MinIoService {
             log.info("上传发生错误: {}！", e.getMessage());
         }
         return Result.failed();
-    }
-
-    private String fileNamePrefix() {
-        return DateUtil.defaultDateFormat() + GeneratorUtil.getNonceString(2);
     }
 
     private BucketPolicyConfigDto createBucketPolicyConfigDto(String bucketName) {

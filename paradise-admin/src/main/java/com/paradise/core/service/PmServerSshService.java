@@ -49,7 +49,7 @@ public class PmServerSshService {
         BeanUtils.copyProperties(record, serverSsh);
         serverSsh.setUpdateAt(new Date());
         serverSsh.setId(id);
-        return this.pmServerSshMapper.updateByPrimaryKey(serverSsh);
+        return this.pmServerSshMapper.updateByPrimaryKeySelective(serverSsh);
     }
 
     public List<PmServerSsh> selectByPage(Integer pageNum, Integer pageSize) {

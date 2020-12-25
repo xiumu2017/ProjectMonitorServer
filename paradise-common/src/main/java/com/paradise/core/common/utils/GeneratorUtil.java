@@ -1,7 +1,13 @@
 package com.paradise.core.common.utils;
 
+import cn.hutool.core.date.DateUtil;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
+
+import static cn.hutool.core.date.DatePattern.PURE_TIME_PATTERN;
 
 /**
  * 常见随机数序列生成
@@ -56,4 +62,32 @@ public class GeneratorUtil {
     public static String generatePromotionCode(Long id) {
         return String.format(USER_NAME_FORMAT, id) + GeneratorUtil.getNonceString(2);
     }
+
+    public static String fileNamePrefix() {
+        return DateUtil.format(new Date(), PURE_TIME_PATTERN) + GeneratorUtil.getNonceString(2);
+    }
+
+    /**
+     * 生成文件名
+     *
+     * @param originFileName 原始文件名称
+     * @return 时间 HHmmss+文件名 切割
+     */
+    public static String generateFileName(String originFileName) {
+        if (StringUtils.isEmpty(originFileName)) {
+            originFileName = "";
+        }
+        // 保留后缀名
+        String suffix = "";
+        int s = originFileName.lastIndexOf(".");
+        if (s >= 0) {
+            suffix = originFileName.substring(s);
+            originFileName = originFileName.substring(0, s);
+        }
+        if (originFileName.length() > 30) {
+            originFileName = originFileName.substring(0, 30);
+        }
+        return fileNamePrefix() + originFileName + suffix;
+    }
+
 }
