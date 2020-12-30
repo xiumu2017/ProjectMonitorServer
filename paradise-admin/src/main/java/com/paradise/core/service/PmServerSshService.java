@@ -7,6 +7,8 @@ import com.paradise.core.dto.body.PmServerSshBody;
 import com.paradise.core.example.PmServerSshExample;
 import com.paradise.core.mapper.PmServerSshMapper;
 import com.paradise.core.model.PmServerSsh;
+import com.paradise.core.model.UmsAdmin;
+import com.paradise.core.service.impl.AdminCommonService;
 import com.paradise.core.utils.ssh.LinuxCmdUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PmServerSshService {
     private final PmServerSshMapper pmServerSshMapper;
+    private final AdminCommonService adminCommonService;
 
     public int deleteByPrimaryKey(Long id) {
         PmServerSsh serverSsh = PmServerSsh.builder().id(id).enable(-1).build();
@@ -35,6 +38,9 @@ public class PmServerSshService {
     public int insert(PmServerSshBody record) {
         PmServerSsh serverSsh = new PmServerSsh();
         BeanUtils.copyProperties(record, serverSsh);
+        UmsAdmin admin = adminCommonService.getCurrentAdmin();
+        serverSsh.setCreateBy(admin.getId());
+        serverSsh.setUpdateBy(admin.getId());
         serverSsh.setCreateAt(new Date());
         serverSsh.setUpdateAt(new Date());
         return this.pmServerSshMapper.insertSelective(serverSsh);
@@ -49,6 +55,8 @@ public class PmServerSshService {
         BeanUtils.copyProperties(record, serverSsh);
         serverSsh.setUpdateAt(new Date());
         serverSsh.setId(id);
+        UmsAdmin admin = adminCommonService.getCurrentAdmin();
+        serverSsh.setUpdateBy(admin.getId());
         return this.pmServerSshMapper.updateByPrimaryKeySelective(serverSsh);
     }
 
