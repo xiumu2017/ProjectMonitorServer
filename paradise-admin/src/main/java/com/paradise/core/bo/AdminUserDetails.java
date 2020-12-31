@@ -21,8 +21,8 @@ public class AdminUserDetails implements UserDetails {
         return umsAdmin;
     }
 
-    private UmsAdmin umsAdmin;
-    private List<UmsResource> resourceList;
+    private final UmsAdmin umsAdmin;
+    private final List<UmsResource> resourceList;
 
     public AdminUserDetails(UmsAdmin umsAdmin, List<UmsResource> resourceList) {
         this.umsAdmin = umsAdmin;
