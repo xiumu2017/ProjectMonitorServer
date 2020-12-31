@@ -1,11 +1,11 @@
-package com.paradise.core.service;
+package com.paradise.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.paradise.core.body.ErCategoryBody;
+import com.paradise.core.dto.body.ErCategoryBody;
+import com.paradise.core.dto.query.ErCategoryQuery;
 import com.paradise.core.example.ErCategoryExample;
 import com.paradise.core.mapper.ErCategoryMapper;
 import com.paradise.core.model.ErCategory;
-import com.paradise.core.query.ErCategoryQuery;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

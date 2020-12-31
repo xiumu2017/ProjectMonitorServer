@@ -2,6 +2,7 @@ package com.paradise.core.app.service;
 
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.app.dao.MpArticleDao;
+import com.paradise.core.dto.query.ErArticleQuery;
 import com.paradise.core.example.ErCategoryExample;
 import com.paradise.core.mapper.ErArticleMapper;
 import com.paradise.core.mapper.ErCategoryMapper;
@@ -10,7 +11,6 @@ import com.paradise.core.model.ErArticle;
 import com.paradise.core.model.ErCategory;
 import com.paradise.core.model.ErReadRecord;
 import com.paradise.core.model.UmsMember;
-import com.paradise.core.query.ErArticleQuery;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

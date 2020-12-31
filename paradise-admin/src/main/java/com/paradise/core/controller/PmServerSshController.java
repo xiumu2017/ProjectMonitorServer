@@ -5,7 +5,7 @@ import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.PmServerSshBody;
 import com.paradise.core.model.PmServerSsh;
-import com.paradise.core.service.PmServerSshService;
+import com.paradise.core.service.impl.PmServerSshService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

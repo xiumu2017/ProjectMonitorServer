@@ -1,17 +1,17 @@
-package com.paradise.core.service;
+package com.paradise.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.paradise.core.body.ErArticleBody;
 import com.paradise.core.common.utils.DateUtil;
 import com.paradise.core.dao.ErArticleDao;
+import com.paradise.core.dto.body.ErArticleBody;
 import com.paradise.core.dto.detail.ErArticleDetail;
+import com.paradise.core.dto.query.ErArticleQuery;
 import com.paradise.core.example.ErArticleCategoryRelationExample;
 import com.paradise.core.example.ErArticleExample;
 import com.paradise.core.mapper.ErArticleCategoryRelationMapper;
 import com.paradise.core.mapper.ErArticleMapper;
 import com.paradise.core.model.ErArticle;
 import com.paradise.core.model.ErArticleCategoryRelation;
-import com.paradise.core.query.ErArticleQuery;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

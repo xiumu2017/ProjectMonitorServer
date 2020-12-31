@@ -1,4 +1,4 @@
-package com.paradise.core.body;
+package com.paradise.core.dto.body;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,11 +1,11 @@
-package com.paradise.core.service;
+package com.paradise.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.common.utils.DateUtil;
+import com.paradise.core.dto.query.UmsMemberQuery;
 import com.paradise.core.example.UmsMemberExample;
 import com.paradise.core.mapper.UmsMemberMapper;
 import com.paradise.core.model.UmsMember;
-import com.paradise.core.query.UmsMemberQuery;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,7 @@ package com.paradise.core.controller;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.model.PmDingTalkRobot;
-import com.paradise.core.service.PmDingTalkRobotService;
+import com.paradise.core.service.impl.PmDingTalkRobotService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

@@ -3,7 +3,7 @@ package com.paradise.core.controller;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.model.UmsAdminLoginLog;
-import com.paradise.core.service.UmsAdminLoginLogService;
+import com.paradise.core.service.impl.UmsAdminLoginLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.paradise.core.query;
+package com.paradise.core.dto.query;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.paradise.core.dao;
 
+import com.paradise.core.dto.query.ErArticleQuery;
 import com.paradise.core.model.ErArticle;
-import com.paradise.core.query.ErArticleQuery;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

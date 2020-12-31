@@ -1,4 +1,4 @@
-package com.paradise.core.service;
+package com.paradise.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.example.PmDingTalkRobotExample;

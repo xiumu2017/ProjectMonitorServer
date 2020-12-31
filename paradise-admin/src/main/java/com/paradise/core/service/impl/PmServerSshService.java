@@ -1,4 +1,4 @@
-package com.paradise.core.service;
+package com.paradise.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.common.api.Result;
@@ -8,7 +8,6 @@ import com.paradise.core.example.PmServerSshExample;
 import com.paradise.core.mapper.PmServerSshMapper;
 import com.paradise.core.model.PmServerSsh;
 import com.paradise.core.model.UmsAdmin;
-import com.paradise.core.service.impl.AdminCommonService;
 import com.paradise.core.utils.ssh.LinuxCmdUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

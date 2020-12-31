@@ -1,11 +1,11 @@
 package com.paradise.core.controller;
 
-import com.paradise.core.body.ErArticleBody;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
+import com.paradise.core.dto.body.ErArticleBody;
+import com.paradise.core.dto.query.ErArticleQuery;
 import com.paradise.core.model.ErArticle;
-import com.paradise.core.query.ErArticleQuery;
-import com.paradise.core.service.ErArticleService;
+import com.paradise.core.service.impl.ErArticleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

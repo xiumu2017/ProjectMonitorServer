@@ -1,15 +1,15 @@
-package com.paradise.core.query;
+package com.paradise.core.dto.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Paradise
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 @ApiModel("人员查询")
 public class UmsMemberQuery extends BaseQuery {
     @ApiModelProperty("微信昵称")

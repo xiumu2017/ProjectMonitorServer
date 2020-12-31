@@ -2,9 +2,9 @@ package com.paradise.core.controller;
 
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
+import com.paradise.core.dto.query.UmsMemberQuery;
 import com.paradise.core.model.UmsMember;
-import com.paradise.core.query.UmsMemberQuery;
-import com.paradise.core.service.UmsMemberService;
+import com.paradise.core.service.impl.UmsMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

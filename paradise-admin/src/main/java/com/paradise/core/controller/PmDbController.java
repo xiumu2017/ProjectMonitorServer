@@ -3,7 +3,7 @@ package com.paradise.core.controller;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.model.PmDb;
-import com.paradise.core.service.PmDbService;
+import com.paradise.core.service.impl.PmDbService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
