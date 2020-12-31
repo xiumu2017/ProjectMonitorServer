@@ -48,4 +48,5 @@ public class GeneratorSwagger2Doc extends PluginAdapter {
         return super.modelFieldGenerated(field, topLevelClass, introspectedColumn, introspectedTable, modelClassType);
     }
 
+
 }
