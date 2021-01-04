@@ -19,27 +19,41 @@ import java.util.*;
  *
  * @author linweiyu
  */
-@Slf4j
+@Slf4j(topic = "ControllerServicePlugin")
 public class ControllerServicePlugin extends PluginAdapter {
 
     private static final String IS_GENERATE_CONTROLLER_SERVICE = "generate.controller.service";
     private GeneratorParam generatorParam;
+    private Boolean enable;
+    private String targetProject;
+    private String servicePackage;
+    private String serviceImplPackage;
+    private String webPackage;
 
     @Override
     public boolean validate(List<String> warnings) {
-        log.info("--- ControllerServicePlugin validate invoke");
+        log.info("--- validate invoke");
+        enable = Boolean.valueOf(properties.getProperty(IS_GENERATE_CONTROLLER_SERVICE));
+        // src/main/java
+        targetProject = properties.getProperty("targetProject");
+        log.info("--- targetProject=[{}]", targetProject);
+        // Service与Controller所在的包的包名
+        servicePackage = properties.getProperty("servicePackage");
+        serviceImplPackage = servicePackage + ".impl";
+        webPackage = properties.getProperty("controllerPackage");
+        log.info("--- servicePackage=[{}]", servicePackage);
+        log.info("--- webPackage=[{}]", webPackage);
         return true;
     }
 
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
-        log.info("--- ControllerServicePlugin contextGenerateAdditionalJavaFiles invoke");
+        log.info("--- contextGenerateAdditionalJavaFiles invoke");
         List<GeneratedJavaFile> generatedJavaFiles = super.contextGenerateAdditionalJavaFiles(introspectedTable);
         Properties properties = getProperties();
         // 是否生成Service,Controller类
-        String isGenerateControllerService = properties.getProperty(IS_GENERATE_CONTROLLER_SERVICE);
-        log.info("--- ControllerServicePlugin is_generate_controller_service=[{}]", isGenerateControllerService);
-        if (StringUtility.stringHasValue(isGenerateControllerService) && Boolean.parseBoolean(isGenerateControllerService)) {
+        log.info("--- is_generate_controller_service=[{}]", enable);
+        if (enable) {
             if (generatedJavaFiles == null) {
                 generatedJavaFiles = new ArrayList<>();
             }
@@ -51,16 +65,8 @@ public class ControllerServicePlugin extends PluginAdapter {
             String modalFullName = modelTargetPackage + "." + domainObjectName;
             // Example
             String example = introspectedTable.getExampleType();
-            log.info("--- ControllerServicePlugin modalFullName=[{}]", modalFullName);
-            // src/main/java
-            String targetProject = properties.getProperty("targetProject");
-            log.info("--- ControllerServicePlugin targetProject=[{}]", targetProject);
-            // Service与Controller所在的包的包名
-            String servicePackage = properties.getProperty("service.package");
-            String serviceImplPackage = servicePackage + ".impl";
-            String webPackage = properties.getProperty("web.package");
-            log.info("--- ControllerServicePlugin servicePackage=[{}]", servicePackage);
-            log.info("--- ControllerServicePlugin webPackage=[{}]", webPackage);
+            log.info("--- modalFullName=[{}]", modalFullName);
+
             // 生成Service类所在的包(对应文件系统的文件夹),同时生成impl包
             DefaultShellCallback shellCallback = new DefaultShellCallback(true);
             generatorParam = GeneratorParam.builder()
@@ -92,7 +98,7 @@ public class ControllerServicePlugin extends PluginAdapter {
             File controllerDirectory = shellCallback.getDirectory(generatorParam.getTargetProject(), generatorParam.getWebPackage());
             String absolutePath = controllerDirectory.getAbsolutePath();
             if (StringUtility.stringHasValue(absolutePath)) {
-                log.info("--- ControllerServicePlugin 创建目录(包)成功=[{}]", absolutePath);
+                log.info("--- 创建目录(包)成功=[{}]", absolutePath);
             }
         } catch (ShellException e) {
             log.error(e.getMessage(), e);

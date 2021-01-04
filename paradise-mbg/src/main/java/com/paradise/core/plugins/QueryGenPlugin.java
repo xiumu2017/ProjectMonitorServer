@@ -24,6 +24,7 @@ import java.util.List;
  */
 public class QueryGenPlugin extends PluginAdapter {
 
+    private Boolean enable;
     private String targetPackage;
     private String baseQuery;
 
@@ -31,6 +32,7 @@ public class QueryGenPlugin extends PluginAdapter {
     public boolean validate(List<String> warnings) {
         targetPackage = getProperties().getProperty("targetPackage");
         baseQuery = getProperties().getProperty("baseQuery");
+        enable = Boolean.valueOf(getProperties().getProperty("enable"));
         if (StringUtils.isEmpty(targetPackage) || StringUtils.isEmpty(baseQuery)) {
             warnings.add("targetPackage baseQuery must not be empty");
             return false;
@@ -40,8 +42,9 @@ public class QueryGenPlugin extends PluginAdapter {
 
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
-        //生成dto
-
+        if (!enable) {
+            return Collections.emptyList();
+        }
         String targetProject = context.getJavaModelGeneratorConfiguration().getTargetProject();
         List<GeneratedJavaFile> generatedJavaFileList = introspectedTable.getGeneratedJavaFiles();
         if (generatedJavaFileList == null) {
@@ -72,7 +75,6 @@ public class QueryGenPlugin extends PluginAdapter {
         }
         additionalJavaFileList.add(queryJavaFile);
         return additionalJavaFileList;
-//        return Collections.singletonList(queryJavaFile);
     }
 
     protected void setQueryBaseInfo(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -103,7 +105,6 @@ public class QueryGenPlugin extends PluginAdapter {
         List<IntrospectedColumn> columnList = introspectedTable.getAllColumns();
         Field field;
         StringBuilder swaggerAnnotationBuilder = new StringBuilder(128);
-//        StringBuilder notEmptyAnnotationBuilder = new StringBuilder(128);
         for (IntrospectedColumn introspectedColumn : columnList) {
             if (ignore(introspectedColumn)) {
                 continue;
@@ -111,11 +112,9 @@ public class QueryGenPlugin extends PluginAdapter {
             String fieldName = introspectedColumn.getJavaProperty();
             field = new Field(fieldName, introspectedColumn.getFullyQualifiedJavaType());
             field.setVisibility(JavaVisibility.PRIVATE);
-
             String columnRemark = introspectedColumn.getRemarks();
             //增加注释
             field.addJavaDocLine(MbgCommentUtils.genFieldRemarks(columnRemark));
-
             // 增加 注解
             swaggerAnnotationBuilder.delete(0, swaggerAnnotationBuilder.length());
             swaggerAnnotationBuilder.append("@ApiModelProperty(value = \"").append(columnRemark).append("\"").append(")");
@@ -126,13 +125,6 @@ public class QueryGenPlugin extends PluginAdapter {
                     swaggerAnnotationBuilder.append(" ,example=\"").append(introspectedColumn.getDefaultValue()).append("\"");
                 }
                 swaggerAnnotationBuilder.append(")");
-
-//            if (!introspectedColumn.isNullable()) {//增加NotEmpty注解
-//                notEmptyAnnotationBuilder.delete(0, notEmptyAnnotationBuilder.length());
-//
-//                notEmptyAnnotationBuilder.append("@NotEmpty(message=\"").append(columnRemark).append("不能为空!\")");
-//                field.addAnnotation(notEmptyAnnotationBuilder.toString());
-//            }
             }
             dtoLevelCls.addField(field);
         }
