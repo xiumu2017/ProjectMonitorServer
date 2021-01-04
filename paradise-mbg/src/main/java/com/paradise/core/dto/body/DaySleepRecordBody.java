@@ -2,9 +2,10 @@ package com.paradise.core.dto.body;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
 
 /**
  * 睡眠记录Body
@@ -14,12 +15,22 @@ import lombok.Data;
 @ApiModel(value = "睡眠记录Body")
 @Data
 public class DaySleepRecordBody {
-    /**
-     * 睡眠时长
-     */
-    @ApiModelProperty(value = "睡眠时长", required = true, example = "0")
-    @NotNull(message = "睡眠时长不能为空!")
-    private Integer duration;
+
+    @ApiModelProperty(value = "日期")
+    @NotNull
+    private Long date;
+    @ApiModelProperty(value = "上床时间")
+    @NotNull
+    private Long bedTime;
+    @ApiModelProperty(value = "入睡时间")
+    @NotNull
+    private Long sleepTime;
+    @ApiModelProperty(value = "醒来时间")
+    @NotNull
+    private Long wakeTime;
+    @ApiModelProperty(value = "起床时间")
+    @NotNull
+    private Long upTime;
 
     /**
      * 睡眠质量
@@ -32,7 +43,6 @@ public class DaySleepRecordBody {
      * auto_sleep_data
      */
     @ApiModelProperty(value = "auto_sleep_data", required = true, example = "")
-    @NotEmpty(message = "auto_sleep_data不能为空!")
     private String appData;
 
     /**
