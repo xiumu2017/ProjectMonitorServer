@@ -53,7 +53,6 @@ secure:
       - /**/admin/register
       - /**/admin/info
       - /**/admin/logout
-      - /**/minio/upload
       - /**/admin/pass/reset
 
 minio:
@@ -62,3 +61,9 @@ minio:
   accessKey: L18S3MC4V2B6W8ZLLP9Y #访问的key
   secretKey: Y+nkVyUgRG9RiiYOJARe7aBS0ighgfZnxbaaHGJN #访问的秘钥
   openUrl: https://yyyd.gaoshan.co:8003
+oss:
+  secretId:  # 提交代码记得忽略
+  secretKey:   # 提交代码记得忽略
+  appId: 1256237186
+  regionName: ap-nanjing
+  bucketName: paradise
