@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -117,6 +118,19 @@ public class QCloudOssService {
         dto.setName(key);
         dto.setUrl(url(bucketName, key));
         return Result.success(dto);
+    }
+
+    public PutObjectResult upload(String bucketName, InputStream inputStream, String key) {
+        MinioUploadDto dto = new MinioUploadDto();
+        // 指定要上传的文件
+        // 指定要上传到的存储桶
+        // 指定要上传到 COS 上对象键
+        bucketName = genBucketName(bucketName);
+        if (!bucketExist(bucketName)) {
+            this.createBucket(bucketName);
+        }
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, inputStream, null);
+        return cosClient.putObject(putObjectRequest);
     }
 
     private String genBucketName(String name) {

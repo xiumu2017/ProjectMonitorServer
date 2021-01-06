@@ -86,7 +86,7 @@
         <!-- ControllerServicePlugin -->
         <plugin type="com.paradise.core.plugins.ControllerServicePlugin">
             <!-- 是否生成 Controller 与 Service 类 -->
-            <property name="enable" value="true"/>
+            <property name="enable" value="false"/>
             <property name="targetProject" value=".\paradise-admin\src\main\java"/>
             <property name="servicePackage" value="com.paradise.core.service"/>
             <!-- Controller 的包路径 -->
@@ -131,7 +131,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.paradise.core.mapper"
                              targetProject=".\paradise-mbg\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="day_%">
+        <table tableName="day_bing_image">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

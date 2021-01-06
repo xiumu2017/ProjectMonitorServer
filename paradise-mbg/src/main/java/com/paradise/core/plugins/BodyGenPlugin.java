@@ -26,10 +26,12 @@ import java.util.List;
 public class BodyGenPlugin extends PluginAdapter {
 
     private String targetPackage;
+    private Boolean enable;
 
     @Override
     public boolean validate(List<String> warnings) {
         targetPackage = getProperties().getProperty("targetPackage");
+        enable = Boolean.valueOf(getProperties().getProperty("enable"));
         if (StringUtils.isEmpty(targetPackage)) {
             warnings.add("targetPackage must not be empty");
             return false;
@@ -39,6 +41,9 @@ public class BodyGenPlugin extends PluginAdapter {
 
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
+        if (!enable) {
+            return Collections.emptyList();
+        }
         String targetProject = context.getJavaModelGeneratorConfiguration().getTargetProject();
         TopLevelClass topLevelClass = MbgCommonUtils.generate(introspectedTable, context, targetPackage);
         if (topLevelClass == null) {
