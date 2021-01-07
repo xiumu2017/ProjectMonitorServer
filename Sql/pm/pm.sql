@@ -1,28 +1,31 @@
-# 创建项目表
-create table if not exists pm_project
+create table project_monitor.pm_project
 (
-    id           bigint                                    not null auto_increment primary key comment '自增主键',
-    project_name varchar(100)    default ''                not null comment '项目名称',
-    service_url  varchar(200)    default ''                not null comment '监测地址',
-    importance   int(1)          default 0                 not null comment '重要性（一星到三星）',
-    username     varchar(50)     default ''                not null comment '用户名',
-    password     varchar(100)    default ''                not null comment '密码',
-    status_code  int(4) unsigned default 200               not null comment '状态码',
-    status       int(2)          default 1                 not null comment '项目状态(1:可用 0:禁用)',
-    type         varchar(20)     default ''                not null comment '项目类型',
-    company_id   bigint          default 0                 not null comment '单位id',
-    max_alert    int             default 1                 not null comment '最大通知限制',
-    error_count  int             default 0                 null comment '异常数量',
-    remark       varchar(100)    default ''                not null comment '备注',
-    create_at    timestamp       default CURRENT_TIMESTAMP null comment '创建时间',
-    update_at    timestamp       default CURRENT_TIMESTAMP null comment '更新时间',
-    create_by    bigint          default 0                 not null comment '创建管理员ID',
-    update_by    bigint          default 0                 not null comment '更新管理员ID'
+    id                bigint auto_increment comment '自增主键'
+        primary key,
+    project_name      varchar(100)  default ''                not null comment '项目名称',
+    service_url       varchar(200)  default ''                not null comment '监测地址',
+    importance        int           default 0                 not null comment '重要性（一星到三星）',
+    username          varchar(50)   default ''                not null comment '用户名',
+    password          varchar(100)  default ''                not null comment '密码',
+    status_code       int unsigned  default '200'             not null comment '状态码',
+    status            int           default 1                 not null comment '项目状态(1:可用 0:禁用)',
+    type              varchar(20)   default ''                not null comment '项目类型',
+    company_id        bigint        default 0                 not null comment '单位id',
+    max_alert         int           default 1                 not null comment '最大通知限制',
+    error_count       int           default 0                 null comment '异常数量',
+    start_time        timestamp                               not null comment '项目开始时间',
+    end_time          timestamp                               not null comment '项目结束时间',
+    remark            varchar(100)  default ''                not null comment '备注',
+    project_info_link varchar(1000) default ''                not null comment '项目信息资料链接地址',
+    create_at         timestamp     default CURRENT_TIMESTAMP null comment '创建时间',
+    update_at         timestamp     default CURRENT_TIMESTAMP null comment '更新时间',
+    create_by         bigint        default 0                 not null comment '创建管理员ID',
+    update_by         bigint        default 0                 not null comment '更新管理员ID'
 )
     comment '项目监控项目表';
 
 create index project_name
-    on pm_project (project_name);
+    on project_monitor.pm_project (project_name);
 
 create table if not exists pm_server_ssh
 (
