@@ -14,7 +14,10 @@
     <result column="company_id" jdbcType="BIGINT" property="companyId" />
     <result column="max_alert" jdbcType="INTEGER" property="maxAlert" />
     <result column="error_count" jdbcType="INTEGER" property="errorCount" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="project_info_link" jdbcType="VARCHAR" property="projectInfoLink" />
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
@@ -80,8 +83,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, project_name, service_url, importance, username, `password`, status_code, `status`, 
-    `type`, company_id, max_alert, error_count, remark, create_at, update_at, create_by, 
-    update_by
+    `type`, company_id, max_alert, error_count, start_time, end_time, remark, project_info_link, 
+    create_at, update_at, create_by, update_by
   </sql>
   <select id="selectByExample" parameterType="com.paradise.core.example.PmProjectExample" resultMap="BaseResultMap">
     select
@@ -158,13 +161,15 @@
     insert into pm_project (project_name, service_url, importance, 
       username, `password`, status_code, 
       `status`, `type`, company_id, 
-      max_alert, error_count, remark, 
+      max_alert, error_count, start_time, 
+      end_time, remark, project_info_link, 
       create_at, update_at, create_by, 
       update_by)
     values (#{projectName,jdbcType=VARCHAR}, #{serviceUrl,jdbcType=VARCHAR}, #{importance,jdbcType=INTEGER}, 
       #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{statusCode,jdbcType=INTEGER}, 
       #{status,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT}, 
-      #{maxAlert,jdbcType=INTEGER}, #{errorCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{maxAlert,jdbcType=INTEGER}, #{errorCount,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{projectInfoLink,jdbcType=VARCHAR}, 
       #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
       #{updateBy,jdbcType=BIGINT})
   </insert>
@@ -214,8 +219,17 @@
           <if test="record.errorCount != null">
             error_count,
           </if>
+          <if test="record.startTime != null">
+            start_time,
+          </if>
+          <if test="record.endTime != null">
+            end_time,
+          </if>
           <if test="record.remark != null">
             remark,
+          </if>
+          <if test="record.projectInfoLink != null">
+            project_info_link,
           </if>
           <if test="record.createAt != null">
             create_at,
@@ -275,8 +289,17 @@
           <if test="record.errorCount != null">
             #{record.errorCount,jdbcType=INTEGER},
           </if>
+          <if test="record.startTime != null">
+            #{record.startTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.endTime != null">
+            #{record.endTime,jdbcType=TIMESTAMP},
+          </if>
           <if test="record.remark != null">
             #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.projectInfoLink != null">
+            #{record.projectInfoLink,jdbcType=VARCHAR},
           </if>
           <if test="record.createAt != null">
             #{record.createAt,jdbcType=TIMESTAMP},
@@ -347,8 +370,17 @@
           <if test="record.errorCount != null">
             error_count = #{record.errorCount,jdbcType=INTEGER},
           </if>
+          <if test="record.startTime != null">
+            start_time = #{record.startTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.endTime != null">
+            end_time = #{record.endTime,jdbcType=TIMESTAMP},
+          </if>
           <if test="record.remark != null">
             remark = #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.projectInfoLink != null">
+            project_info_link = #{record.projectInfoLink,jdbcType=VARCHAR},
           </if>
           <if test="record.createAt != null">
             create_at = #{record.createAt,jdbcType=TIMESTAMP},
@@ -383,7 +415,10 @@
       company_id = #{record.companyId,jdbcType=BIGINT},
       max_alert = #{record.maxAlert,jdbcType=INTEGER},
       error_count = #{record.errorCount,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
       remark = #{record.remark,jdbcType=VARCHAR},
+      project_info_link = #{record.projectInfoLink,jdbcType=VARCHAR},
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP},
       create_by = #{record.createBy,jdbcType=BIGINT},
@@ -436,8 +471,17 @@
           <if test="record.errorCount != null">
             error_count = #{record.errorCount,jdbcType=INTEGER},
           </if>
+          <if test="record.startTime != null">
+            start_time = #{record.startTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.endTime != null">
+            end_time = #{record.endTime,jdbcType=TIMESTAMP},
+          </if>
           <if test="record.remark != null">
             remark = #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.projectInfoLink != null">
+            project_info_link = #{record.projectInfoLink,jdbcType=VARCHAR},
           </if>
           <if test="record.createAt != null">
             create_at = #{record.createAt,jdbcType=TIMESTAMP},
@@ -469,7 +513,10 @@
       company_id = #{companyId,jdbcType=BIGINT},
       max_alert = #{maxAlert,jdbcType=INTEGER},
       error_count = #{errorCount,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR},
+      project_info_link = #{projectInfoLink,jdbcType=VARCHAR},
       create_at = #{createAt,jdbcType=TIMESTAMP},
       update_at = #{updateAt,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=BIGINT},
@@ -512,14 +559,15 @@
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     insert into pm_project
     (project_name, service_url, importance, username, `password`, status_code, `status`, 
-      `type`, company_id, max_alert, error_count, remark, create_at, update_at, create_by, 
-      update_by)
+      `type`, company_id, max_alert, error_count, start_time, end_time, remark, project_info_link, 
+      create_at, update_at, create_by, update_by)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.projectName,jdbcType=VARCHAR}, #{item.serviceUrl,jdbcType=VARCHAR}, #{item.importance,jdbcType=INTEGER}, 
         #{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR}, #{item.statusCode,jdbcType=INTEGER}, 
         #{item.status,jdbcType=INTEGER}, #{item.type,jdbcType=VARCHAR}, #{item.companyId,jdbcType=BIGINT}, 
-        #{item.maxAlert,jdbcType=INTEGER}, #{item.errorCount,jdbcType=INTEGER}, #{item.remark,jdbcType=VARCHAR}, 
+        #{item.maxAlert,jdbcType=INTEGER}, #{item.errorCount,jdbcType=INTEGER}, #{item.startTime,jdbcType=TIMESTAMP}, 
+        #{item.endTime,jdbcType=TIMESTAMP}, #{item.remark,jdbcType=VARCHAR}, #{item.projectInfoLink,jdbcType=VARCHAR}, 
         #{item.createAt,jdbcType=TIMESTAMP}, #{item.updateAt,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=BIGINT}, 
         #{item.updateBy,jdbcType=BIGINT})
     </foreach>
@@ -567,8 +615,17 @@
         <if test="'error_count'.toString() == column.value">
           #{item.errorCount,jdbcType=INTEGER}
         </if>
+        <if test="'start_time'.toString() == column.value">
+          #{item.startTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'end_time'.toString() == column.value">
+          #{item.endTime,jdbcType=TIMESTAMP}
+        </if>
         <if test="'remark'.toString() == column.value">
           #{item.remark,jdbcType=VARCHAR}
+        </if>
+        <if test="'project_info_link'.toString() == column.value">
+          #{item.projectInfoLink,jdbcType=VARCHAR}
         </if>
         <if test="'create_at'.toString() == column.value">
           #{item.createAt,jdbcType=TIMESTAMP}

@@ -50,25 +50,34 @@ public class PmProject implements Serializable {
     @ApiModelProperty(value="项目类型")
     private String type;
 
-    @ApiModelProperty(value="单位id")
+    @ApiModelProperty(value = "单位id")
     private Long companyId;
 
-    @ApiModelProperty(value="最大通知限制")
+    @ApiModelProperty(value = "最大通知限制")
     private Integer maxAlert;
 
-    @ApiModelProperty(value="异常数量")
+    @ApiModelProperty(value = "异常数量")
     private Integer errorCount;
 
-    @ApiModelProperty(value="备注")
+    @ApiModelProperty(value = "项目开始时间")
+    private Date startTime;
+
+    @ApiModelProperty(value = "项目结束时间")
+    private Date endTime;
+
+    @ApiModelProperty(value = "备注")
     private String remark;
 
-    @ApiModelProperty(value="创建时间")
+    @ApiModelProperty(value = "项目信息资料链接地址")
+    private String projectInfoLink;
+
+    @ApiModelProperty(value = "创建时间")
     private Date createAt;
 
-    @ApiModelProperty(value="更新时间")
+    @ApiModelProperty(value = "更新时间")
     private Date updateAt;
 
-    @ApiModelProperty(value="创建管理员ID")
+    @ApiModelProperty(value = "创建管理员ID")
     private Long createBy;
 
     @ApiModelProperty(value="更新管理员ID")
@@ -89,7 +98,10 @@ public class PmProject implements Serializable {
         companyId("company_id", "companyId", "BIGINT", false),
         maxAlert("max_alert", "maxAlert", "INTEGER", false),
         errorCount("error_count", "errorCount", "INTEGER", false),
+        startTime("start_time", "startTime", "TIMESTAMP", false),
+        endTime("end_time", "endTime", "TIMESTAMP", false),
         remark("remark", "remark", "VARCHAR", false),
+        projectInfoLink("project_info_link", "projectInfoLink", "VARCHAR", false),
         createAt("create_at", "createAt", "TIMESTAMP", false),
         updateAt("update_at", "updateAt", "TIMESTAMP", false),
         createBy("create_by", "createBy", "BIGINT", false),

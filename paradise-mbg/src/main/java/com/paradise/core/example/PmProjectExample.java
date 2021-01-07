@@ -1275,6 +1275,186 @@ public class PmProjectExample {
             return (Criteria) this;
         }
 
+        public Criteria andStartTimeIsNull() {
+            addCriterion("start_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIsNotNull() {
+            addCriterion("start_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeEqualTo(Date value) {
+            addCriterion("start_time =", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("start_time = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotEqualTo(Date value) {
+            addCriterion("start_time <>", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("start_time <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThan(Date value) {
+            addCriterion("start_time >", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThanColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("start_time > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("start_time >=", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThanOrEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("start_time >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThan(Date value) {
+            addCriterion("start_time <", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThanColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("start_time < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThanOrEqualTo(Date value) {
+            addCriterion("start_time <=", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThanOrEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("start_time <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIn(List<Date> values) {
+            addCriterion("start_time in", values, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotIn(List<Date> values) {
+            addCriterion("start_time not in", values, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeBetween(Date value1, Date value2) {
+            addCriterion("start_time between", value1, value2, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotBetween(Date value1, Date value2) {
+            addCriterion("start_time not between", value1, value2, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeIsNull() {
+            addCriterion("end_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeIsNotNull() {
+            addCriterion("end_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeEqualTo(Date value) {
+            addCriterion("end_time =", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("end_time = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotEqualTo(Date value) {
+            addCriterion("end_time <>", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("end_time <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeGreaterThan(Date value) {
+            addCriterion("end_time >", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeGreaterThanColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("end_time > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("end_time >=", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeGreaterThanOrEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("end_time >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeLessThan(Date value) {
+            addCriterion("end_time <", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeLessThanColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("end_time < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeLessThanOrEqualTo(Date value) {
+            addCriterion("end_time <=", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeLessThanOrEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("end_time <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeIn(List<Date> values) {
+            addCriterion("end_time in", values, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotIn(List<Date> values) {
+            addCriterion("end_time not in", values, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeBetween(Date value1, Date value2) {
+            addCriterion("end_time between", value1, value2, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotBetween(Date value1, Date value2) {
+            addCriterion("end_time not between", value1, value2, "endTime");
+            return (Criteria) this;
+        }
+
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;
@@ -1372,6 +1552,106 @@ public class PmProjectExample {
 
         public Criteria andRemarkNotBetween(String value1, String value2) {
             addCriterion("remark not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkIsNull() {
+            addCriterion("project_info_link is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkIsNotNull() {
+            addCriterion("project_info_link is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkEqualTo(String value) {
+            addCriterion("project_info_link =", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("project_info_link = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkNotEqualTo(String value) {
+            addCriterion("project_info_link <>", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkNotEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("project_info_link <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkGreaterThan(String value) {
+            addCriterion("project_info_link >", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkGreaterThanColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("project_info_link > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkGreaterThanOrEqualTo(String value) {
+            addCriterion("project_info_link >=", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkGreaterThanOrEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("project_info_link >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkLessThan(String value) {
+            addCriterion("project_info_link <", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkLessThanColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("project_info_link < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkLessThanOrEqualTo(String value) {
+            addCriterion("project_info_link <=", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkLessThanOrEqualToColumn(PmProject.Column column) {
+            addCriterion(new StringBuilder("project_info_link <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkLike(String value) {
+            addCriterion("project_info_link like", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkNotLike(String value) {
+            addCriterion("project_info_link not like", value, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkIn(List<String> values) {
+            addCriterion("project_info_link in", values, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkNotIn(List<String> values) {
+            addCriterion("project_info_link not in", values, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkBetween(String value1, String value2) {
+            addCriterion("project_info_link between", value1, value2, "projectInfoLink");
+            return (Criteria) this;
+        }
+
+        public Criteria andProjectInfoLinkNotBetween(String value1, String value2) {
+            addCriterion("project_info_link not between", value1, value2, "projectInfoLink");
             return (Criteria) this;
         }
 
