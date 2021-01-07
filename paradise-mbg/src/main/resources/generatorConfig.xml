@@ -86,22 +86,22 @@
         <!-- ControllerServicePlugin -->
         <plugin type="com.paradise.core.plugins.ControllerServicePlugin">
             <!-- 是否生成 Controller 与 Service 类 -->
-            <property name="enable" value="false"/>
+            <property name="enable" value="true"/>
             <property name="targetProject" value=".\paradise-admin\src\main\java"/>
             <property name="servicePackage" value="com.paradise.core.service"/>
             <!-- Controller 的包路径 -->
-            <property name="controllerPackage" value="com.paradise.core.controller"/>
+            <property name="controllerPackage" value="com.paradise.core.controller.pm"/>
         </plugin>
         <!-- Query Plugin -->
         <plugin type="com.paradise.core.plugins.QueryGenPlugin">
             <property name="targetPackage" value="com.paradise.core.dto.query"/>
             <property name="baseQuery" value="com.paradise.core.dto.query.BaseQuery"/>
-            <property name="enable" value="false"/>
+            <property name="enable" value="true"/>
         </plugin>
         <!-- BodyGenPlugin -->
         <plugin type="com.paradise.core.plugins.BodyGenPlugin">
             <property name="targetPackage" value="com.paradise.core.dto.body"/>
-            <property name="enable" value="false"/>
+            <property name="enable" value="true"/>
         </plugin>
         <!-- Example 目标包修改插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.ExampleTargetPlugin">
@@ -131,7 +131,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.paradise.core.mapper"
                              targetProject=".\paradise-mbg\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="day_bing_image">
+        <table tableName="pm_project">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

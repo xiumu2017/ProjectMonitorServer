@@ -26,3 +26,4 @@ logging:
   level:
     root: debug
     com.macro.mall: debug
+    org.apache.http: info

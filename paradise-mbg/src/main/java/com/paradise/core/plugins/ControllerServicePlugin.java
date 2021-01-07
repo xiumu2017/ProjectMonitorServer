@@ -19,10 +19,10 @@ import java.util.*;
  *
  * @author linweiyu
  */
-@Slf4j(topic = "ControllerServicePlugin")
+@Slf4j
 public class ControllerServicePlugin extends PluginAdapter {
 
-    private static final String IS_GENERATE_CONTROLLER_SERVICE = "generate.controller.service";
+    private static final String IS_GENERATE_CONTROLLER_SERVICE = "enable";
     private GeneratorParam generatorParam;
     private Boolean enable;
     private String targetProject;

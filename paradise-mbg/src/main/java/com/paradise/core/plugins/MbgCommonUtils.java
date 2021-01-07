@@ -3,7 +3,6 @@ package com.paradise.core.plugins;
 import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.Context;
 
@@ -24,10 +23,16 @@ public class MbgCommonUtils {
     }
 
     public static boolean ignore(IntrospectedColumn column) {
-        if (column.getFullyQualifiedJavaType().equals(new FullyQualifiedJavaType("java.util.Date"))) {
-            return true;
-        }
-        if ("createBy".equals(column.getJavaProperty()) || "updateBy".equals(column.getJavaProperty())) {
+//        if (column.getFullyQualifiedJavaType().equals(new FullyQualifiedJavaType("java.util.Date"))) {
+//            return true;
+//        }
+        if (
+                "createBy".equals(column.getJavaProperty()) ||
+                        "updateBy".equals(column.getJavaProperty()) ||
+                        "createAt".equals(column.getJavaProperty()) ||
+                        "updateAt".equals(column.getJavaProperty())
+
+        ) {
             return true;
         }
         return "id".equals(column.getJavaProperty());
