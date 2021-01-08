@@ -1,4 +1,4 @@
-package com.paradise.core.controller;
+package com.paradise.core.controller.ums;
 
 import cn.hutool.core.collection.CollUtil;
 import com.paradise.core.common.api.CommonPage;

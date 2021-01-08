@@ -1,4 +1,4 @@
-package com.paradise.core.controller;
+package com.paradise.core.controller.ums;
 
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.UmsPermissionNode;
