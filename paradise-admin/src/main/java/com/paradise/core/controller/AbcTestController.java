@@ -43,7 +43,7 @@ public class AbcTestController {
 //        -4.69,
 //        2021-01-07 18:50:36,
 //        -10.0300,212.7800,213.3400,203.6200,227.5800,82.0000,8006049,9222548,69569198290,9.91,20.580000,0.00,0.00,0.00,0.00,341075640,84,213.7000,4.77,9.73,Jan 07 05:50AM EST,Jan 06 04:00PM EST,214.0000,63528,1,2021,1665788152.8147,215.2500,208.0000,13585872.6500";
-        String data = body.substring(body.indexOf("\""), body.lastIndexOf("\""));
+        String data = body.substring(body.indexOf("\"") + 1, body.lastIndexOf("\""));
         String[] dataArr = data.split(",");
         hqData.setName(dataArr[0]);
         hqData.setCurrentPrice(new BigDecimal(dataArr[1]));

@@ -1,4 +1,4 @@
-package com.paradise.core.controller;
+package com.paradise.core.controller.pm;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
