@@ -1,4 +1,4 @@
-package com.paradise.core.controller;
+package com.paradise.core.controller.day;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
@@ -9,13 +9,14 @@ import com.paradise.core.model.DaySleepRecord;
 import com.paradise.core.service.impl.DaySleepRecordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
- * 睡眠记录表控制器 
+ * 睡眠记录表控制器
  *
  * @author Paradise
  */

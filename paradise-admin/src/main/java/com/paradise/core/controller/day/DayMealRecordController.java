@@ -1,5 +1,6 @@
-package com.paradise.core.controller;
+package com.paradise.core.controller.day;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
@@ -9,13 +10,14 @@ import com.paradise.core.model.DayMealRecord;
 import com.paradise.core.service.impl.DayMealRecordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
- * 用餐记录表控制器 
+ * 用餐记录表控制器
  *
  * @author Paradise
  */
@@ -38,7 +40,7 @@ public class DayMealRecordController {
     @ApiOperation("添加")
     @PostMapping
     public Result<Integer> insert(@RequestBody @Validated DayMealRecordBody record) {
-        int count = this.dayMealRecordService.insert(record);
+        int count = this.dayMealRecordService.insertSelective(record);
         if (count > 0) {
             return Result.success(count);
         }
@@ -49,7 +51,7 @@ public class DayMealRecordController {
     @ApiOperation("修改")
     @PutMapping(value = "/{id}")
     public Result<Integer> updateByPrimaryKey(@PathVariable("id") Long id, @RequestBody @Validated DayMealRecordBody record) {
-        int count = this.dayMealRecordService.updateByPrimaryKey(id,record);
+        int count = this.dayMealRecordService.updateByPrimaryKey(id, record);
         if (count > 0) {
             return Result.success(count);
         }
@@ -73,5 +75,19 @@ public class DayMealRecordController {
             return Result.success(count);
         }
         return Result.failed();
+    }
+
+    @ApiOperationSupport(order = 6)
+    @ApiOperation("类别列表")
+    @GetMapping("/types")
+    public Result<List<String>> types() {
+        return Result.success(CollectionUtil.newArrayList("零食", "早饭", "午饭", "晚饭", "夜宵"));
+    }
+
+    @ApiOperationSupport(order = 7)
+    @ApiOperation("支付方式类别列表")
+    @GetMapping("/payTypes")
+    public Result<List<String>> patTypes() {
+        return Result.success(CollectionUtil.newArrayList("微信支付", "支付宝支付", "现金", "银行卡", "其它"));
     }
 }

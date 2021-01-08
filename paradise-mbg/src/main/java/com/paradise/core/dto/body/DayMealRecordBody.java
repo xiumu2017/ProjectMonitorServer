@@ -2,9 +2,11 @@ package com.paradise.core.dto.body;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
+import java.util.Date;
 
 /**
  * 用餐记录Body
@@ -14,6 +16,9 @@ import lombok.Data;
 @ApiModel(value = "用餐记录Body")
 @Data
 public class DayMealRecordBody {
+    @ApiModelProperty(value = "日期", required = true)
+    @NotNull(message = "日期不能为空!")
+    private Date date;
     /**
      * 类型
      */
