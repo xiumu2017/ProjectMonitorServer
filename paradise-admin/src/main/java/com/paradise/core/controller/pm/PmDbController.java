@@ -1,7 +1,11 @@
-package com.paradise.core.controller;
+package com.paradise.core.controller.pm;
 
+import cn.hutool.core.collection.CollectionUtil;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
+import com.paradise.core.dto.body.PmDbBody;
+import com.paradise.core.dto.query.PmDbQuery;
 import com.paradise.core.model.PmDb;
 import com.paradise.core.service.impl.PmDbService;
 import io.swagger.annotations.Api;
@@ -19,21 +23,23 @@ import java.util.List;
  */
 @RestController
 @AllArgsConstructor
-@Api(tags = "2.3 数据库管理")
+@Api(tags = "2.3 项目监控数据库信息相关接口")
 @RequestMapping("/db")
 public class PmDbController {
     private final PmDbService pmDbService;
 
+    @ApiOperationSupport(order = 1)
     @ApiOperation(value = "分页查询")
-    @GetMapping(value = "/page")
-    public Result<CommonPage<PmDb>> selectByPage(Integer pageNum, Integer pageSize) {
-        List<PmDb> result = this.pmDbService.selectByPage(pageNum, pageSize);
-        return Result.success(CommonPage.restPage(result));
+    @GetMapping(value = "/s")
+    public Result<CommonPage<PmDb>> selectByPage(PmDbQuery query) {
+        List<PmDb> list = this.pmDbService.selectByPage(query);
+        return Result.success(CommonPage.restPage(list));
     }
 
+    @ApiOperationSupport(order = 2)
     @ApiOperation("添加")
-    @PostMapping(value = "/create")
-    public Result<Integer> insert(@RequestBody @Validated PmDb record) {
+    @PostMapping
+    public Result<Integer> insert(@RequestBody @Validated PmDbBody record) {
         int count = this.pmDbService.insert(record);
         if (count > 0) {
             return Result.success(count);
@@ -41,30 +47,40 @@ public class PmDbController {
         return Result.failed();
     }
 
+    @ApiOperationSupport(order = 3)
     @ApiOperation("修改")
-    @PostMapping(value = "/update")
-    public Result<Integer> updateByPrimaryKey(PmDb record) {
-        int count = this.pmDbService.updateByPrimaryKey(record);
+    @PutMapping(value = "/{id}")
+    public Result<Integer> updateByPrimaryKey(@PathVariable("id") Long id, @RequestBody @Validated PmDbBody record) {
+        int count = this.pmDbService.updateByPrimaryKey(id, record);
         if (count > 0) {
             return Result.success(count);
         }
         return Result.failed();
     }
 
+    @ApiOperationSupport(order = 4)
     @ApiOperation("详情")
-    @GetMapping(value = "/detail/{id}")
+    @GetMapping(value = "/{id}")
     public Result<PmDb> selectByPrimaryKey(@PathVariable("id") Long id) {
         PmDb pmDb = this.pmDbService.selectByPrimaryKey(id);
         return Result.success(pmDb);
     }
 
+    @ApiOperationSupport(order = 5)
     @ApiOperation("删除")
-    @PostMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public Result<Integer> deleteByPrimaryKey(@PathVariable("id") Long id) {
         int count = this.pmDbService.deleteByPrimaryKey(id);
         if (count > 0) {
             return Result.success(count);
         }
         return Result.failed();
+    }
+
+    @ApiOperationSupport(order = 6)
+    @ApiOperation("查询类别列表")
+    @GetMapping("types")
+    public Result<List<String>> types() {
+        return Result.success(CollectionUtil.newArrayList("Oracle", "MySQL", "MongoDB", "H2", "Others"));
     }
 }
