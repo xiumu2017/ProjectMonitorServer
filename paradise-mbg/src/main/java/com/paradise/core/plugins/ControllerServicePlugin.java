@@ -256,7 +256,7 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addAnnotation("@ApiOperation(\"添加\")");
         method.addAnnotation("@PostMapping");
 
-        method.addBodyLine("int count = this." + toLowerCaseFirstOne(domainObjectName) + "Service." + introspectedTable.getInsertStatementId() + "(record);");
+        method.addBodyLine("int count = this." + toLowerCaseFirstOne(domainObjectName) + "Service." + introspectedTable.getInsertSelectiveStatementId() + "(record);");
         method.addBodyLine("if (count > 0) {");
         method.addBodyLine("return Result.success(count);");
         method.addBodyLine("}");
@@ -446,8 +446,9 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addParameter(new Parameter(generatorParameterType, "record"));
         method.addBodyLine(domainObjectName + " " + toLowerCaseFirstOne(domainObjectName) + " = new " + domainObjectName + "();");
         method.addBodyLine("BeanUtils.copyProperties(record, " + toLowerCaseFirstOne(domainObjectName) + ");");
+        method.addBodyLine(toLowerCaseFirstOne(domainObjectName) + ".setId(id);");
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper."
-                + introspectedTable.getUpdateByPrimaryKeyStatementId() + "(" + toLowerCaseFirstOne(domainObjectName) + ");");
+                + introspectedTable.getUpdateByPrimaryKeySelectiveStatementId() + "(" + toLowerCaseFirstOne(domainObjectName) + ");");
         if (context.getPlugins()
                 .clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
                         topLevelClass, introspectedTable)) {
