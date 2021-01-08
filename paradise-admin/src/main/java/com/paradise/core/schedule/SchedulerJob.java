@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 /**
  * @author Paradise
@@ -43,17 +44,16 @@ public class SchedulerJob {
     @Scheduled(cron = "0 0 7 * * ?")
     public void bingImage() {
         // 获取壁纸
-        DayBingImage bingImage = BingImageUtils.dayBingImage();
-        if (bingImage != null) {
-            bingImageMapper.insertSelective(bingImage);
-            // 上传到对象存储服务
-            try {
-                URL url = new URL(bingImage.getUrl());
-                URLConnection connection = url.openConnection();
-                ossService.upload("bing", connection.getInputStream(), bingImage.getTitleEn());
-            } catch (IOException e) {
-                log.error("bing 壁纸上传到Oss异常：{}", e.getLocalizedMessage(), e);
-            }
+        List<DayBingImage> dayBingImageList = BingImageUtils.dayBingImage();
+        DayBingImage bingImage = dayBingImageList.get(0);
+        bingImageMapper.insertSelective(bingImage);
+        // 上传到对象存储服务
+        try {
+            URL url = new URL(bingImage.getUrl());
+            URLConnection connection = url.openConnection();
+            ossService.upload("bing", connection.getInputStream(), bingImage.getTitleEn());
+        } catch (IOException e) {
+            log.error("bing 壁纸上传到Oss异常：{}", e.getLocalizedMessage(), e);
         }
     }
 }

@@ -4,6 +4,8 @@ package com.paradise.core.utils.bing;
 import chatbot.message.MarkdownMessage;
 import chatbot.message.Message;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.paradise.core.entity.BingImage;
 import com.paradise.core.entity.BingResult;
@@ -18,7 +20,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author dzhang
@@ -62,28 +66,32 @@ public class BingImageUtils {
         return bingResult;
     }
 
-    public static DayBingImage dayBingImage() {
+    public static List<DayBingImage> dayBingImage() {
+        List<DayBingImage> dayBingImageList = new ArrayList<>();
         try {
             // 获取壁纸
-            BingResult bingResult = BingImageUtils.getBingImage("0", "1");
+            BingResult bingResult = BingImageUtils.getBingImage("0", "8");
             if (bingResult != null && CollectionUtil.isNotEmpty(bingResult.getImages())) {
-                BingImage image = bingResult.getImages().get(0);
-                String titleEn = image.getUrl().substring(image.getUrl().indexOf("=") + 1, image.getUrl().indexOf("&"));
-                return DayBingImage.builder()
-                        .title(BingImageUtils.parseTitle(image.getCopyright()))
-                        .titleEn(titleEn)
-                        .url(BingImageUtils.BING_URL + image.getUrl())
-                        .copyright(image.getCopyright())
-                        .copyrightLink(image.getCopyrightlink())
-                        .author(BingImageUtils.parseAuthor(image.getCopyright()))
-                        .date(new Date())
-                        .createTime(new Date())
-                        .build();
+                List<BingImage> images = bingResult.getImages();
+                for (BingImage image : images) {
+                    String titleEn = image.getUrl().substring(image.getUrl().indexOf("=") + 1, image.getUrl().indexOf("&"));
+                    DayBingImage dayBingImage = DayBingImage.builder()
+                            .title(BingImageUtils.parseTitle(image.getCopyright()))
+                            .titleEn(titleEn)
+                            .url(BingImageUtils.BING_URL + image.getUrl())
+                            .copyright(image.getCopyright())
+                            .copyrightLink(image.getCopyrightlink())
+                            .author(BingImageUtils.parseAuthor(image.getCopyright()))
+                            .date(DateUtil.parse(image.getStartdate(), DatePattern.PURE_DATE_PATTERN))
+                            .createTime(new Date())
+                            .build();
+                    dayBingImageList.add(dayBingImage);
+                }
             }
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
-        return null;
+        return dayBingImageList;
     }
 
     public static String parseAuthor(String copyright) {

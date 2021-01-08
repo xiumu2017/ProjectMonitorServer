@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 每日bing壁纸Body
@@ -43,9 +44,30 @@ public class DayBingImageBody {
     private String title;
 
     /**
+     * 英文标题
+     */
+    @ApiModelProperty(value = "英文标题", required = true, example = "null")
+    @NotEmpty(message = "英文标题不能为空!")
+    private String titleEn;
+
+    /**
      * 作者
      */
     @ApiModelProperty(value = "作者", required = true, example = "null")
     @NotEmpty(message = "作者不能为空!")
     private String author;
+
+    /**
+     * 日期
+     */
+    @ApiModelProperty(value = "日期", required = true, example = "null")
+    @NotNull(message = "日期不能为空!")
+    private java.util.Date date;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间", required = true, example = "null")
+    @NotNull(message = "创建时间不能为空!")
+    private java.util.Date createTime;
 }
