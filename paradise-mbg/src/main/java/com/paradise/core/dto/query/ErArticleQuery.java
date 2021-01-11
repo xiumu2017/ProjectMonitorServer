@@ -16,10 +16,6 @@ public class ErArticleQuery extends BaseQuery {
     private String title;
     @ApiModelProperty("分类名称")
     private String categoryName;
-    @ApiModelProperty("开始时间")
-    private Long startTime;
-    @ApiModelProperty("结束时间")
-    private Long endTime;
     @ApiModelProperty("类别ID")
     private Long categoryId;
 }

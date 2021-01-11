@@ -4,6 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 /**
  * 用餐记录查询参数
@@ -20,6 +23,9 @@ public class DayMealRecordQuery extends BaseQuery {
     @ApiModelProperty(value = "类型")
     private Integer type;
 
+    @ApiModelProperty("日期")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date date;
     /**
      * 吃什么
      */
