@@ -1,6 +1,7 @@
 package com.paradise.core.example;
 
 import com.paradise.core.model.AccountPass;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -424,96 +425,6 @@ public class AccountPassExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoginTypeIsNull() {
-            addCriterion("login_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeIsNotNull() {
-            addCriterion("login_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeEqualTo(Integer value) {
-            addCriterion("login_type =", value, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("login_type = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeNotEqualTo(Integer value) {
-            addCriterion("login_type <>", value, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeNotEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("login_type <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeGreaterThan(Integer value) {
-            addCriterion("login_type >", value, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeGreaterThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("login_type > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("login_type >=", value, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeGreaterThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("login_type >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeLessThan(Integer value) {
-            addCriterion("login_type <", value, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeLessThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("login_type < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("login_type <=", value, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeLessThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("login_type <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeIn(List<Integer> values) {
-            addCriterion("login_type in", values, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeNotIn(List<Integer> values) {
-            addCriterion("login_type not in", values, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeBetween(Integer value1, Integer value2) {
-            addCriterion("login_type between", value1, value2, "loginType");
-            return (Criteria) this;
-        }
-
-        public Criteria andLoginTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("login_type not between", value1, value2, "loginType");
-            return (Criteria) this;
-        }
-
         public Criteria andAddressIsNull() {
             addCriterion("address is null");
             return (Criteria) this;
@@ -611,106 +522,6 @@ public class AccountPassExample {
 
         public Criteria andAddressNotBetween(String value1, String value2) {
             addCriterion("address not between", value1, value2, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyIsNull() {
-            addCriterion("company is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyIsNotNull() {
-            addCriterion("company is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyEqualTo(String value) {
-            addCriterion("company =", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("company = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNotEqualTo(String value) {
-            addCriterion("company <>", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNotEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("company <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyGreaterThan(String value) {
-            addCriterion("company >", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyGreaterThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("company > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyGreaterThanOrEqualTo(String value) {
-            addCriterion("company >=", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyGreaterThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("company >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyLessThan(String value) {
-            addCriterion("company <", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyLessThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("company < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyLessThanOrEqualTo(String value) {
-            addCriterion("company <=", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyLessThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("company <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyLike(String value) {
-            addCriterion("company like", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNotLike(String value) {
-            addCriterion("company not like", value, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyIn(List<String> values) {
-            addCriterion("company in", values, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNotIn(List<String> values) {
-            addCriterion("company not in", values, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyBetween(String value1, String value2) {
-            addCriterion("company between", value1, value2, "company");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNotBetween(String value1, String value2) {
-            addCriterion("company not between", value1, value2, "company");
             return (Criteria) this;
         }
 
@@ -1204,103 +1015,103 @@ public class AccountPassExample {
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordIsNull() {
-            addCriterion("rsa_password is null");
+        public Criteria andMnemonicsIsNull() {
+            addCriterion("mnemonics is null");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordIsNotNull() {
-            addCriterion("rsa_password is not null");
+        public Criteria andMnemonicsIsNotNull() {
+            addCriterion("mnemonics is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordEqualTo(String value) {
-            addCriterion("rsa_password =", value, "rsaPassword");
+        public Criteria andMnemonicsEqualTo(String value) {
+            addCriterion("mnemonics =", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("rsa_password = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andMnemonicsEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("mnemonics = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordNotEqualTo(String value) {
-            addCriterion("rsa_password <>", value, "rsaPassword");
+        public Criteria andMnemonicsNotEqualTo(String value) {
+            addCriterion("mnemonics <>", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordNotEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("rsa_password <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andMnemonicsNotEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("mnemonics <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordGreaterThan(String value) {
-            addCriterion("rsa_password >", value, "rsaPassword");
+        public Criteria andMnemonicsGreaterThan(String value) {
+            addCriterion("mnemonics >", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordGreaterThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("rsa_password > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andMnemonicsGreaterThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("mnemonics > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordGreaterThanOrEqualTo(String value) {
-            addCriterion("rsa_password >=", value, "rsaPassword");
+        public Criteria andMnemonicsGreaterThanOrEqualTo(String value) {
+            addCriterion("mnemonics >=", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordGreaterThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("rsa_password >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andMnemonicsGreaterThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("mnemonics >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordLessThan(String value) {
-            addCriterion("rsa_password <", value, "rsaPassword");
+        public Criteria andMnemonicsLessThan(String value) {
+            addCriterion("mnemonics <", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordLessThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("rsa_password < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andMnemonicsLessThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("mnemonics < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordLessThanOrEqualTo(String value) {
-            addCriterion("rsa_password <=", value, "rsaPassword");
+        public Criteria andMnemonicsLessThanOrEqualTo(String value) {
+            addCriterion("mnemonics <=", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordLessThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("rsa_password <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andMnemonicsLessThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("mnemonics <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordLike(String value) {
-            addCriterion("rsa_password like", value, "rsaPassword");
+        public Criteria andMnemonicsLike(String value) {
+            addCriterion("mnemonics like", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordNotLike(String value) {
-            addCriterion("rsa_password not like", value, "rsaPassword");
+        public Criteria andMnemonicsNotLike(String value) {
+            addCriterion("mnemonics not like", value, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordIn(List<String> values) {
-            addCriterion("rsa_password in", values, "rsaPassword");
+        public Criteria andMnemonicsIn(List<String> values) {
+            addCriterion("mnemonics in", values, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordNotIn(List<String> values) {
-            addCriterion("rsa_password not in", values, "rsaPassword");
+        public Criteria andMnemonicsNotIn(List<String> values) {
+            addCriterion("mnemonics not in", values, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordBetween(String value1, String value2) {
-            addCriterion("rsa_password between", value1, value2, "rsaPassword");
+        public Criteria andMnemonicsBetween(String value1, String value2) {
+            addCriterion("mnemonics between", value1, value2, "mnemonics");
             return (Criteria) this;
         }
 
-        public Criteria andRsaPasswordNotBetween(String value1, String value2) {
-            addCriterion("rsa_password not between", value1, value2, "rsaPassword");
+        public Criteria andMnemonicsNotBetween(String value1, String value2) {
+            addCriterion("mnemonics not between", value1, value2, "mnemonics");
             return (Criteria) this;
         }
 
@@ -1404,183 +1215,273 @@ public class AccountPassExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
+        public Criteria andUserIdEqualTo(Long value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("create_time = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUserIdEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("user_id = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
+        public Criteria andUserIdNotEqualTo(Long value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("create_time <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUserIdNotEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("user_id <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
+        public Criteria andUserIdGreaterThan(Long value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("create_time > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUserIdGreaterThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("user_id > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
+        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("create_time >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUserIdGreaterThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("user_id >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
+        public Criteria andUserIdLessThan(Long value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("create_time < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUserIdLessThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("user_id < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
+        public Criteria andUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("create_time <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andUserIdLessThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("user_id <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
+        public Criteria andUserIdIn(List<Long> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
+        public Criteria andUserIdNotIn(List<Long> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+        public Criteria andUserIdBetween(Long value1, Long value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
+        public Criteria andUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNull() {
-            addCriterion("update_time is null");
+        public Criteria andCreateAtIsNull() {
+            addCriterion("create_at is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNotNull() {
-            addCriterion("update_time is not null");
+        public Criteria andCreateAtIsNotNull() {
+            addCriterion("create_at is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualTo(Date value) {
-            addCriterion("update_time =", value, "updateTime");
+        public Criteria andCreateAtEqualTo(Date value) {
+            addCriterion("create_at =", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("update_time = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andCreateAtEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("create_at = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualTo(Date value) {
-            addCriterion("update_time <>", value, "updateTime");
+        public Criteria andCreateAtNotEqualTo(Date value) {
+            addCriterion("create_at <>", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("update_time <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andCreateAtNotEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("create_at <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThan(Date value) {
-            addCriterion("update_time >", value, "updateTime");
+        public Criteria andCreateAtGreaterThan(Date value) {
+            addCriterion("create_at >", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("update_time > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andCreateAtGreaterThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("create_at > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("update_time >=", value, "updateTime");
+        public Criteria andCreateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_at >=", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("update_time >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andCreateAtGreaterThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("create_at >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThan(Date value) {
-            addCriterion("update_time <", value, "updateTime");
+        public Criteria andCreateAtLessThan(Date value) {
+            addCriterion("create_at <", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("update_time < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andCreateAtLessThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("create_at < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("update_time <=", value, "updateTime");
+        public Criteria andCreateAtLessThanOrEqualTo(Date value) {
+            addCriterion("create_at <=", value, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualToColumn(AccountPass.Column column) {
-            addCriterion(new StringBuilder("update_time <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andCreateAtLessThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("create_at <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIn(List<Date> values) {
-            addCriterion("update_time in", values, "updateTime");
+        public Criteria andCreateAtIn(List<Date> values) {
+            addCriterion("create_at in", values, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotIn(List<Date> values) {
-            addCriterion("update_time not in", values, "updateTime");
+        public Criteria andCreateAtNotIn(List<Date> values) {
+            addCriterion("create_at not in", values, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
-            addCriterion("update_time between", value1, value2, "updateTime");
+        public Criteria andCreateAtBetween(Date value1, Date value2) {
+            addCriterion("create_at between", value1, value2, "createAt");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("update_time not between", value1, value2, "updateTime");
+        public Criteria andCreateAtNotBetween(Date value1, Date value2) {
+            addCriterion("create_at not between", value1, value2, "createAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIsNull() {
+            addCriterion("update_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIsNotNull() {
+            addCriterion("update_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtEqualTo(Date value) {
+            addCriterion("update_at =", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("update_at = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotEqualTo(Date value) {
+            addCriterion("update_at <>", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("update_at <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThan(Date value) {
+            addCriterion("update_at >", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("update_at > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_at >=", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtGreaterThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("update_at >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThan(Date value) {
+            addCriterion("update_at <", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("update_at < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanOrEqualTo(Date value) {
+            addCriterion("update_at <=", value, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtLessThanOrEqualToColumn(AccountPass.Column column) {
+            addCriterion(new StringBuilder("update_at <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtIn(List<Date> values) {
+            addCriterion("update_at in", values, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotIn(List<Date> values) {
+            addCriterion("update_at not in", values, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtBetween(Date value1, Date value2) {
+            addCriterion("update_at between", value1, value2, "updateAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateAtNotBetween(Date value1, Date value2) {
+            addCriterion("update_at not between", value1, value2, "updateAt");
             return (Criteria) this;
         }
 

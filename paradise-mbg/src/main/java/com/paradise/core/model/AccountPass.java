@@ -2,21 +2,22 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+
 /**
- * 
+ * 网络账号资产表
  *
  * @author Paradise
  */
-@ApiModel(value="")
+@ApiModel(value = "网络账号资产")
 @Data
 @Builder
 @AllArgsConstructor
@@ -31,14 +32,8 @@ public class AccountPass implements Serializable {
     @ApiModelProperty(value="类型")
     private Integer type;
 
-    @ApiModelProperty(value="1微信2支付宝3用户名4手机号5邮箱6其他")
-    private Integer loginType;
-
     @ApiModelProperty(value="网站地址")
     private String address;
-
-    @ApiModelProperty(value="所属公司e.BAT")
-    private String company;
 
     @ApiModelProperty(value="用户名")
     private String username;
@@ -46,31 +41,34 @@ public class AccountPass implements Serializable {
     @ApiModelProperty(value="手机号")
     private String telephone;
 
-    @ApiModelProperty(value="邮箱")
+    @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @ApiModelProperty(value="重要性")
+    @ApiModelProperty(value = "重要性")
     private Integer importance;
 
-    @ApiModelProperty(value="明文密码")
+    @ApiModelProperty(value = "密码")
     private String password;
 
-    @ApiModelProperty(value="加密密码")
-    private String rsaPassword;
+    @ApiModelProperty(value = "助记词")
+    private String mnemonics;
 
-    @ApiModelProperty(value="备注")
+    @ApiModelProperty(value = "备注信息")
     private String remark;
 
-    @ApiModelProperty(value="创建时间")
-    private Date createTime;
+    @ApiModelProperty(value = "用户ID")
+    private Long userId;
 
-    @ApiModelProperty(value="更新时间")
-    private Date updateTime;
+    @ApiModelProperty(value = "创建时间")
+    private Date createAt;
 
-    @ApiModelProperty(value="创建人")
+    @ApiModelProperty(value = "更新时间")
+    private Date updateAt;
+
+    @ApiModelProperty(value = "创建ID")
     private Long createBy;
 
-    @ApiModelProperty(value="更新人")
+    @ApiModelProperty(value = "更新ID")
     private Long updateBy;
 
     private static final long serialVersionUID = 1L;
@@ -79,18 +77,17 @@ public class AccountPass implements Serializable {
         id("id", "id", "BIGINT", false),
         name("name", "name", "VARCHAR", true),
         type("type", "type", "INTEGER", true),
-        loginType("login_type", "loginType", "INTEGER", false),
         address("address", "address", "VARCHAR", false),
-        company("company", "company", "VARCHAR", false),
         username("username", "username", "VARCHAR", false),
         telephone("telephone", "telephone", "VARCHAR", false),
         email("email", "email", "VARCHAR", false),
         importance("importance", "importance", "INTEGER", false),
         password("password", "password", "VARCHAR", true),
-        rsaPassword("rsa_password", "rsaPassword", "VARCHAR", false),
+        mnemonics("mnemonics", "mnemonics", "VARCHAR", false),
         remark("remark", "remark", "VARCHAR", false),
-        createTime("create_time", "createTime", "TIMESTAMP", false),
-        updateTime("update_time", "updateTime", "TIMESTAMP", false),
+        userId("user_id", "userId", "BIGINT", false),
+        createAt("create_at", "createAt", "TIMESTAMP", false),
+        updateAt("update_at", "updateAt", "TIMESTAMP", false),
         createBy("create_by", "createBy", "BIGINT", false),
         updateBy("update_by", "updateBy", "BIGINT", false);
 
