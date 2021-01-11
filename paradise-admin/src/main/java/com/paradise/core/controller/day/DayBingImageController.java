@@ -75,4 +75,12 @@ public class DayBingImageController {
         }
         return Result.failed();
     }
+
+    @ApiOperationSupport(order = 6)
+    @ApiOperation("刷新")
+    @GetMapping(value = "/refresh")
+    public Result<Integer> refresh() {
+        this.dayBingImageService.refresh();
+        return Result.success(1);
+    }
 }

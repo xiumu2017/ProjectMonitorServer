@@ -21,18 +21,6 @@ public class DayBingImageQuery extends BaseQuery {
     private String url;
 
     /**
-     * 版权信息
-     */
-    @ApiModelProperty(value = "版权信息")
-    private String copyright;
-
-    /**
-     * 版权链接
-     */
-    @ApiModelProperty(value = "版权链接")
-    private String copyrightLink;
-
-    /**
      * 标题
      */
     @ApiModelProperty(value = "标题")

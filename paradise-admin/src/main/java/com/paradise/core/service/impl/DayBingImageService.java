@@ -61,19 +61,28 @@ public class DayBingImageService {
     }
 
     public List<DayBingImage> selectByPage(DayBingImageQuery query) {
+        PageHelper.startPage(query.getPageNum(), query.getPageSize());
+        return this.dayBingImageMapper.selectByExample(new DayBingImageExample()
+                .createCriteria()
+                .when(query.getStartTime() != null, criteria -> criteria.andDateGreaterThanOrEqualTo(DateUtil.beginOfDay(query.getStartTime())))
+                .when(query.getEndTime() != null, criteria -> criteria.andDateLessThanOrEqualTo(DateUtil.endOfDay(query.getEndTime())))
+                .example()
+                .orderBy(DayBingImage.Column.date.desc()));
+    }
+
+    public void refresh() {
         // 判断有没有今天的壁纸 ，没有则刷新
         long c = dayBingImageMapper.countByExample(new DayBingImageExample().createCriteria()
                 .andDateBetween(DateUtil.offsetDay(new Date(), -1), new Date()).example());
         if (c < 1) {
             List<DayBingImage> list = BingImageUtils.dayBingImage();
             for (DayBingImage image : list) {
-                DayBingImage db = dayBingImageMapper.selectOneByExample(new DayBingImageExample().createCriteria().andTitleEnEqualTo(image.getTitleEn()).example());
+                DayBingImage db = dayBingImageMapper.selectOneByExample(new DayBingImageExample().createCriteria()
+                        .andTitleEnEqualTo(image.getTitleEn()).example());
                 if (db == null) {
                     dayBingImageMapper.insertSelective(image);
                 }
             }
         }
-        PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        return this.dayBingImageMapper.selectByExample(new DayBingImageExample());
     }
 }
