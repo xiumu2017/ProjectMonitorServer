@@ -6,11 +6,12 @@ import com.paradise.core.dto.query.DayMealRecordQuery;
 import com.paradise.core.example.DayMealRecordExample;
 import com.paradise.core.mapper.DayMealRecordMapper;
 import com.paradise.core.model.DayMealRecord;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 用餐记录表
@@ -57,6 +58,11 @@ public class DayMealRecordService {
 
     public List<DayMealRecord> selectByPage(DayMealRecordQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        return this.dayMealRecordMapper.selectByExample(new DayMealRecordExample());
+        return this.dayMealRecordMapper.selectByExample(new DayMealRecordExample()
+                .createCriteria()
+                .when(query.getType() != null, criteria -> criteria.andTypeEqualTo(query.getType()))
+                .when(query.getDate() != null, criteria -> criteria.andDateEqualTo(query.getDate()))
+                .when(query.getPayType() != null, criteria -> criteria.andPayTypeEqualTo(query.getPayType()))
+                .example().orderBy(DayMealRecord.Column.date.desc()));
     }
 }

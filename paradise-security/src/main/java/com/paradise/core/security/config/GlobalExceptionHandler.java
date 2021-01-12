@@ -28,7 +28,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ParamValidateFailException.class)
     @ResponseBody
     public Result<Object> handleParamValidateFail(ParamValidateFailException exception) {
-        return Result.validateFailed(exception.getMessage());
+        log.error(exception.getLocalizedMessage());
+        return Result.validateFailed("参数错误，请检查参数");
     }
 
     @ResponseBody
@@ -40,6 +41,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = ApiException.class)
     public Result<Object> handle(ApiException e) {
+        log.error(e.getLocalizedMessage(), e);
         if (e.getErrorCode() != null) {
             return Result.failed(e.getErrorCode());
         }
@@ -49,6 +51,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = AppServiceException.class)
     public Result<Object> handle(AppServiceException e) {
+        log.error(e.getLocalizedMessage(), e);
         IErrorCode errorCode = e.getErrorCode();
         if (errorCode != null) {
             return Result.failed(e.getErrorCode());
@@ -60,12 +63,14 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Result<Object> handleValidException(MethodArgumentNotValidException e) {
+        log.error(e.getLocalizedMessage(), e);
         return Result.validateFailed(getMsg(e.getBindingResult()));
     }
 
     @ResponseBody
     @ExceptionHandler(value = BindException.class)
     public Result<Object> handleValidException(BindException e) {
+        log.error(e.getLocalizedMessage(), e);
         return Result.validateFailed(getMsg(e.getBindingResult()));
     }
 

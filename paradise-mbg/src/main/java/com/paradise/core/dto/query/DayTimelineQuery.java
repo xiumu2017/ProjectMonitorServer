@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 public class DayTimelineQuery extends BaseQuery {
 
     @ApiModelProperty("日期")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     /**
