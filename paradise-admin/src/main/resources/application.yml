@@ -54,6 +54,7 @@ secure:
       - /**/admin/info
       - /**/admin/logout
       - /**/admin/pass/reset
+      - /**/test/**
 
 minio:
   endpoint: http://192.168.199.37:8008 #MinIO服务所在地址
