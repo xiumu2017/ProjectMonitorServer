@@ -3,6 +3,7 @@ package com.paradise.core.common.service.impl;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.common.domain.MinioUploadDto;
 import com.paradise.core.common.domain.OssConfiguration;
+import com.paradise.core.common.domain.oss.OssInfo;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.AnonymousCOSCredentials;
@@ -26,7 +27,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 腾讯云 Oss
@@ -137,10 +137,15 @@ public class QCloudOssService {
         return name + "-" + ossConfiguration.getAppId();
     }
 
+    public List<OssInfo> list() {
+        return list(genBucketName(ossConfiguration.getBucketName()), null, null);
+    }
+
     /**
      * 存储桶中的对象列表
      */
-    public List<Map<String, String>> list(String bucketName, String prefix, String delimiter) {
+    public List<OssInfo> list(String bucketName, String prefix, String delimiter) {
+        List<OssInfo> ossInfoList = new ArrayList<>();
         ListObjectsRequest listObjectsRequest = new ListObjectsRequest();
         listObjectsRequest.setBucketName(bucketName);
         // prefix表示列出的object的key以prefix开始
@@ -166,19 +171,12 @@ public class QCloudOssService {
             // object summary 表示所有列出的object列表
             List<COSObjectSummary> cosObjectSummaries = objectListing.getObjectSummaries();
             for (COSObjectSummary cosObjectSummary : cosObjectSummaries) {
-                // 文件的路径key
-                String key = cosObjectSummary.getKey();
-                // 文件的etag
-                String etag = cosObjectSummary.getETag();
-                // 文件的长度
-                long fileSize = cosObjectSummary.getSize();
-                // 文件的存储类型
-                String storageClasses = cosObjectSummary.getStorageClass();
+                ossInfoList.add(new OssInfo(cosObjectSummary));
             }
             String nextMarker = objectListing.getNextMarker();
             listObjectsRequest.setMarker(nextMarker);
         } while (objectListing.isTruncated());
-        return new ArrayList<>();
+        return ossInfoList;
     }
 
     private void download(String bucketName, String key) throws IOException {
@@ -198,6 +196,9 @@ public class QCloudOssService {
     }
 
     public boolean delete(String bucketName, String key) {
+        if (StringUtils.isNullOrEmpty(bucketName)) {
+            bucketName = genBucketName(ossConfiguration.getBucketName());
+        }
         cosClient.deleteObject(bucketName, key);
         return true;
     }
