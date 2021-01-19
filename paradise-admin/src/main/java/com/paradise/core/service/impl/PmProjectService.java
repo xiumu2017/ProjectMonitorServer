@@ -53,7 +53,8 @@ public class PmProjectService {
     public int updateByPrimaryKey(Long id, PmProjectBody record) {
         PmProject pmProject = new PmProject();
         BeanUtils.copyProperties(record, pmProject);
-        return this.pmProjectMapper.updateByPrimaryKey(pmProject);
+        pmProject.setId(id);
+        return this.pmProjectMapper.updateByPrimaryKeySelective(pmProject);
     }
 
     public List<PmProject> selectByPage(PmProjectQuery query) {
