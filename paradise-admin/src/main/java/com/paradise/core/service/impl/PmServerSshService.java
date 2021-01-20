@@ -83,4 +83,9 @@ public class PmServerSshService {
             return Result.failed(e.getLocalizedMessage());
         }
     }
+
+    public List<PmServerSsh> all() {
+        return pmServerSshMapper.selectByExample(new PmServerSshExample().createCriteria()
+                .andEnableEqualTo(1).example().orderBy(PmServerSsh.Column.updateAt.desc()));
+    }
 }

@@ -915,106 +915,6 @@ public class PmServerSshExample {
             return (Criteria) this;
         }
 
-        public Criteria andOsIsNull() {
-            addCriterion("os is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsIsNotNull() {
-            addCriterion("os is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsEqualTo(String value) {
-            addCriterion("os =", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("os = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOsNotEqualTo(String value) {
-            addCriterion("os <>", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsNotEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("os <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOsGreaterThan(String value) {
-            addCriterion("os >", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsGreaterThanColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("os > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOsGreaterThanOrEqualTo(String value) {
-            addCriterion("os >=", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsGreaterThanOrEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("os >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOsLessThan(String value) {
-            addCriterion("os <", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsLessThanColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("os < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOsLessThanOrEqualTo(String value) {
-            addCriterion("os <=", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsLessThanOrEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("os <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOsLike(String value) {
-            addCriterion("os like", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsNotLike(String value) {
-            addCriterion("os not like", value, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsIn(List<String> values) {
-            addCriterion("os in", values, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsNotIn(List<String> values) {
-            addCriterion("os not in", values, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsBetween(String value1, String value2) {
-            addCriterion("os between", value1, value2, "os");
-            return (Criteria) this;
-        }
-
-        public Criteria andOsNotBetween(String value1, String value2) {
-            addCriterion("os not between", value1, value2, "os");
-            return (Criteria) this;
-        }
-
         public Criteria andOsVersionIsNull() {
             addCriterion("os_version is null");
             return (Criteria) this;
@@ -1112,96 +1012,6 @@ public class PmServerSshExample {
 
         public Criteria andOsVersionNotBetween(String value1, String value2) {
             addCriterion("os_version not between", value1, value2, "osVersion");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryIsNull() {
-            addCriterion("memory is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryIsNotNull() {
-            addCriterion("memory is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryEqualTo(Integer value) {
-            addCriterion("memory =", value, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("memory = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryNotEqualTo(Integer value) {
-            addCriterion("memory <>", value, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryNotEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("memory <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryGreaterThan(Integer value) {
-            addCriterion("memory >", value, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryGreaterThanColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("memory > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryGreaterThanOrEqualTo(Integer value) {
-            addCriterion("memory >=", value, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryGreaterThanOrEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("memory >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryLessThan(Integer value) {
-            addCriterion("memory <", value, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryLessThanColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("memory < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryLessThanOrEqualTo(Integer value) {
-            addCriterion("memory <=", value, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryLessThanOrEqualToColumn(PmServerSsh.Column column) {
-            addCriterion(new StringBuilder("memory <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryIn(List<Integer> values) {
-            addCriterion("memory in", values, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryNotIn(List<Integer> values) {
-            addCriterion("memory not in", values, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryBetween(Integer value1, Integer value2) {
-            addCriterion("memory between", value1, value2, "memory");
-            return (Criteria) this;
-        }
-
-        public Criteria andMemoryNotBetween(Integer value1, Integer value2) {
-            addCriterion("memory not between", value1, value2, "memory");
             return (Criteria) this;
         }
 
@@ -1382,6 +1192,286 @@ public class PmServerSshExample {
 
         public Criteria andServerStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("server_status not between", value1, value2, "serverStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdIsNull() {
+            addCriterion("host_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdIsNotNull() {
+            addCriterion("host_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdEqualTo(Long value) {
+            addCriterion("host_id =", value, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("host_id = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdNotEqualTo(Long value) {
+            addCriterion("host_id <>", value, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdNotEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("host_id <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdGreaterThan(Long value) {
+            addCriterion("host_id >", value, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdGreaterThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("host_id > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("host_id >=", value, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdGreaterThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("host_id >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdLessThan(Long value) {
+            addCriterion("host_id <", value, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdLessThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("host_id < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdLessThanOrEqualTo(Long value) {
+            addCriterion("host_id <=", value, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdLessThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("host_id <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdIn(List<Long> values) {
+            addCriterion("host_id in", values, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdNotIn(List<Long> values) {
+            addCriterion("host_id not in", values, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdBetween(Long value1, Long value2) {
+            addCriterion("host_id between", value1, value2, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andHostIdNotBetween(Long value1, Long value2) {
+            addCriterion("host_id not between", value1, value2, "hostId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdIsNull() {
+            addCriterion("forward_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdIsNotNull() {
+            addCriterion("forward_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdEqualTo(Long value) {
+            addCriterion("forward_id =", value, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("forward_id = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdNotEqualTo(Long value) {
+            addCriterion("forward_id <>", value, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdNotEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("forward_id <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdGreaterThan(Long value) {
+            addCriterion("forward_id >", value, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdGreaterThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("forward_id > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("forward_id >=", value, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdGreaterThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("forward_id >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdLessThan(Long value) {
+            addCriterion("forward_id <", value, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdLessThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("forward_id < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdLessThanOrEqualTo(Long value) {
+            addCriterion("forward_id <=", value, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdLessThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("forward_id <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdIn(List<Long> values) {
+            addCriterion("forward_id in", values, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdNotIn(List<Long> values) {
+            addCriterion("forward_id not in", values, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdBetween(Long value1, Long value2) {
+            addCriterion("forward_id between", value1, value2, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andForwardIdNotBetween(Long value1, Long value2) {
+            addCriterion("forward_id not between", value1, value2, "forwardId");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationIsNull() {
+            addCriterion("configuration is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationIsNotNull() {
+            addCriterion("configuration is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationEqualTo(String value) {
+            addCriterion("configuration =", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("configuration = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationNotEqualTo(String value) {
+            addCriterion("configuration <>", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationNotEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("configuration <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationGreaterThan(String value) {
+            addCriterion("configuration >", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationGreaterThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("configuration > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationGreaterThanOrEqualTo(String value) {
+            addCriterion("configuration >=", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationGreaterThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("configuration >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationLessThan(String value) {
+            addCriterion("configuration <", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationLessThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("configuration < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationLessThanOrEqualTo(String value) {
+            addCriterion("configuration <=", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationLessThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("configuration <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationLike(String value) {
+            addCriterion("configuration like", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationNotLike(String value) {
+            addCriterion("configuration not like", value, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationIn(List<String> values) {
+            addCriterion("configuration in", values, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationNotIn(List<String> values) {
+            addCriterion("configuration not in", values, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationBetween(String value1, String value2) {
+            addCriterion("configuration between", value1, value2, "configuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andConfigurationNotBetween(String value1, String value2) {
+            addCriterion("configuration not between", value1, value2, "configuration");
             return (Criteria) this;
         }
 
@@ -1582,6 +1672,106 @@ public class PmServerSshExample {
 
         public Criteria andRemarkNotBetween(String value1, String value2) {
             addCriterion("remark not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsIsNull() {
+            addCriterion("tags is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsIsNotNull() {
+            addCriterion("tags is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsEqualTo(String value) {
+            addCriterion("tags =", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("tags = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotEqualTo(String value) {
+            addCriterion("tags <>", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("tags <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsGreaterThan(String value) {
+            addCriterion("tags >", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsGreaterThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("tags > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsGreaterThanOrEqualTo(String value) {
+            addCriterion("tags >=", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsGreaterThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("tags >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLessThan(String value) {
+            addCriterion("tags <", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLessThanColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("tags < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLessThanOrEqualTo(String value) {
+            addCriterion("tags <=", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLessThanOrEqualToColumn(PmServerSsh.Column column) {
+            addCriterion(new StringBuilder("tags <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLike(String value) {
+            addCriterion("tags like", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotLike(String value) {
+            addCriterion("tags not like", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsIn(List<String> values) {
+            addCriterion("tags in", values, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotIn(List<String> values) {
+            addCriterion("tags not in", values, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsBetween(String value1, String value2) {
+            addCriterion("tags between", value1, value2, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotBetween(String value1, String value2) {
+            addCriterion("tags not between", value1, value2, "tags");
             return (Criteria) this;
         }
 

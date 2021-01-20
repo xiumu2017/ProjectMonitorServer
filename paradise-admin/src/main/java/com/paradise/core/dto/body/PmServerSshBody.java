@@ -31,17 +31,11 @@ public class PmServerSshBody {
     @ApiModelProperty(value = "登录密码")
     private String password;
 
-    @ApiModelProperty(value = "服务器类型[unknown(0):未知, ali_cloud(1):阿里云服务器, tx_cloud(2):腾讯云服务器, company_server(3):公司服务器, other(4):其它]")
+    @ApiModelProperty(value = "类别ID")
     private Integer serverType;
-
-    @ApiModelProperty(value = "操作系统类型")
-    private String os;
 
     @ApiModelProperty(value = "操作系统版本")
     private String osVersion;
-
-    @ApiModelProperty(value = "内存大小 G")
-    private Integer memory;
 
     @ApiModelProperty(value = "是否启用")
     private Integer enable;
@@ -54,5 +48,17 @@ public class PmServerSshBody {
 
     @ApiModelProperty(value = "备注信息")
     private String remark;
+
+    @ApiModelProperty(value = "配置信息")
+    private String configuration;
+
+    @ApiModelProperty(value = "标签信息")
+    private String tags;
+
+    @ApiModelProperty("宿主机ID")
+    private Long hostId;
+
+    @ApiModelProperty("跳板机ID")
+    private Long forwardId;
 
 }

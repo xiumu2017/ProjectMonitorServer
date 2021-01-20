@@ -10,13 +10,15 @@
     <result column="user_name" jdbcType="CHAR" property="userName" />
     <result column="password" jdbcType="CHAR" property="password" />
     <result column="server_type" jdbcType="INTEGER" property="serverType" />
-    <result column="os" jdbcType="VARCHAR" property="os" />
     <result column="os_version" jdbcType="VARCHAR" property="osVersion" />
-    <result column="memory" jdbcType="INTEGER" property="memory" />
     <result column="enable" jdbcType="INTEGER" property="enable" />
     <result column="server_status" jdbcType="INTEGER" property="serverStatus" />
+    <result column="host_id" jdbcType="BIGINT" property="hostId" />
+    <result column="forward_id" jdbcType="BIGINT" property="forwardId" />
+    <result column="configuration" jdbcType="VARCHAR" property="configuration" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
@@ -82,8 +84,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, ip_addr, ip_addr_public, domain_addr, port, user_name, `password`, server_type, 
-    os, os_version, memory, `enable`, server_status, `name`, remark, create_at, update_at, 
-    create_by, update_by
+    os_version, `enable`, server_status, host_id, forward_id, configuration, `name`, 
+    remark, tags, create_at, update_at, create_by, update_by
   </sql>
   <select id="selectByExample" parameterType="com.paradise.core.example.PmServerSshExample" resultMap="BaseResultMap">
     select
@@ -159,18 +161,18 @@
     </selectKey>
     insert into pm_server_ssh (ip_addr, ip_addr_public, domain_addr, 
       port, user_name, `password`, 
-      server_type, os, os_version, 
-      memory, `enable`, server_status, 
-      `name`, remark, create_at, 
-      update_at, create_by, update_by
-      )
+      server_type, os_version, `enable`, 
+      server_status, host_id, forward_id, 
+      configuration, `name`, remark, 
+      tags, create_at, update_at, 
+      create_by, update_by)
     values (#{ipAddr,jdbcType=VARCHAR}, #{ipAddrPublic,jdbcType=VARCHAR}, #{domainAddr,jdbcType=VARCHAR}, 
       #{port,jdbcType=INTEGER}, #{userName,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
-      #{serverType,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, #{osVersion,jdbcType=VARCHAR}, 
-      #{memory,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}, #{serverStatus,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, 
-      #{updateAt,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}
-      )
+      #{serverType,jdbcType=INTEGER}, #{osVersion,jdbcType=VARCHAR}, #{enable,jdbcType=INTEGER}, 
+      #{serverStatus,jdbcType=INTEGER}, #{hostId,jdbcType=BIGINT}, #{forwardId,jdbcType=BIGINT}, 
+      #{configuration,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{tags,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="map">
     <selectKey keyProperty="record.id" order="AFTER" resultType="java.lang.Long">
@@ -206,14 +208,8 @@
           <if test="record.serverType != null">
             server_type,
           </if>
-          <if test="record.os != null">
-            os,
-          </if>
           <if test="record.osVersion != null">
             os_version,
-          </if>
-          <if test="record.memory != null">
-            memory,
           </if>
           <if test="record.enable != null">
             `enable`,
@@ -221,11 +217,23 @@
           <if test="record.serverStatus != null">
             server_status,
           </if>
+          <if test="record.hostId != null">
+            host_id,
+          </if>
+          <if test="record.forwardId != null">
+            forward_id,
+          </if>
+          <if test="record.configuration != null">
+            configuration,
+          </if>
           <if test="record.name != null">
             `name`,
           </if>
           <if test="record.remark != null">
             remark,
+          </if>
+          <if test="record.tags != null">
+            tags,
           </if>
           <if test="record.createAt != null">
             create_at,
@@ -273,14 +281,8 @@
           <if test="record.serverType != null">
             #{record.serverType,jdbcType=INTEGER},
           </if>
-          <if test="record.os != null">
-            #{record.os,jdbcType=VARCHAR},
-          </if>
           <if test="record.osVersion != null">
             #{record.osVersion,jdbcType=VARCHAR},
-          </if>
-          <if test="record.memory != null">
-            #{record.memory,jdbcType=INTEGER},
           </if>
           <if test="record.enable != null">
             #{record.enable,jdbcType=INTEGER},
@@ -288,11 +290,23 @@
           <if test="record.serverStatus != null">
             #{record.serverStatus,jdbcType=INTEGER},
           </if>
+          <if test="record.hostId != null">
+            #{record.hostId,jdbcType=BIGINT},
+          </if>
+          <if test="record.forwardId != null">
+            #{record.forwardId,jdbcType=BIGINT},
+          </if>
+          <if test="record.configuration != null">
+            #{record.configuration,jdbcType=VARCHAR},
+          </if>
           <if test="record.name != null">
             #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.remark != null">
             #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.tags != null">
+            #{record.tags,jdbcType=VARCHAR},
           </if>
           <if test="record.createAt != null">
             #{record.createAt,jdbcType=TIMESTAMP},
@@ -351,14 +365,8 @@
           <if test="record.serverType != null">
             server_type = #{record.serverType,jdbcType=INTEGER},
           </if>
-          <if test="record.os != null">
-            os = #{record.os,jdbcType=VARCHAR},
-          </if>
           <if test="record.osVersion != null">
             os_version = #{record.osVersion,jdbcType=VARCHAR},
-          </if>
-          <if test="record.memory != null">
-            memory = #{record.memory,jdbcType=INTEGER},
           </if>
           <if test="record.enable != null">
             `enable` = #{record.enable,jdbcType=INTEGER},
@@ -366,11 +374,23 @@
           <if test="record.serverStatus != null">
             server_status = #{record.serverStatus,jdbcType=INTEGER},
           </if>
+          <if test="record.hostId != null">
+            host_id = #{record.hostId,jdbcType=BIGINT},
+          </if>
+          <if test="record.forwardId != null">
+            forward_id = #{record.forwardId,jdbcType=BIGINT},
+          </if>
+          <if test="record.configuration != null">
+            configuration = #{record.configuration,jdbcType=VARCHAR},
+          </if>
           <if test="record.name != null">
             `name` = #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.remark != null">
             remark = #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.tags != null">
+            tags = #{record.tags,jdbcType=VARCHAR},
           </if>
           <if test="record.createAt != null">
             create_at = #{record.createAt,jdbcType=TIMESTAMP},
@@ -401,13 +421,15 @@
       user_name = #{record.userName,jdbcType=CHAR},
       `password` = #{record.password,jdbcType=CHAR},
       server_type = #{record.serverType,jdbcType=INTEGER},
-      os = #{record.os,jdbcType=VARCHAR},
       os_version = #{record.osVersion,jdbcType=VARCHAR},
-      memory = #{record.memory,jdbcType=INTEGER},
       `enable` = #{record.enable,jdbcType=INTEGER},
       server_status = #{record.serverStatus,jdbcType=INTEGER},
+      host_id = #{record.hostId,jdbcType=BIGINT},
+      forward_id = #{record.forwardId,jdbcType=BIGINT},
+      configuration = #{record.configuration,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP},
       create_by = #{record.createBy,jdbcType=BIGINT},
@@ -448,14 +470,8 @@
           <if test="record.serverType != null">
             server_type = #{record.serverType,jdbcType=INTEGER},
           </if>
-          <if test="record.os != null">
-            os = #{record.os,jdbcType=VARCHAR},
-          </if>
           <if test="record.osVersion != null">
             os_version = #{record.osVersion,jdbcType=VARCHAR},
-          </if>
-          <if test="record.memory != null">
-            memory = #{record.memory,jdbcType=INTEGER},
           </if>
           <if test="record.enable != null">
             `enable` = #{record.enable,jdbcType=INTEGER},
@@ -463,11 +479,23 @@
           <if test="record.serverStatus != null">
             server_status = #{record.serverStatus,jdbcType=INTEGER},
           </if>
+          <if test="record.hostId != null">
+            host_id = #{record.hostId,jdbcType=BIGINT},
+          </if>
+          <if test="record.forwardId != null">
+            forward_id = #{record.forwardId,jdbcType=BIGINT},
+          </if>
+          <if test="record.configuration != null">
+            configuration = #{record.configuration,jdbcType=VARCHAR},
+          </if>
           <if test="record.name != null">
             `name` = #{record.name,jdbcType=VARCHAR},
           </if>
           <if test="record.remark != null">
             remark = #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.tags != null">
+            tags = #{record.tags,jdbcType=VARCHAR},
           </if>
           <if test="record.createAt != null">
             create_at = #{record.createAt,jdbcType=TIMESTAMP},
@@ -495,13 +523,15 @@
       user_name = #{userName,jdbcType=CHAR},
       `password` = #{password,jdbcType=CHAR},
       server_type = #{serverType,jdbcType=INTEGER},
-      os = #{os,jdbcType=VARCHAR},
       os_version = #{osVersion,jdbcType=VARCHAR},
-      memory = #{memory,jdbcType=INTEGER},
       `enable` = #{enable,jdbcType=INTEGER},
       server_status = #{serverStatus,jdbcType=INTEGER},
+      host_id = #{hostId,jdbcType=BIGINT},
+      forward_id = #{forwardId,jdbcType=BIGINT},
+      configuration = #{configuration,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
       create_at = #{createAt,jdbcType=TIMESTAMP},
       update_at = #{updateAt,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=BIGINT},
@@ -544,17 +574,17 @@
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     insert into pm_server_ssh
     (ip_addr, ip_addr_public, domain_addr, port, user_name, `password`, server_type, 
-      os, os_version, memory, `enable`, server_status, `name`, remark, create_at, update_at, 
-      create_by, update_by)
+      os_version, `enable`, server_status, host_id, forward_id, configuration, `name`, 
+      remark, tags, create_at, update_at, create_by, update_by)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.ipAddr,jdbcType=VARCHAR}, #{item.ipAddrPublic,jdbcType=VARCHAR}, #{item.domainAddr,jdbcType=VARCHAR}, 
         #{item.port,jdbcType=INTEGER}, #{item.userName,jdbcType=CHAR}, #{item.password,jdbcType=CHAR}, 
-        #{item.serverType,jdbcType=INTEGER}, #{item.os,jdbcType=VARCHAR}, #{item.osVersion,jdbcType=VARCHAR}, 
-        #{item.memory,jdbcType=INTEGER}, #{item.enable,jdbcType=INTEGER}, #{item.serverStatus,jdbcType=INTEGER}, 
-        #{item.name,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createAt,jdbcType=TIMESTAMP}, 
-        #{item.updateAt,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=BIGINT}, #{item.updateBy,jdbcType=BIGINT}
-        )
+        #{item.serverType,jdbcType=INTEGER}, #{item.osVersion,jdbcType=VARCHAR}, #{item.enable,jdbcType=INTEGER}, 
+        #{item.serverStatus,jdbcType=INTEGER}, #{item.hostId,jdbcType=BIGINT}, #{item.forwardId,jdbcType=BIGINT}, 
+        #{item.configuration,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
+        #{item.tags,jdbcType=VARCHAR}, #{item.createAt,jdbcType=TIMESTAMP}, #{item.updateAt,jdbcType=TIMESTAMP}, 
+        #{item.createBy,jdbcType=BIGINT}, #{item.updateBy,jdbcType=BIGINT})
     </foreach>
   </insert>
   <insert id="batchInsertSelective" keyColumn="id" keyProperty="list.id" parameterType="map" useGeneratedKeys="true">
@@ -588,14 +618,8 @@
         <if test="'server_type'.toString() == column.value">
           #{item.serverType,jdbcType=INTEGER}
         </if>
-        <if test="'os'.toString() == column.value">
-          #{item.os,jdbcType=VARCHAR}
-        </if>
         <if test="'os_version'.toString() == column.value">
           #{item.osVersion,jdbcType=VARCHAR}
-        </if>
-        <if test="'memory'.toString() == column.value">
-          #{item.memory,jdbcType=INTEGER}
         </if>
         <if test="'enable'.toString() == column.value">
           #{item.enable,jdbcType=INTEGER}
@@ -603,11 +627,23 @@
         <if test="'server_status'.toString() == column.value">
           #{item.serverStatus,jdbcType=INTEGER}
         </if>
+        <if test="'host_id'.toString() == column.value">
+          #{item.hostId,jdbcType=BIGINT}
+        </if>
+        <if test="'forward_id'.toString() == column.value">
+          #{item.forwardId,jdbcType=BIGINT}
+        </if>
+        <if test="'configuration'.toString() == column.value">
+          #{item.configuration,jdbcType=VARCHAR}
+        </if>
         <if test="'name'.toString() == column.value">
           #{item.name,jdbcType=VARCHAR}
         </if>
         <if test="'remark'.toString() == column.value">
           #{item.remark,jdbcType=VARCHAR}
+        </if>
+        <if test="'tags'.toString() == column.value">
+          #{item.tags,jdbcType=VARCHAR}
         </if>
         <if test="'create_at'.toString() == column.value">
           #{item.createAt,jdbcType=TIMESTAMP}

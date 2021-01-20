@@ -5,7 +5,9 @@ import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.PmServerSshBody;
 import com.paradise.core.model.PmServerSsh;
+import com.paradise.core.model.PmServerType;
 import com.paradise.core.service.impl.PmServerSshService;
+import com.paradise.core.service.impl.PmServerTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -25,6 +27,7 @@ import java.util.List;
 @RequestMapping("/server")
 public class PmServerSshController {
     private final PmServerSshService pmServerSshService;
+    private final PmServerTypeService serverTypeService;
 
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "分页查询")
@@ -88,7 +91,14 @@ public class PmServerSshController {
     @ApiOperationSupport(order = 7)
     @ApiOperation("查询服务器类别列表")
     @GetMapping("/types")
-    public Result<PmServerSsh.ServerType[]> serverTypes() {
-        return Result.success(PmServerSsh.ServerType.values());
+    public Result<List<PmServerType>> serverTypes() {
+        return Result.success(serverTypeService.all());
+    }
+
+    @ApiOperationSupport(order = 8)
+    @ApiOperation("查询服务器列表")
+    @GetMapping("/all")
+    public Result<List<PmServerSsh>> all() {
+        return Result.success(pmServerSshService.all());
     }
 }

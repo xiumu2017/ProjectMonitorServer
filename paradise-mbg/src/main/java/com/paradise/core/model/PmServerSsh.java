@@ -44,37 +44,43 @@ public class PmServerSsh implements Serializable {
     @ApiModelProperty(value="登录密码")
     private String password;
 
-    @ApiModelProperty(value="服务器类型[unknown(0):未知, ali_cloud(1):阿里云服务器, tx_cloud(2):腾讯云服务器, company_server(3):公司服务器, other(4):其它]")
+    @ApiModelProperty(value = "服务器类别ID")
     private Integer serverType;
 
-    @ApiModelProperty(value="操作系统类型")
-    private String os;
-
-    @ApiModelProperty(value="操作系统版本")
+    @ApiModelProperty(value = "OS 版本信息")
     private String osVersion;
 
-    @ApiModelProperty(value="内存大小 G")
-    private Integer memory;
-
-    @ApiModelProperty(value="是否启用")
+    @ApiModelProperty(value = "是否启用")
     private Integer enable;
 
-    @ApiModelProperty(value="服务器连接状态[fail(0):失败,ok(1):正常]")
+    @ApiModelProperty(value = "服务器连接状态[fail(0):失败,ok(1):正常]")
     private Integer serverStatus;
 
-    @ApiModelProperty(value="服务器名称")
+    @ApiModelProperty(value = "关联宿主机ID")
+    private Long hostId;
+
+    @ApiModelProperty(value = "关联跳板机ID")
+    private Long forwardId;
+
+    @ApiModelProperty(value = "配置信息")
+    private String configuration;
+
+    @ApiModelProperty(value = "服务器名称")
     private String name;
 
-    @ApiModelProperty(value="备注信息")
+    @ApiModelProperty(value = "备注信息")
     private String remark;
 
-    @ApiModelProperty(value="创建时间")
+    @ApiModelProperty(value = "标签信息")
+    private String tags;
+
+    @ApiModelProperty(value = "创建时间")
     private Date createAt;
 
-    @ApiModelProperty(value="更新时间")
+    @ApiModelProperty(value = "更新时间")
     private Date updateAt;
 
-    @ApiModelProperty(value="创建管理员ID")
+    @ApiModelProperty(value = "创建管理员ID")
     private Long createBy;
 
     @ApiModelProperty(value="更新管理员ID")
@@ -91,13 +97,15 @@ public class PmServerSsh implements Serializable {
         userName("user_name", "userName", "CHAR", false),
         password("password", "password", "CHAR", true),
         serverType("server_type", "serverType", "INTEGER", false),
-        os("os", "os", "VARCHAR", false),
         osVersion("os_version", "osVersion", "VARCHAR", false),
-        memory("memory", "memory", "INTEGER", false),
         enable("enable", "enable", "INTEGER", true),
         serverStatus("server_status", "serverStatus", "INTEGER", false),
+        hostId("host_id", "hostId", "BIGINT", false),
+        forwardId("forward_id", "forwardId", "BIGINT", false),
+        configuration("configuration", "configuration", "VARCHAR", false),
         name("name", "name", "VARCHAR", true),
         remark("remark", "remark", "VARCHAR", false),
+        tags("tags", "tags", "VARCHAR", false),
         createAt("create_at", "createAt", "TIMESTAMP", false),
         updateAt("update_at", "updateAt", "TIMESTAMP", false),
         createBy("create_by", "createBy", "BIGINT", false),
@@ -168,35 +176,6 @@ public class PmServerSsh implements Serializable {
 
         public String getAliasedEscapedColumnName() {
             return this.getEscapedColumnName();
-        }
-    }
-
-    public enum ServerType {
-        UNKNOWN(new Integer("0"), "未知"),
-        ALI_CLOUD(new Integer("1"), "阿里云服务器"),
-        TX_CLOUD(new Integer("2"), "腾讯云服务器"),
-        COMPANY_SERVER(new Integer("3"), "公司服务器"),
-        OTHER(new Integer("4"), "其它");
-
-        private final Integer value;
-
-        private final String name;
-
-        ServerType(Integer value, String name) {
-            this.value = value;
-            this.name = name;
-        }
-
-        public Integer getValue() {
-            return this.value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public String getName() {
-            return this.name;
         }
     }
 
