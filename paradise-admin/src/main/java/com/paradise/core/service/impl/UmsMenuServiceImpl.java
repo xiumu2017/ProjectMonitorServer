@@ -31,7 +31,7 @@ public class UmsMenuServiceImpl implements UmsMenuService {
     public int create(UmsMenu umsMenu) {
         umsMenu.setCreateAt(new Date());
         updateLevel(umsMenu);
-        return menuMapper.insert(umsMenu);
+        return menuMapper.insertSelective(umsMenu);
     }
 
     /**
@@ -70,21 +70,22 @@ public class UmsMenuServiceImpl implements UmsMenuService {
     }
 
     @Override
-    public List<UmsMenu> list(Long parentId, Integer pageSize, Integer pageNum) {
+    public List<UmsMenu> list(Integer pageSize, Integer pageNum) {
+        if (pageNum == null || pageSize == null) {
+            return menuMapper.selectByExample(new UmsMenuExample().createCriteria().example().orderBy(UmsMenu.Column.sort.desc()));
+        }
         PageHelper.startPage(pageNum, pageSize);
         UmsMenuExample example = new UmsMenuExample();
         example.setOrderByClause("sort desc");
-        example.createCriteria().andParentIdEqualTo(parentId);
         return menuMapper.selectByExample(example);
     }
 
     @Override
     public List<UmsMenuNode> treeList() {
         List<UmsMenu> menuList = menuMapper.selectByExample(new UmsMenuExample());
-        List<UmsMenuNode> result = menuList.stream()
+        return menuList.stream()
                 .filter(menu -> menu.getParentId().equals(0L))
                 .map(menu -> covertMenuNode(menu, menuList)).collect(Collectors.toList());
-        return result;
     }
 
     @Override

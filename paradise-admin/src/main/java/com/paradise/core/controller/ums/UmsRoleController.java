@@ -30,7 +30,7 @@ public class UmsRoleController {
     }
 
     @ApiOperation("添加角色")
-    @PostMapping(value = "/create")
+    @PostMapping
     public Result<Integer> create(@RequestBody UmsRole role) {
         int count = roleService.create(role);
         if (count > 0) {
@@ -40,7 +40,7 @@ public class UmsRoleController {
     }
 
     @ApiOperation("修改角色")
-    @PostMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public Result<Integer> update(@PathVariable Long id, @RequestBody UmsRole role) {
         int count = roleService.update(id, role);
         if (count > 0) {
@@ -50,7 +50,7 @@ public class UmsRoleController {
     }
 
     @ApiOperation("批量删除角色")
-    @PostMapping(value = "/delete")
+    @DeleteMapping
     public Result<Integer> delete(@RequestParam("ids") List<Long> ids) {
         int count = roleService.delete(ids);
         if (count > 0) {
@@ -67,8 +67,8 @@ public class UmsRoleController {
     }
 
     @ApiOperation("修改角色权限")
-    @PostMapping(value = "/permission/update")
-    public Result<Integer> updatePermission(@RequestParam Long roleId,
+    @PutMapping(value = "/permission/{roleId}")
+    public Result<Integer> updatePermission(@PathVariable Long roleId,
                                             @RequestParam("permissionIds") List<Long> permissionIds) {
         int count = roleService.updatePermission(roleId, permissionIds);
         if (count > 0) {
@@ -78,14 +78,14 @@ public class UmsRoleController {
     }
 
     @ApiOperation("获取所有角色")
-    @GetMapping(value = "/listAll")
+    @GetMapping(value = "/all")
     public Result<List<UmsRole>> listAll() {
         List<UmsRole> roleList = roleService.list();
         return Result.success(roleList);
     }
 
     @ApiOperation("根据角色名称分页获取角色列表")
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/s")
     public Result<CommonPage<UmsRole>> list(@RequestParam(value = "keyword", required = false) String keyword,
                                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
@@ -94,7 +94,7 @@ public class UmsRoleController {
     }
 
     @ApiOperation("修改角色状态")
-    @PostMapping(value = "/updateStatus/{id}")
+    @PutMapping(value = "/status/{id}")
     public Result<Integer> updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
         UmsRole umsRole = new UmsRole();
         umsRole.setEnable(status);
@@ -106,29 +106,29 @@ public class UmsRoleController {
     }
 
     @ApiOperation("获取角色相关菜单")
-    @GetMapping(value = "/listMenu/{roleId}")
+    @GetMapping(value = "/menu/{roleId}")
     public Result<List<UmsMenu>> listMenu(@PathVariable Long roleId) {
         List<UmsMenu> roleList = roleService.listMenu(roleId);
         return Result.success(roleList);
     }
 
     @ApiOperation("获取角色相关资源")
-    @GetMapping(value = "/listResource/{roleId}")
+    @GetMapping(value = "/resource/{roleId}")
     public Result<List<UmsResource>> listResource(@PathVariable Long roleId) {
         List<UmsResource> roleList = roleService.listResource(roleId);
         return Result.success(roleList);
     }
 
     @ApiOperation("给角色分配菜单")
-    @PostMapping(value = "/allocMenu")
-    public Result<Integer> allocMenu(@RequestParam Long roleId, @RequestParam List<Long> menuIds) {
+    @PostMapping(value = "/menu/{roleId}")
+    public Result<Integer> allocMenu(@PathVariable Long roleId, @RequestParam List<Long> menuIds) {
         int count = roleService.allocMenu(roleId, menuIds);
         return Result.success(count);
     }
 
     @ApiOperation("给角色分配资源")
-    @PostMapping(value = "/allocResource")
-    public Result<Integer> allocResource(@RequestParam Long roleId, @RequestParam List<Long> resourceIds) {
+    @PostMapping(value = "/resource/{roleId}")
+    public Result<Integer> allocResource(@PathVariable Long roleId, @RequestParam List<Long> resourceIds) {
         int count = roleService.allocResource(roleId, resourceIds);
         return Result.success(count);
     }

@@ -5,7 +5,6 @@ import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.UmsAdminLoginParam;
 import com.paradise.core.dto.UmsAdminParam;
-import com.paradise.core.dto.UpdateAdminPasswordParam;
 import com.paradise.core.model.UmsAdmin;
 import com.paradise.core.model.UmsPermission;
 import com.paradise.core.model.UmsRole;
@@ -113,9 +112,10 @@ public class UmsAdminController {
     @ApiOperation("根据用户名或姓名分页获取用户列表")
     @GetMapping(value = "/list")
     public Result<CommonPage<UmsAdmin>> list(@RequestParam(value = "keyword", required = false) String keyword,
+                                             @RequestParam(value = "enable", required = false) Integer enable,
                                              @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                              @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<UmsAdmin> adminList = adminService.list(keyword, pageSize, pageNum);
+        List<UmsAdmin> adminList = adminService.list(keyword, pageSize, pageNum, enable);
         return Result.success(CommonPage.restPage(adminList));
     }
 
@@ -127,7 +127,7 @@ public class UmsAdminController {
     }
 
     @ApiOperation("修改指定用户信息")
-    @PostMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public Result<Integer> update(@PathVariable Long id, @RequestBody UmsAdmin admin) {
         int count = adminService.update(id, admin);
         if (count > 0) {
@@ -136,39 +136,10 @@ public class UmsAdminController {
         return Result.failed();
     }
 
-    @ApiOperation("修改指定用户密码")
-    @PostMapping(value = "/updatePassword")
-    public Result<Integer> updatePassword(@RequestBody UpdateAdminPasswordParam updatePasswordParam) {
-        int status = adminService.updatePassword(updatePasswordParam);
-        if (status > 0) {
-            return Result.success(status);
-        } else if (status == -1) {
-            return Result.failed("提交参数不合法");
-        } else if (status == -2) {
-            return Result.failed("找不到该用户");
-        } else if (status == -3) {
-            return Result.failed("旧密码错误");
-        } else {
-            return Result.failed();
-        }
-    }
-
     @ApiOperation("删除指定用户信息")
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public Result<Integer> delete(@PathVariable Long id) {
         int count = adminService.delete(id);
-        if (count > 0) {
-            return Result.success(count);
-        }
-        return Result.failed();
-    }
-
-    @ApiOperation("修改帐号状态")
-    @PostMapping(value = "/updateStatus/{id}")
-    public Result<Integer> updateStatus(@PathVariable Long id, @RequestParam(value = "status") Integer status) {
-        UmsAdmin umsAdmin = new UmsAdmin();
-        umsAdmin.setStatus(status);
-        int count = adminService.update(id, umsAdmin);
         if (count > 0) {
             return Result.success(count);
         }

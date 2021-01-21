@@ -7,7 +7,6 @@ import com.paradise.core.model.UmsMenu;
 import com.paradise.core.service.UmsMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
  * @author Paradise
  * @date 2020/2/4
  */
-@Controller
+@RestController
 @Api(tags = "1.3 UMS-后台菜单管理")
 @RequestMapping("/menu")
 public class UmsMenuController {
@@ -30,7 +29,7 @@ public class UmsMenuController {
     }
 
     @ApiOperation("添加后台菜单")
-    @PostMapping(value = "/create")
+    @PostMapping
     public Result<Integer> create(@RequestBody UmsMenu umsMenu) {
         int count = menuService.create(umsMenu);
         if (count > 0) {
@@ -41,7 +40,7 @@ public class UmsMenuController {
     }
 
     @ApiOperation("修改后台菜单")
-    @PostMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public Result<Integer> update(@PathVariable Long id,
                                   @RequestBody UmsMenu umsMenu) {
         int count = menuService.update(id, umsMenu);
@@ -60,7 +59,7 @@ public class UmsMenuController {
     }
 
     @ApiOperation("根据ID删除后台菜单")
-    @PostMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public Result<Integer> delete(@PathVariable Long id) {
         int count = menuService.delete(id);
         if (count > 0) {
@@ -71,29 +70,24 @@ public class UmsMenuController {
     }
 
     @ApiOperation("分页查询后台菜单")
-    @GetMapping(value = "/list/{parentId}")
-    public Result<CommonPage<UmsMenu>> list(@PathVariable Long parentId,
-                                            @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    @GetMapping(value = "/page")
+    public Result<CommonPage<UmsMenu>> list(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<UmsMenu> menuList = menuService.list(parentId, pageSize, pageNum);
+        List<UmsMenu> menuList = menuService.list(pageSize, pageNum);
         return Result.success(CommonPage.restPage(menuList));
     }
 
     @ApiOperation("树形结构返回所有菜单列表")
-    @GetMapping(value = "/treeList")
+    @GetMapping(value = "/s")
     public Result<List<UmsMenuNode>> treeList() {
         List<UmsMenuNode> list = menuService.treeList();
         return Result.success(list);
     }
 
-    @ApiOperation("修改菜单显示状态")
-    @PostMapping(value = "/updateHidden/{id}")
-    public Result<Integer> updateHidden(@PathVariable Long id, @RequestParam("hidden") Integer hidden) {
-        int count = menuService.updateHidden(id, hidden);
-        if (count > 0) {
-            return Result.success(count);
-        } else {
-            return Result.failed();
-        }
+    @ApiOperation("查询全部后台菜单")
+    @GetMapping(value = "/all")
+    public Result<List<UmsMenu>> all() {
+        List<UmsMenu> menuList = menuService.list(null, null);
+        return Result.success(menuList);
     }
 }
