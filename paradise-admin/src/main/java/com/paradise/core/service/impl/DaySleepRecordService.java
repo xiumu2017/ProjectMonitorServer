@@ -40,7 +40,7 @@ public class DaySleepRecordService {
 
     private Integer cal(DaySleepRecordBody record) {
         long mis = record.getWakeTime() - record.getSleepTime();
-        return Math.toIntExact(mis / (3600_000));
+        return Math.toIntExact(mis / (1_000));
     }
 
     public int insertSelective(DaySleepRecordBody record) {

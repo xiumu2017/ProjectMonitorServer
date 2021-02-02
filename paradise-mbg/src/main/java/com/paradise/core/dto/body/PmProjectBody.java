@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * 项目监控项目Body
@@ -54,7 +55,6 @@ public class PmProjectBody {
      * 状态码
      */
     @ApiModelProperty(value = "状态码", required = true, example = "200")
-    @NotNull(message = "状态码不能为空!")
     private Integer statusCode;
 
     /**
@@ -102,7 +102,7 @@ public class PmProjectBody {
      */
     @ApiModelProperty(value = "项目结束时间", required = true, example = "null")
     @NotNull(message = "项目结束时间不能为空!")
-    private java.util.Date endTime;
+    private Date endTime;
 
     /**
      * 备注
