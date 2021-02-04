@@ -103,7 +103,7 @@ public class BingImageUtils {
         return copyright.substring(0, copyright.indexOf("("));
     }
 
-    public static Message bingResult2Msg(BingImage image) {
+    public static Message bingResult2Msg(DayBingImage image) {
         MarkdownMessage message = new MarkdownMessage();
         if (StringUtils.isNotEmpty(image.getCopyright())) {
             message.setTitle(image.getCopyright());
@@ -111,8 +111,8 @@ public class BingImageUtils {
             message.setTitle("每日BING壁纸");
         }
         message.add(MarkdownMessage.getHeaderText(1, image.getCopyright()));
-        message.add(MarkdownMessage.getImageText(BING_URL + image.getUrl()));
-        message.add(MarkdownMessage.getLinkText(image.getCopyright(), BING_URL + image.getCopyrightlink()));
+        message.add(MarkdownMessage.getImageText(image.getUrl()));
+        message.add(MarkdownMessage.getLinkText(image.getCopyright(), BING_URL + image.getCopyrightLink()));
         return message;
     }
 

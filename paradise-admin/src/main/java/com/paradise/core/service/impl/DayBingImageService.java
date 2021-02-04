@@ -70,6 +70,13 @@ public class DayBingImageService {
                 .orderBy(DayBingImage.Column.date.desc()));
     }
 
+    public DayBingImage selectToday() {
+        refresh();
+        return dayBingImageMapper.selectOneByExample(new DayBingImageExample().createCriteria()
+                .andDateBetween(DateUtil.offsetDay(new Date(), -1), new Date()).example()
+                .orderBy(DayBingImage.Column.date.desc()));
+    }
+
     public void refresh() {
         // 判断有没有今天的壁纸 ，没有则刷新
         long c = dayBingImageMapper.countByExample(new DayBingImageExample().createCriteria()

@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Profile({"test", "dev"})
+@Profile({"test", "dev", "prod"})
 @AllArgsConstructor
 public class SchedulerJob {
 
