@@ -6,6 +6,7 @@ import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.DayMealRecordBody;
 import com.paradise.core.dto.query.DayMealRecordQuery;
+import com.paradise.core.dto.statistics.DayMealRecordChartData;
 import com.paradise.core.model.DayMealRecord;
 import com.paradise.core.service.impl.DayMealRecordService;
 import io.swagger.annotations.Api;
@@ -89,5 +90,12 @@ public class DayMealRecordController {
     @GetMapping("/payTypes")
     public Result<List<String>> patTypes() {
         return Result.success(CollectionUtil.newArrayList("微信支付", "支付宝支付", "现金", "银行卡", "其它"));
+    }
+
+    @ApiOperationSupport(order = 8)
+    @ApiOperation("查询统计数据")
+    @GetMapping("/statistics")
+    public Result<DayMealRecordChartData> chartData(DayMealRecordQuery query) {
+        return Result.success(dayMealRecordService.chartData(query));
     }
 }

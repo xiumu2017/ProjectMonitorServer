@@ -50,7 +50,7 @@ public class DaySleepRecordController {
     @ApiOperation("修改")
     @PutMapping(value = "/{id}")
     public Result<Integer> updateByPrimaryKey(@PathVariable("id") Long id, @RequestBody @Validated DaySleepRecordBody record) {
-        int count = this.daySleepRecordService.updateByPrimaryKey(id,record);
+        int count = this.daySleepRecordService.updateByPrimaryKey(id, record);
         if (count > 0) {
             return Result.success(count);
         }
@@ -74,5 +74,12 @@ public class DaySleepRecordController {
             return Result.success(count);
         }
         return Result.failed();
+    }
+
+    @ApiOperationSupport(order = 6)
+    @ApiOperation("睡眠时长统计数据")
+    @GetMapping("/statistics")
+    public Result<List<List<String>>> statistics() {
+        return Result.success(daySleepRecordService.statistics());
     }
 }

@@ -1,5 +1,6 @@
 package com.paradise.core.service.impl;
 
+import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.dto.body.DaySleepRecordBody;
 import com.paradise.core.dto.query.DaySleepRecordQuery;
@@ -11,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -81,5 +84,25 @@ public class DaySleepRecordService {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
         return this.daySleepRecordMapper.selectByExample(new DaySleepRecordExample()
                 .createCriteria().example().orderBy(DaySleepRecord.Column.date.desc()));
+    }
+
+    public List<List<String>> statistics() {
+        List<DaySleepRecord> list =
+                this.daySleepRecordMapper.selectByExampleSelective(new DaySleepRecordExample()
+                                .createCriteria()
+                                .andDateGreaterThanOrEqualTo(DateUtil.offsetDay(new Date(), -15))
+                                .example().orderBy(DaySleepRecord.Column.date.asc()),
+                        DaySleepRecord.Column.date, DaySleepRecord.Column.duration);
+        List<List<String>> result = new ArrayList<>();
+        ArrayList<String> dateList = new ArrayList<>();
+        ArrayList<String> durationList = new ArrayList<>();
+        for (DaySleepRecord daySleepRecord : list) {
+            dateList.add(DateUtil.formatDate(daySleepRecord.getDate()));
+            durationList.add(new BigDecimal(daySleepRecord.getDuration()).divide(
+                    new BigDecimal("3600"), 4, BigDecimal.ROUND_HALF_UP).toString());
+        }
+        result.add(dateList);
+        result.add(durationList);
+        return result;
     }
 }
