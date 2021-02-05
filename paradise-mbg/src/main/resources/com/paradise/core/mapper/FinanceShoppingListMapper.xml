@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paradise.core.mapper.FinanceShoppingListMapper">
+  <resultMap id="BaseResultMap" type="com.paradise.core.model.FinanceShoppingList">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="purchase_time" jdbcType="TIMESTAMP" property="purchaseTime" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="labels" jdbcType="VARCHAR" property="labels" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="detail_name" jdbcType="VARCHAR" property="detailName" />
+    <result column="order_link" jdbcType="VARCHAR" property="orderLink" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, purchase_time, `source`, order_no, labels, `type`, product_name, detail_name, 
+    order_link, price, pay_type, rate, remark, create_at, update_at
+  </sql>
+  <select id="selectByExample" parameterType="com.paradise.core.example.FinanceShoppingListExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from finance_shopping_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <if test="example != null and example.distinct">
+      distinct
+    </if>
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from finance_shopping_list
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example != null and example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from finance_shopping_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from finance_shopping_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from finance_shopping_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.paradise.core.example.FinanceShoppingListExample">
+    delete from finance_shopping_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.paradise.core.model.FinanceShoppingList">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into finance_shopping_list (purchase_time, `source`, order_no, 
+      labels, `type`, product_name, 
+      detail_name, order_link, price, 
+      pay_type, rate, remark, 
+      create_at, update_at)
+    values (#{purchaseTime,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{labels,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{detailName,jdbcType=VARCHAR}, #{orderLink,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{payType,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="map">
+    <selectKey keyProperty="record.id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into finance_shopping_list
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach close=")" collection="selective" item="column" open="(" separator=",">
+          ${column.escapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="record.purchaseTime != null">
+            purchase_time,
+          </if>
+          <if test="record.source != null">
+            `source`,
+          </if>
+          <if test="record.orderNo != null">
+            order_no,
+          </if>
+          <if test="record.labels != null">
+            labels,
+          </if>
+          <if test="record.type != null">
+            `type`,
+          </if>
+          <if test="record.productName != null">
+            product_name,
+          </if>
+          <if test="record.detailName != null">
+            detail_name,
+          </if>
+          <if test="record.orderLink != null">
+            order_link,
+          </if>
+          <if test="record.price != null">
+            price,
+          </if>
+          <if test="record.payType != null">
+            pay_type,
+          </if>
+          <if test="record.rate != null">
+            rate,
+          </if>
+          <if test="record.remark != null">
+            remark,
+          </if>
+          <if test="record.createAt != null">
+            create_at,
+          </if>
+          <if test="record.updateAt != null">
+            update_at,
+          </if>
+        </trim>
+        <trim prefix="(" suffix=")" suffixOverrides="," />
+      </otherwise>
+    </choose>
+    values
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach close=")" collection="selective" item="column" open="(" separator=",">
+          #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="record.purchaseTime != null">
+            #{record.purchaseTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.source != null">
+            #{record.source,jdbcType=VARCHAR},
+          </if>
+          <if test="record.orderNo != null">
+            #{record.orderNo,jdbcType=VARCHAR},
+          </if>
+          <if test="record.labels != null">
+            #{record.labels,jdbcType=VARCHAR},
+          </if>
+          <if test="record.type != null">
+            #{record.type,jdbcType=VARCHAR},
+          </if>
+          <if test="record.productName != null">
+            #{record.productName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.detailName != null">
+            #{record.detailName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.orderLink != null">
+            #{record.orderLink,jdbcType=VARCHAR},
+          </if>
+          <if test="record.price != null">
+            #{record.price,jdbcType=DECIMAL},
+          </if>
+          <if test="record.payType != null">
+            #{record.payType,jdbcType=VARCHAR},
+          </if>
+          <if test="record.rate != null">
+            #{record.rate,jdbcType=VARCHAR},
+          </if>
+          <if test="record.remark != null">
+            #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.createAt != null">
+            #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+  </insert>
+  <select id="countByExample" parameterType="com.paradise.core.example.FinanceShoppingListExample" resultType="java.lang.Long">
+    select count(*) from finance_shopping_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update finance_shopping_list
+    SET
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim suffixOverrides=",">
+          <if test="record.id != null">
+            id = #{record.id,jdbcType=INTEGER},
+          </if>
+          <if test="record.purchaseTime != null">
+            purchase_time = #{record.purchaseTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.source != null">
+            `source` = #{record.source,jdbcType=VARCHAR},
+          </if>
+          <if test="record.orderNo != null">
+            order_no = #{record.orderNo,jdbcType=VARCHAR},
+          </if>
+          <if test="record.labels != null">
+            labels = #{record.labels,jdbcType=VARCHAR},
+          </if>
+          <if test="record.type != null">
+            `type` = #{record.type,jdbcType=VARCHAR},
+          </if>
+          <if test="record.productName != null">
+            product_name = #{record.productName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.detailName != null">
+            detail_name = #{record.detailName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.orderLink != null">
+            order_link = #{record.orderLink,jdbcType=VARCHAR},
+          </if>
+          <if test="record.price != null">
+            price = #{record.price,jdbcType=DECIMAL},
+          </if>
+          <if test="record.payType != null">
+            pay_type = #{record.payType,jdbcType=VARCHAR},
+          </if>
+          <if test="record.rate != null">
+            rate = #{record.rate,jdbcType=VARCHAR},
+          </if>
+          <if test="record.remark != null">
+            remark = #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.createAt != null">
+            create_at = #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update finance_shopping_list
+    set id = #{record.id,jdbcType=INTEGER},
+      purchase_time = #{record.purchaseTime,jdbcType=TIMESTAMP},
+      `source` = #{record.source,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      labels = #{record.labels,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=VARCHAR},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      detail_name = #{record.detailName,jdbcType=VARCHAR},
+      order_link = #{record.orderLink,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      pay_type = #{record.payType,jdbcType=VARCHAR},
+      rate = #{record.rate,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="map">
+    update finance_shopping_list
+    SET
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.escapedColumnName} = #{record.${column.javaProperty},jdbcType=${column.jdbcType}}
+        </foreach>
+      </when>
+      <otherwise>
+        <trim suffixOverrides=",">
+          <if test="record.purchaseTime != null">
+            purchase_time = #{record.purchaseTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.source != null">
+            `source` = #{record.source,jdbcType=VARCHAR},
+          </if>
+          <if test="record.orderNo != null">
+            order_no = #{record.orderNo,jdbcType=VARCHAR},
+          </if>
+          <if test="record.labels != null">
+            labels = #{record.labels,jdbcType=VARCHAR},
+          </if>
+          <if test="record.type != null">
+            `type` = #{record.type,jdbcType=VARCHAR},
+          </if>
+          <if test="record.productName != null">
+            product_name = #{record.productName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.detailName != null">
+            detail_name = #{record.detailName,jdbcType=VARCHAR},
+          </if>
+          <if test="record.orderLink != null">
+            order_link = #{record.orderLink,jdbcType=VARCHAR},
+          </if>
+          <if test="record.price != null">
+            price = #{record.price,jdbcType=DECIMAL},
+          </if>
+          <if test="record.payType != null">
+            pay_type = #{record.payType,jdbcType=VARCHAR},
+          </if>
+          <if test="record.rate != null">
+            rate = #{record.rate,jdbcType=VARCHAR},
+          </if>
+          <if test="record.remark != null">
+            remark = #{record.remark,jdbcType=VARCHAR},
+          </if>
+          <if test="record.createAt != null">
+            create_at = #{record.createAt,jdbcType=TIMESTAMP},
+          </if>
+          <if test="record.updateAt != null">
+            update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+          </if>
+        </trim>
+      </otherwise>
+    </choose>
+    where id = #{record.id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.paradise.core.model.FinanceShoppingList">
+    update finance_shopping_list
+    set purchase_time = #{purchaseTime,jdbcType=TIMESTAMP},
+      `source` = #{source,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      labels = #{labels,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      detail_name = #{detailName,jdbcType=VARCHAR},
+      order_link = #{orderLink,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectOneByExample" parameterType="com.paradise.core.example.FinanceShoppingListExample" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from finance_shopping_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    limit 1
+  </select>
+  <select id="selectOneByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from finance_shopping_list
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example != null and example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+    limit 1
+  </select>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    insert into finance_shopping_list
+    (purchase_time, `source`, order_no, labels, `type`, product_name, detail_name, order_link, 
+      price, pay_type, rate, remark, create_at, update_at)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.purchaseTime,jdbcType=TIMESTAMP}, #{item.source,jdbcType=VARCHAR}, #{item.orderNo,jdbcType=VARCHAR}, 
+        #{item.labels,jdbcType=VARCHAR}, #{item.type,jdbcType=VARCHAR}, #{item.productName,jdbcType=VARCHAR}, 
+        #{item.detailName,jdbcType=VARCHAR}, #{item.orderLink,jdbcType=VARCHAR}, #{item.price,jdbcType=DECIMAL}, 
+        #{item.payType,jdbcType=VARCHAR}, #{item.rate,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, 
+        #{item.createAt,jdbcType=TIMESTAMP}, #{item.updateAt,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="batchInsertSelective" keyColumn="id" keyProperty="list.id" parameterType="map" useGeneratedKeys="true">
+    insert into finance_shopping_list (
+    <foreach collection="selective" item="column" separator=",">
+      ${column.escapedColumnName}
+    </foreach>
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      <foreach collection="selective" item="column" separator=",">
+        <if test="'purchase_time'.toString() == column.value">
+          #{item.purchaseTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'source'.toString() == column.value">
+          #{item.source,jdbcType=VARCHAR}
+        </if>
+        <if test="'order_no'.toString() == column.value">
+          #{item.orderNo,jdbcType=VARCHAR}
+        </if>
+        <if test="'labels'.toString() == column.value">
+          #{item.labels,jdbcType=VARCHAR}
+        </if>
+        <if test="'type'.toString() == column.value">
+          #{item.type,jdbcType=VARCHAR}
+        </if>
+        <if test="'product_name'.toString() == column.value">
+          #{item.productName,jdbcType=VARCHAR}
+        </if>
+        <if test="'detail_name'.toString() == column.value">
+          #{item.detailName,jdbcType=VARCHAR}
+        </if>
+        <if test="'order_link'.toString() == column.value">
+          #{item.orderLink,jdbcType=VARCHAR}
+        </if>
+        <if test="'price'.toString() == column.value">
+          #{item.price,jdbcType=DECIMAL}
+        </if>
+        <if test="'pay_type'.toString() == column.value">
+          #{item.payType,jdbcType=VARCHAR}
+        </if>
+        <if test="'rate'.toString() == column.value">
+          #{item.rate,jdbcType=VARCHAR}
+        </if>
+        <if test="'remark'.toString() == column.value">
+          #{item.remark,jdbcType=VARCHAR}
+        </if>
+        <if test="'create_at'.toString() == column.value">
+          #{item.createAt,jdbcType=TIMESTAMP}
+        </if>
+        <if test="'update_at'.toString() == column.value">
+          #{item.updateAt,jdbcType=TIMESTAMP}
+        </if>
+      </foreach>
+      )
+    </foreach>
+  </insert>
+</mapper>
