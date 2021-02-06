@@ -92,4 +92,9 @@ public class DayBingImageService {
             }
         }
     }
+
+    public DayBingImage todayImage() {
+        return dayBingImageMapper.selectOneByExample(new DayBingImageExample().createCriteria()
+                .andDateBetween(DateUtil.offsetDay(new Date(), -1), new Date()).example());
+    }
 }
