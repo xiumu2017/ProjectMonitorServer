@@ -59,6 +59,6 @@ public class FinanceShoppingListService {
 
     public List<FinanceShoppingList> selectByPage(FinanceShoppingListQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        return this.financeShoppingListMapper.selectByExample(new FinanceShoppingListExample());
+        return this.financeShoppingListMapper.selectByExample(new FinanceShoppingListExample().orderBy(FinanceShoppingList.Column.purchaseTime.desc()));
     }
 }

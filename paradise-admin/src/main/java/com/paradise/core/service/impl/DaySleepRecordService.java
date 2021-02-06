@@ -90,14 +90,14 @@ public class DaySleepRecordService {
         List<DaySleepRecord> list =
                 this.daySleepRecordMapper.selectByExampleSelective(new DaySleepRecordExample()
                                 .createCriteria()
-                                .andDateGreaterThanOrEqualTo(DateUtil.offsetDay(new Date(), -15))
+                                .andDateGreaterThanOrEqualTo(DateUtil.offsetDay(new Date(), -30))
                                 .example().orderBy(DaySleepRecord.Column.date.asc()),
                         DaySleepRecord.Column.date, DaySleepRecord.Column.duration);
         List<List<String>> result = new ArrayList<>();
         ArrayList<String> dateList = new ArrayList<>();
         ArrayList<String> durationList = new ArrayList<>();
         for (DaySleepRecord daySleepRecord : list) {
-            dateList.add(DateUtil.formatDate(daySleepRecord.getDate()));
+            dateList.add(DateUtil.format(daySleepRecord.getDate(), "MM-dd"));
             durationList.add(new BigDecimal(daySleepRecord.getDuration()).divide(
                     new BigDecimal("3600"), 4, BigDecimal.ROUND_HALF_UP).toString());
         }
