@@ -44,6 +44,11 @@
             <scope>system</scope>
             <systemPath>D:\ParadiseProject\archive\jar\dpd-0.0.1-jar-with-dependencies.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.7</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
