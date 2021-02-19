@@ -105,4 +105,14 @@ public class DaySleepRecordService {
         result.add(durationList);
         return result;
     }
+
+    /**
+     * 批量插入数据
+     *
+     * @param recordList 睡眠记录数据
+     * @return 插入数量
+     */
+    public int batchInsert(List<DaySleepRecord> recordList) {
+        return daySleepRecordMapper.batchInsert(recordList);
+    }
 }

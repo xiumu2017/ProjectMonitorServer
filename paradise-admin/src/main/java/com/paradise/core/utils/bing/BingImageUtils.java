@@ -74,6 +74,7 @@ public class BingImageUtils {
             if (bingResult != null && CollectionUtil.isNotEmpty(bingResult.getImages())) {
                 List<BingImage> images = bingResult.getImages();
                 for (BingImage image : images) {
+                    log.info(image.toString());
                     String titleEn = image.getUrl().substring(image.getUrl().indexOf("=") + 1, image.getUrl().indexOf("&"));
                     DayBingImage dayBingImage = DayBingImage.builder()
                             .title(BingImageUtils.parseTitle(image.getCopyright()))
@@ -96,11 +97,23 @@ public class BingImageUtils {
 
     public static String parseAuthor(String copyright) {
         // 布莱斯峡谷国家公园的冬天，犹他州 (© Don Paulson/Danita Delimont)
-        return copyright.substring(copyright.indexOf("(") + 1, copyright.indexOf(")"));
+        if (copyright.contains("(")) {
+            return copyright.substring(copyright.indexOf("(") + 1, copyright.indexOf(")"));
+        }
+        if (copyright.contains("（")) {
+            return copyright.substring(copyright.indexOf("（") + 1, copyright.indexOf("）"));
+        }
+        return "";
     }
 
     public static String parseTitle(String copyright) {
-        return copyright.substring(0, copyright.indexOf("("));
+        if (copyright.contains("(")) {
+            return copyright.substring(0, copyright.indexOf("("));
+        }
+        if (copyright.contains("（")) {
+            return copyright.substring(0, copyright.indexOf("（"));
+        }
+        return "";
     }
 
     public static Message bingResult2Msg(DayBingImage image) {

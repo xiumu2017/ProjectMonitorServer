@@ -55,6 +55,7 @@ secure:
       - /**/admin/logout
       - /**/admin/pass/reset
       - /**/test/**
+      - /**/home/**
 
 minio:
   endpoint: http://192.168.199.37:8008 #MinIO服务所在地址
@@ -63,8 +64,8 @@ minio:
   secretKey: Y+nkVyUgRG9RiiYOJARe7aBS0ighgfZnxbaaHGJN #访问的秘钥
   openUrl: https://yyyd.gaoshan.co:8003
 oss:
-  secretId:  # 提交代码记得忽略
-  secretKey:   # 提交代码记得忽略
+  secretId: AKIDsa3dyEvKHLJWbQpbBOL3V1awQZWJq7B8 # 提交代码记得忽略 gitignore
+  secretKey: y43oa6MQFrPBj24tVu3RqNee6PbcjukQ  # 提交代码记得忽略 gitignore
   appId: 1256237186
   regionName: ap-nanjing
   bucketName: paradise
