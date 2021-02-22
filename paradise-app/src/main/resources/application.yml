@@ -1,16 +1,19 @@
 server:
   port: 8995
   servlet:
-    context-path: /er-mp
+    context-path: /mp
 spring:
   application:
-    name: er-mp
+    name: mp
   profiles:
     active: dev #默认为开发环境
   servlet:
     multipart:
       enabled: true #开启文件上传
       max-file-size: 10MB #限制文件上传大小为10M
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 mybatis:
   mapper-locations:
@@ -56,8 +59,8 @@ redis:
 wx:
   miniapp:
     configs:
-      - appid: wxa7a9d5fc03f52d83 #微信小程序的appid
-        secret: f60c82ea5f1c981da15ef380f5f1b124 #微信小程序的Secret
+      - appid: wxcc60971107b61ee6 #微信小程序的appid
+        secret: 971c00a6699246f9b1f6000f2ebdc08c #微信小程序的Secret
         token: #微信小程序消息服务器配置的token
         aesKey: #微信小程序消息服务器配置的EncodingAESKey
         msgDataFormat: JSON

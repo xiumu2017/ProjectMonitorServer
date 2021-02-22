@@ -34,7 +34,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sso")
 public class MpMemberController {
-    private final static String APP_ID = "wxa7a9d5fc03f52d83";
+    private final static String APP_ID = "wxcc60971107b61ee6";
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
@@ -97,6 +97,7 @@ public class MpMemberController {
     public Result<WxMaUserInfo> wxInfo(String sessionKey, String signature, String rawData, String encryptedData, String iv) {
         final WxMaService wxService = WxMaConfiguration.getMaService(APP_ID);
         // 用户信息校验
+        log.info(sessionKey);
         if (!wxService.getUserService().checkUserInfo(sessionKey, rawData, signature)) {
             return Result.failed("微信参数校验失败");
         }
