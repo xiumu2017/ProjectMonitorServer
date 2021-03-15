@@ -190,7 +190,7 @@
         <appender-ref ref="LOG_STASH_RECORD"/>
     </logger>
 
-    <logger name="com.macro.mall" level="DEBUG">
+    <logger name="com.macro.core" level="DEBUG">
         <appender-ref ref="LOG_STASH_BUSINESS"/>
     </logger>
 </configuration>

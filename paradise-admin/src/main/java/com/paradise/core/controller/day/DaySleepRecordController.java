@@ -3,6 +3,7 @@ package com.paradise.core.controller.day;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
+import com.paradise.core.common.constant.SleepPieType;
 import com.paradise.core.dto.body.DaySleepRecordBody;
 import com.paradise.core.dto.query.DaySleepRecordQuery;
 import com.paradise.core.model.DaySleepRecord;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 睡眠记录表控制器
@@ -81,5 +83,12 @@ public class DaySleepRecordController {
     @GetMapping("/statistics")
     public Result<List<List<String>>> statistics() {
         return Result.success(daySleepRecordService.statistics());
+    }
+
+    @ApiOperationSupport(order = 7)
+    @ApiOperation("入睡时间统计数据")
+    @GetMapping("/statistics/pie")
+    public Result<List<Map<String, String>>> statisticsPie(SleepPieType type) {
+        return Result.success(daySleepRecordService.statisticsPie(type));
     }
 }

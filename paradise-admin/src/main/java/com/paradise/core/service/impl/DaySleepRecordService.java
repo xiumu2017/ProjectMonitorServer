@@ -1,7 +1,9 @@
 package com.paradise.core.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.map.MapUtil;
 import com.github.pagehelper.PageHelper;
+import com.paradise.core.common.constant.SleepPieType;
 import com.paradise.core.dto.body.DaySleepRecordBody;
 import com.paradise.core.dto.query.DaySleepRecordQuery;
 import com.paradise.core.example.DaySleepRecordExample;
@@ -13,9 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 睡眠记录表
@@ -114,5 +114,62 @@ public class DaySleepRecordService {
      */
     public int batchInsert(List<DaySleepRecord> recordList) {
         return daySleepRecordMapper.batchInsert(recordList);
+    }
+
+
+    /**
+     * 入睡时间分布统计
+     *
+     * @param type 类型
+     * @return 统计数据
+     */
+    public List<Map<String, String>> statisticsPie(SleepPieType type) {
+        if (type == null) {
+            type = SleepPieType.ALL;
+        }
+        List<DaySleepRecord> daySleepRecordList;
+        DaySleepRecordExample example = new DaySleepRecordExample().createCriteria().example();
+        switch (type) {
+            case ALL:
+                example = new DaySleepRecordExample().createCriteria().example();
+                break;
+            case YEAR:
+                example = new DaySleepRecordExample().createCriteria().andDateBetween(DateUtil.beginOfYear(new Date()), new Date()).example();
+                break;
+            case MONTH:
+                example = new DaySleepRecordExample().createCriteria().andDateBetween(DateUtil.beginOfMonth(new Date()), new Date()).example();
+                break;
+            case LAST_30_DAY:
+                example = new DaySleepRecordExample().createCriteria().andDateBetween(DateUtil.offsetDay(new Date(), -30), new Date()).example();
+                break;
+            default:
+                break;
+        }
+        daySleepRecordList = daySleepRecordMapper.selectByExample(example);
+        long less22 = daySleepRecordList.stream().filter(item -> getHour(item) < 22 && getHour(item) > 10).count();
+        long in22 = daySleepRecordList.stream().filter(item -> getHour(item) == 22).count();
+        long in23 = daySleepRecordList.stream().filter(item -> getHour(item) == 23).count();
+        long in0 = daySleepRecordList.stream().filter(item -> getHour(item) == 0).count();
+        long in1 = daySleepRecordList.stream().filter(item -> getHour(item) == 1).count();
+        long in2 = daySleepRecordList.stream().filter(item -> getHour(item) == 2).count();
+        long g2 = daySleepRecordList.stream().filter(item -> getHour(item) > 2 && getHour(item) < 10).count();
+
+        List<Map<String, String>> resultList = new ArrayList<>(8);
+        resultList.add(MapUtil.builder("name", "22点之前").put("value", String.valueOf(less22)).build());
+        resultList.add(MapUtil.builder("name", "22点~23点").put("value", String.valueOf(in22)).build());
+        resultList.add(MapUtil.builder("name", "23点~0点").put("value", String.valueOf(in23)).build());
+        resultList.add(MapUtil.builder("name", "0点~1点").put("value", String.valueOf(in0)).build());
+        resultList.add(MapUtil.builder("name", "1点~2点").put("value", String.valueOf(in1)).build());
+        resultList.add(MapUtil.builder("name", "2点~3点").put("value", String.valueOf(in2)).build());
+        resultList.add(MapUtil.builder("name", "2点以后").put("value", String.valueOf(g2)).build());
+
+        return resultList;
+    }
+
+    private Integer getHour(DaySleepRecord daySleepRecord) {
+        Date sleepTime = daySleepRecord.getSleepTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(sleepTime);
+        return calendar.get(Calendar.HOUR_OF_DAY);
     }
 }
