@@ -21,6 +21,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -37,6 +38,7 @@ public class MpMemberService {
     private final UmsMemberMapper memberMapper;
     @Lazy
     private final JwtTokenUtil jwtTokenUtil;
+    private final PasswordEncoder passwordEncoder;
 
 
     private UmsMember getByWxOpenId(String openId) {
@@ -72,6 +74,15 @@ public class MpMemberService {
             return new MemberDetails(member);
         }
         log.error("小程序登陆异常：{}", openId);
+        throw new UsernameNotFoundException("用户名或密码错误");
+    }
+
+    public UserDetails loadUserByUsername(String username) {
+        UmsMember member = memberMapper.selectOneByExample(new UmsMemberExample().createCriteria().andUsernameEqualTo(username).example());
+        if (member != null) {
+            return new MemberDetails(member);
+        }
+        log.error("App登陆异常：{}", username);
         throw new UsernameNotFoundException("用户名或密码错误");
     }
 
@@ -159,4 +170,19 @@ public class MpMemberService {
 
     }
 
+    public String doLogin(String username, String password) {
+        String token = null;
+        try {
+            UserDetails userDetails = loadUserByUsername(username);
+            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+                Asserts.fail("密码不正确");
+            }
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            token = jwtTokenUtil.generateToken(userDetails);
+        } catch (AuthenticationException e) {
+            log.warn("登录异常:{}", e.getMessage());
+        }
+        return token;
+    }
 }

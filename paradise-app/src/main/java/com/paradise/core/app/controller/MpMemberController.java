@@ -87,6 +87,20 @@ public class MpMemberController {
         return Result.success(tokenMap);
     }
 
+    @ApiOperation("App：登录")
+    @PostMapping(value = "/doLogin")
+    public Result<Object> doLogin(@RequestParam String username,
+                                  @RequestParam String password) {
+        String token = memberService.doLogin(username, password);
+        if (token == null) {
+            return Result.validateFailed("用户名或密码错误");
+        }
+        Map<String, String> tokenMap = new HashMap<>(2);
+        tokenMap.put("tokenHead", tokenHead);
+        tokenMap.put("token", token);
+        return Result.success(tokenMap);
+    }
+
     /**
      * <pre>
      * 获取用户信息接口
