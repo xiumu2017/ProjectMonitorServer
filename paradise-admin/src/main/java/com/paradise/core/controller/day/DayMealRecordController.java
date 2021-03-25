@@ -1,12 +1,12 @@
 package com.paradise.core.controller.day;
 
-import cn.hutool.core.collection.CollectionUtil;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.DayMealRecordBody;
 import com.paradise.core.dto.query.DayMealRecordQuery;
 import com.paradise.core.dto.statistics.DayMealRecordChartData;
+import com.paradise.core.dto.statistics.DayMealRecordMonthData;
 import com.paradise.core.model.DayMealRecord;
 import com.paradise.core.service.impl.DayMealRecordService;
 import io.swagger.annotations.Api;
@@ -16,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static cn.hutool.core.collection.CollUtil.newArrayList;
 
 /**
  * 用餐记录表控制器
@@ -82,14 +84,14 @@ public class DayMealRecordController {
     @ApiOperation("类别列表")
     @GetMapping("/types")
     public Result<List<String>> types() {
-        return Result.success(CollectionUtil.newArrayList("零食", "早饭", "午饭", "晚饭", "夜宵"));
+        return Result.success(newArrayList("零食", "早饭", "午饭", "晚饭", "夜宵"));
     }
 
     @ApiOperationSupport(order = 7)
     @ApiOperation("支付方式类别列表")
     @GetMapping("/payTypes")
     public Result<List<String>> patTypes() {
-        return Result.success(CollectionUtil.newArrayList("微信支付", "支付宝支付", "现金", "银行卡", "其它"));
+        return Result.success(newArrayList("微信支付", "支付宝支付", "现金", "银行卡", "其它"));
     }
 
     @ApiOperationSupport(order = 8)
@@ -97,5 +99,12 @@ public class DayMealRecordController {
     @GetMapping("/statistics")
     public Result<DayMealRecordChartData> chartData(DayMealRecordQuery query) {
         return Result.success(dayMealRecordService.chartData(query));
+    }
+
+    @ApiOperationSupport(order = 9)
+    @ApiOperation("查询统计数据-月度汇总")
+    @GetMapping("/statistics/month")
+    public Result<List<DayMealRecordMonthData>> monthData() {
+        return Result.success(dayMealRecordService.monthData());
     }
 }

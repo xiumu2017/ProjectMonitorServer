@@ -2,10 +2,13 @@ package com.paradise.core.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
+import com.paradise.core.dao.DayMealRecordDao;
+import com.paradise.core.dto.DayMealRecordGroupData;
 import com.paradise.core.dto.body.DayMealRecordBody;
 import com.paradise.core.dto.query.DayMealRecordQuery;
 import com.paradise.core.dto.statistics.DayMealRecordChartData;
 import com.paradise.core.dto.statistics.DayMealRecordDayData;
+import com.paradise.core.dto.statistics.DayMealRecordMonthData;
 import com.paradise.core.example.DayMealRecordExample;
 import com.paradise.core.mapper.DayMealRecordMapper;
 import com.paradise.core.model.DayMealRecord;
@@ -28,6 +31,7 @@ import java.util.*;
 @AllArgsConstructor
 public class DayMealRecordService {
     private final DayMealRecordMapper dayMealRecordMapper;
+    private final DayMealRecordDao dayMealRecordDao;
 
     public int deleteByPrimaryKey(Long id) {
         return this.dayMealRecordMapper.deleteByPrimaryKey(id);
@@ -151,5 +155,40 @@ public class DayMealRecordService {
         v1 = v1 == null ? 0 : v1;
         v2 = v2 == null ? 0 : v2;
         return v1 + v2;
+    }
+
+    public List<DayMealRecordMonthData> monthData() {
+        // 查询缓存数据
+        // 数据库查询 根据月度和type 汇总数据
+        List<DayMealRecordGroupData> list = dayMealRecordDao.queryByMonth();
+        Map<String, DayMealRecordMonthData> resMap = new HashMap<>();
+        for (DayMealRecordGroupData data : list) {
+            DayMealRecordMonthData monthData = resMap.get(data.getMonth());
+            if (monthData == null) {
+                monthData = new DayMealRecordMonthData();
+                monthData.setMonth(data.getMonth());
+                resMap.put(data.getMonth(), monthData);
+            }
+            switch (data.getType()) {
+                case 0:
+                    monthData.setSnacks(add(monthData.getSnacks(), data.getCost()));
+                    break;
+                case 1:
+                    monthData.setBreakfast(add(monthData.getBreakfast(), data.getCost()));
+                    break;
+                case 2:
+                    monthData.setLunch(add(monthData.getLunch(), data.getCost()));
+                    break;
+                case 3:
+                    monthData.setDinner(add(monthData.getDinner(), data.getCost()));
+                    break;
+                case 4:
+                    monthData.setSupper(add(monthData.getSupper(), data.getCost()));
+                    break;
+                default:
+                    break;
+            }
+        }
+        return new ArrayList<>(resMap.values());
     }
 }
