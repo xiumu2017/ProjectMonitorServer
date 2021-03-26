@@ -60,7 +60,7 @@ public class DayTimelineService {
 
     public List<DayTimeline> selectByPage(DayTimelineQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        return this.dayTimelineMapper.selectByExample(new DayTimelineExample());
+        return this.dayTimelineMapper.selectByExample(new DayTimelineExample().orderBy(DayTimeline.Column.startTime.desc()));
     }
 
     public List<DayTimeline> selectByDate(DayTimelineQuery query) {

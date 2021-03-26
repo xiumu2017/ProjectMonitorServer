@@ -2,6 +2,7 @@ package com.paradise.core.controller.day;
 
 import cn.hutool.core.date.DateUtil;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.DayTimelineBody;
 import com.paradise.core.dto.query.DayTimelineQuery;
@@ -27,6 +28,14 @@ import java.util.List;
 @RequestMapping("/dayTimeline")
 public class DayTimelineController {
     private final DayTimelineService dayTimelineService;
+
+    @ApiOperationSupport(order = 1)
+    @ApiOperation(value = "分页查询")
+    @GetMapping(value = "/page")
+    public Result<CommonPage<DayTimeline>> pageQuery(DayTimelineQuery query) {
+        List<DayTimeline> list = this.dayTimelineService.selectByPage(query);
+        return Result.success(CommonPage.restPage(list));
+    }
 
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "分页查询")
