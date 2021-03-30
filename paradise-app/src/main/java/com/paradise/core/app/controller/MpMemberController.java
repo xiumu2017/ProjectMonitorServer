@@ -34,7 +34,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sso")
 public class MpMemberController {
-    private final static String APP_ID = "wxcc60971107b61ee6";
+    private static final String APP_ID = "wxcc60971107b61ee6";
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
@@ -171,4 +171,9 @@ public class MpMemberController {
         return Result.success(memberService.listByParentId());
     }
 
+    @ApiOperation(value = "登出功能")
+    @PostMapping(value = "/logout")
+    public Result<Object> logout() {
+        return Result.success(null);
+    }
 }
