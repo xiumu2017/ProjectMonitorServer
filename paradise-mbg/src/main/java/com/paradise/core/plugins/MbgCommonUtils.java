@@ -11,7 +11,6 @@ import java.util.List;
 public class MbgCommonUtils {
     public static TopLevelClass generate(IntrospectedTable introspectedTable, Context context, String targetPackage) {
 
-        String targetProject = context.getJavaModelGeneratorConfiguration().getTargetProject();
         List<GeneratedJavaFile> generatedJavaFileList = introspectedTable.getGeneratedJavaFiles();
         if (generatedJavaFileList == null) {
             return null;
@@ -23,15 +22,11 @@ public class MbgCommonUtils {
     }
 
     public static boolean ignore(IntrospectedColumn column) {
-//        if (column.getFullyQualifiedJavaType().equals(new FullyQualifiedJavaType("java.util.Date"))) {
-//            return true;
-//        }
         if (
                 "createBy".equals(column.getJavaProperty()) ||
                         "updateBy".equals(column.getJavaProperty()) ||
                         "createAt".equals(column.getJavaProperty()) ||
                         "updateAt".equals(column.getJavaProperty())
-
         ) {
             return true;
         }
