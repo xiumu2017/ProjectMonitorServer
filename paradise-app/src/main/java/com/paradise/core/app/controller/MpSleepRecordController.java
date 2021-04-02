@@ -5,16 +5,15 @@ import com.paradise.core.app.service.MpMemberService;
 import com.paradise.core.app.service.MpSleepRecordService;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
+import com.paradise.core.dto.body.DaySleepRecordAppBody;
 import com.paradise.core.dto.query.DaySleepRecordQuery;
 import com.paradise.core.model.DaySleepRecord;
 import com.paradise.core.model.UmsMember;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +47,24 @@ public class MpSleepRecordController {
         return Result.success(CommonPage.restPage(list));
     }
 
-    @ApiOperation("")
-    @PostMapping("/create")
-    public Result<Integer> create(int type) {
+    @ApiOperation("时间打卡")
+    @PostMapping("/sign")
+    public Result<Integer> sign(@RequestParam Integer type) {
+        // 如何防止重复打卡
+        int res = sleepRecordService.createByType(type);
+        if (res == 1) {
+            return Result.success(res);
+        }
+        return Result.failed();
+    }
 
+    @ApiOperation("更新记录")
+    @PutMapping("{id}")
+    public Result<Integer> update(@PathVariable("id") Long id, @RequestBody @Validated DaySleepRecordAppBody record) {
+        int res = sleepRecordService.updateByPrimaryKey(id, record);
+        if (res == 1) {
+            return Result.success(res);
+        }
         return Result.failed();
     }
 

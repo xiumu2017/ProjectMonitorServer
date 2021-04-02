@@ -67,7 +67,6 @@ public class DayTimelineBody {
      * 图片信息
      */
     @ApiModelProperty(value = "图片信息", required = true, example = "")
-    @NotEmpty(message = "图片信息不能为空!")
     private String photos;
 
     /**
