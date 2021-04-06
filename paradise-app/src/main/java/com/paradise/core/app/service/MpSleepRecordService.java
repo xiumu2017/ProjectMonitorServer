@@ -41,15 +41,25 @@ public class MpSleepRecordService {
         if (type == 1) {
             int hour = DateUtil.hour(now, true);
             // 理论上上床时间不会早于晚上6点
+            Date date;
             if (hour > 18) {
-                daySleepRecord.setDate(DateUtil.beginOfDay(DateUtil.offsetDay(new Date(), 1)));
+                date = DateUtil.beginOfDay(DateUtil.offsetDay(new Date(), 1));
+                // 判断是否已经打卡，已经打卡，则更新打卡时间
             } else {
                 // 超过零点才睡
-                daySleepRecord.setDate(DateUtil.beginOfDay(now));
+                date = DateUtil.beginOfDay(now);
             }
+            daySleepRecord.setDate(date);
             daySleepRecord.setBedTime(now);
             daySleepRecord.setCreateAt(now);
-            return daySleepRecordMapper.insertSelective(daySleepRecord);
+            DaySleepRecord record = daySleepRecordMapper.selectOneByExample(new DaySleepRecordExample().createCriteria().andDateEqualTo(date).example());
+            if (record == null) {
+                return daySleepRecordMapper.insertSelective(daySleepRecord);
+            } else {
+                record.setBedTime(now);
+                record.setUpdateAt(now);
+                return daySleepRecordMapper.updateByPrimaryKeySelective(record, DaySleepRecord.Column.bedTime, DaySleepRecord.Column.updateAt);
+            }
         } else if (type == 2) {
             // 记录 醒来时间
             daySleepRecord.setWakeTime(now);
