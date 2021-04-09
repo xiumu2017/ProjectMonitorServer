@@ -1,6 +1,7 @@
 package com.paradise.core.common.utils;
 
 import cn.hutool.core.date.DateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -14,8 +15,17 @@ import static cn.hutool.core.date.DatePattern.PURE_TIME_PATTERN;
  *
  * @author Paradise
  */
+@Slf4j
 public class GeneratorUtil {
-    private final static String USER_NAME_FORMAT = "U%05d";
+    private static final String USER_NAME_FORMAT = "U%05d";
+
+    private GeneratorUtil() {
+        throw new IllegalStateException();
+    }
+
+    public static void main(String[] args) {
+        log.info(getNonceString());
+    }
 
     /**
      * 得到from到to的随机数，包括to
@@ -30,6 +40,15 @@ public class GeneratorUtil {
         String seed = "23456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder tmp = new StringBuilder();
         for (int i = 0; i < len; i++) {
+            tmp.append(seed.charAt(getRandomNumber(0, 33)));
+        }
+        return tmp.toString();
+    }
+
+    public static String getNonceString() {
+        String seed = "1234567890AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+        StringBuilder tmp = new StringBuilder();
+        for (int i = 0; i < 32; i++) {
             tmp.append(seed.charAt(getRandomNumber(0, 33)));
         }
         return tmp.toString();

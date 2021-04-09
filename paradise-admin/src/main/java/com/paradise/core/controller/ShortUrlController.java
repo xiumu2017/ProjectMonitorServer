@@ -40,6 +40,12 @@ public class ShortUrlController {
         return Result.success(key);
     }
 
+    @PostMapping
+    @ResponseBody
+    public Result<String> createV2(@RequestBody String url) {
+        return create(url);
+    }
+
     @GetMapping("{hash}")
     public String getByHash(@PathVariable String hash, HttpServletResponse response) {
         String url = (String) redisService.get(KEY_PREFIX + hash);

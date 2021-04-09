@@ -73,7 +73,7 @@ public class DayMealRecordService {
                 .when(query.getType() != null, criteria -> criteria.andTypeEqualTo(query.getType()))
                 .when(query.getDate() != null, criteria -> criteria.andDateEqualTo(query.getDate()))
                 .when(query.getPayType() != null, criteria -> criteria.andPayTypeEqualTo(query.getPayType()))
-                .example().orderBy(DayMealRecord.Column.date.desc(), DayMealRecord.Column.type.asc()));
+                .example().orderBy(DayMealRecord.Column.date.desc(), DayMealRecord.Column.type.desc()));
     }
 
     /**
