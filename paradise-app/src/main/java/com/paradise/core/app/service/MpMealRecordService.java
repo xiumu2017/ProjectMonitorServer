@@ -22,7 +22,7 @@ public class MpMealRecordService {
     public List<DayMealRecord> selectByPage(DayMealRecordQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
         return this.dayMealRecordMapper.selectByExample(new DayMealRecordExample()
-                .createCriteria().example().orderBy(DaySleepRecord.Column.date.desc()));
+                .createCriteria().example().orderBy(DaySleepRecord.Column.date.desc(), DayMealRecord.Column.type.desc()));
     }
 
     public int create(DayMealRecordBody body) {

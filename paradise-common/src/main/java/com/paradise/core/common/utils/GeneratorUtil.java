@@ -1,7 +1,9 @@
 package com.paradise.core.common.utils;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.date.DateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -15,7 +17,7 @@ import static cn.hutool.core.date.DatePattern.PURE_TIME_PATTERN;
  *
  * @author Paradise
  */
-@Slf4j
+@Slf4j(topic = "生成工具类")
 public class GeneratorUtil {
     private static final String USER_NAME_FORMAT = "U%05d";
 
@@ -24,7 +26,20 @@ public class GeneratorUtil {
     }
 
     public static void main(String[] args) {
-        log.info(getNonceString());
+
+    }
+
+    public static String encode(String source) {
+        log.info(Base64.decodeStr("eyJhbGciOiJIUzUxMiJ9"));
+        log.info(Base64.decodeStr("eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MTgyNzk4ODcxNjgsImV4cCI6MTYxODg4NDY4N30"));
+        log.info(Base64.decodeStr("9w0qUMZVNNp5QX_PQDqFHudp6nmSOGkyXRMljpG6dTR5_cp03xDkWTfXecP9YbOjNP8ZHHVfWWGj5xAj1uzobw"));
+
+        String headerJsonStr = "{\"alg\": \"ED25519\",\"typ\": \"JWT\"}";
+        String header = Base64.encodeUrlSafe(headerJsonStr.getBytes());
+        log.info(headerJsonStr);
+        log.info(header);
+        log.info(new String(Base64Utils.decodeFromUrlSafeString(header)));
+        return Base64.encodeUrlSafe(source);
     }
 
     /**
