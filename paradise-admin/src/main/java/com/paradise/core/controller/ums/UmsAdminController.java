@@ -1,6 +1,8 @@
 package com.paradise.core.controller.ums;
 
 import cn.hutool.core.collection.CollUtil;
+import com.baomidou.kaptcha.Kaptcha;
+import com.baomidou.kaptcha.exception.KaptchaException;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.UmsAdminLoginParam;
@@ -12,6 +14,7 @@ import com.paradise.core.service.UmsAdminService;
 import com.paradise.core.service.UmsRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
  * @author Paradise
  * @date 2018/4/26
  */
+@Slf4j
 @Api(tags = "1.1 UMS-后台用户管理")
 @RestController
 @RequestMapping("/admin")
@@ -39,10 +43,12 @@ public class UmsAdminController {
     private String tokenHead;
     private final UmsAdminService adminService;
     private final UmsRoleService roleService;
+    private final Kaptcha kaptcha;
 
-    public UmsAdminController(UmsAdminService adminService, UmsRoleService roleService) {
+    public UmsAdminController(UmsAdminService adminService, UmsRoleService roleService, Kaptcha kaptcha) {
         this.adminService = adminService;
         this.roleService = roleService;
+        this.kaptcha = kaptcha;
     }
 
     @ApiIgnore
@@ -59,6 +65,14 @@ public class UmsAdminController {
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
     public Result<Map<String, String>> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam) {
+        try {
+            if (!kaptcha.validate(umsAdminLoginParam.getCode())) {
+                return Result.failed("验证码不正确");
+            }
+        } catch (KaptchaException e) {
+            log.error(e.getLocalizedMessage(), e);
+            return Result.failed("验证码不正确");
+        }
         String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         if (token == null) {
             return Result.validateFailed("用户名或密码错误");
