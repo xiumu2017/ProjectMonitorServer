@@ -62,6 +62,17 @@ public class UmsAdminController {
         return Result.success(umsAdmin);
     }
 
+    @ApiIgnore
+    @ApiOperation(value = "用户修改密码")
+    @PostMapping(value = "/changePass")
+    public Result<Integer> changePass(@RequestBody Map<String, String> passParam) {
+        Integer res = adminService.changePass(passParam);
+        if (res != 1) {
+            return Result.failed();
+        }
+        return Result.success(res);
+    }
+
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
     public Result<Map<String, String>> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam) {

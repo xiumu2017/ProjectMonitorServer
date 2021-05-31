@@ -41,6 +41,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -81,7 +82,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(username);
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
-        if (adminList != null && adminList.size() > 0) {
+        if (!CollectionUtils.isEmpty(adminList)) {
             admin = adminList.get(0);
             adminCacheService.setAdmin(admin);
             return admin;
@@ -99,7 +100,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(umsAdmin.getUsername());
         List<UmsAdmin> umsAdminList = adminMapper.selectByExample(example);
-        if (umsAdminList.size() > 0) {
+        if (umsAdminList.isEmpty()) {
             return null;
         }
         //将密码进行加密操作
@@ -124,7 +125,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
-//            updateLoginTimeByUsername(username);
             insertLoginLog(username);
         } catch (AuthenticationException e) {
             log.warn("登录异常:{}", e.getMessage());
@@ -346,5 +346,20 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             return new AdminUserDetails(admin, resourceList);
         }
         throw new UsernameNotFoundException("用户名或密码错误");
+    }
+
+    @Override
+    public Integer changePass(Map<String, String> passParam) {
+        UmsAdmin currentAdmin = getCurrentAdmin();
+        // 校验旧密码
+        final boolean oldPassCheck = passwordEncoder.matches(passParam.get("oldPass"), currentAdmin.getPassword());
+        if (oldPassCheck) {
+            currentAdmin.setPassword(passwordEncoder.encode(passParam.get("newPass")));
+            currentAdmin.setUpdateAt(new Date());
+            adminCacheService.setAdmin(currentAdmin);
+            return adminMapper.updateByPrimaryKeySelective(currentAdmin, UmsAdmin.Column.password, UmsAdmin.Column.updateAt);
+            // 更新缓存
+        }
+        return 0;
     }
 }
