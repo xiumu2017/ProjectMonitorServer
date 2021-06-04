@@ -157,7 +157,8 @@ public class ControllerServicePlugin extends PluginAdapter {
     private void addSelectByPageMethod4Controller(TopLevelClass controllerCompilationUnit, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
 
-        Method method = new Method();
+        // @update 1.4.0
+        Method method = new Method("selectByPage");
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType("Result<CommonPage<" + domainObjectName + ">>"));
         method.setName("selectByPage");
@@ -175,16 +176,17 @@ public class ControllerServicePlugin extends PluginAdapter {
                 + "Service.selectByPage(" + getParameterStr(method) + ");");
         method.addBodyLine("return Result.success(CommonPage.restPage(list));");
 
-        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
-                method, controllerCompilationUnit, introspectedTable)) {
-            controllerCompilationUnit.addImportedTypes(Collections.singleton(queryParam.getType()));
-            controllerCompilationUnit.addMethod(method);
-        }
+        controllerCompilationUnit.addImportedTypes(Collections.singleton(queryParam.getType()));
+        controllerCompilationUnit.addMethod(method);
+        // @update 1.4.0
+//        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
+//                method, controllerCompilationUnit, introspectedTable)) {
+//        }
     }
 
     private void addUpdateByPrimaryKeyMethod4Controller(TopLevelClass controllerCompilationUnit, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getUpdateByPrimaryKeyStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType("Result<Integer>"));
         method.setName(introspectedTable.getUpdateByPrimaryKeyStatementId());
@@ -207,15 +209,15 @@ public class ControllerServicePlugin extends PluginAdapter {
                 "        }\n" +
                 "        return Result.failed();");
 
-        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(method, controllerCompilationUnit, introspectedTable)) {
-            controllerCompilationUnit.addMethod(method);
-        }
+        controllerCompilationUnit.addMethod(method);
+//        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(method, controllerCompilationUnit, introspectedTable)) {
+//        }
     }
 
 
     private void addSelectByPrimaryKeyMethod4Controller(TopLevelClass controllerCompilationUnit, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getSelectByPrimaryKeyStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType("Result<" + domainObjectName + ">"));
         method.setName(introspectedTable.getSelectByPrimaryKeyStatementId());
@@ -228,17 +230,17 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addBodyLine(domainObjectName + " " + toLowerCaseFirstOne(domainObjectName) + " = this." +
                 toLowerCaseFirstOne(domainObjectName) + "Service." + introspectedTable.getSelectByPrimaryKeyStatementId() + "(" + sb + ");");
         method.addBodyLine("return Result.success(" + toLowerCaseFirstOne(domainObjectName) + ");");
-        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
-                method, controllerCompilationUnit, introspectedTable)) {
-            controllerCompilationUnit.addMethod(method);
-        }
+        controllerCompilationUnit.addMethod(method);
+//        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
+//                method, controllerCompilationUnit, introspectedTable)) {
+//        }
     }
 
     private void addInsertMethod4Controller(TopLevelClass controllerCompilationUnit, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
 
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getInsertStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType("Result<Integer>"));
         method.setName(introspectedTable.getInsertStatementId());
@@ -262,18 +264,18 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addBodyLine("}");
         method.addBodyLine("return Result.failed();");
 
-        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
-                method, controllerCompilationUnit, introspectedTable)) {
-            controllerCompilationUnit.addImportedTypes(importedTypes);
-            controllerCompilationUnit.addMethod(method);
-        }
+        controllerCompilationUnit.addImportedTypes(importedTypes);
+        controllerCompilationUnit.addMethod(method);
+//        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
+//                method, controllerCompilationUnit, introspectedTable)) {
+//        }
     }
 
     private void addDeleteByPrimaryKeyMethod4Controller(TopLevelClass controllerCompilationUnit, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
 
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getDeleteByPrimaryKeyStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType("Result<Integer>"));
         method.setName(introspectedTable.getDeleteByPrimaryKeyStatementId());
@@ -292,11 +294,11 @@ public class ControllerServicePlugin extends PluginAdapter {
                 "        }");
         method.addBodyLine("return Result.failed();");
 
-        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
-                method, controllerCompilationUnit, introspectedTable)) {
-            controllerCompilationUnit.addImportedTypes(importedTypes);
-            controllerCompilationUnit.addMethod(method);
-        }
+        controllerCompilationUnit.addImportedTypes(importedTypes);
+        controllerCompilationUnit.addMethod(method);
+//        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
+//                method, controllerCompilationUnit, introspectedTable)) {
+//        }
     }
 
     private StringBuilder addMethodParameter(IntrospectedTable introspectedTable, Method method) {
@@ -317,7 +319,8 @@ public class ControllerServicePlugin extends PluginAdapter {
         // 实体类的类名
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
         // 添加Service类
-        Field serviceField = new Field();
+        Field serviceField = new Field(toLowerCaseFirstOne(domainObjectName) + "Service",
+                new FullyQualifiedJavaType(domainObjectName + "Service"));
         serviceField.setName(toLowerCaseFirstOne(domainObjectName) + "Service");
         serviceField.setVisibility(JavaVisibility.PRIVATE);
         serviceField.setFinal(true);
@@ -381,7 +384,8 @@ public class ControllerServicePlugin extends PluginAdapter {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
         // DAO类所在包的包名
         String daoTargetPackage = introspectedTable.getContext().getJavaClientGeneratorConfiguration().getTargetPackage();
-        Field daoField = new Field();
+        Field daoField = new Field(toLowerCaseFirstOne(domainObjectName) + "Mapper",
+                new FullyQualifiedJavaType(domainObjectName + "Mapper"));
         // 设置Field的注解
         daoField.setVisibility(JavaVisibility.PRIVATE);
         daoField.setFinal(true);
@@ -413,7 +417,7 @@ public class ControllerServicePlugin extends PluginAdapter {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
 
-        Method method = new Method();
+        Method method = new Method("selectByPage");
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(new FullyQualifiedJavaType("List<" + domainObjectName + ">"));
         method.setName("selectByPage");
@@ -423,12 +427,12 @@ public class ControllerServicePlugin extends PluginAdapter {
         String example = "new " + domainObjectName + "Example()";
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper.selectByExample(" + example + ");");
 
-        if (context.getPlugins()
-                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
-                        topLevelClass, introspectedTable)) {
-            topLevelClass.addImportedTypes(importedTypes);
-            topLevelClass.addMethod(method);
-        }
+        topLevelClass.addImportedTypes(importedTypes);
+        topLevelClass.addMethod(method);
+//        if (context.getPlugins()
+//                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
+//                        topLevelClass, introspectedTable)) {
+//        }
     }
 
     private void addUpdateByPrimaryKeyMethod4Impl(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -436,7 +440,7 @@ public class ControllerServicePlugin extends PluginAdapter {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
         FullyQualifiedJavaType generatorParameterType = new FullyQualifiedJavaType(generatorParam.getBodyFullName());
         importedTypes.add(generatorParameterType);
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getUpdateByPrimaryKeyStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getUpdateByPrimaryKeyStatementId());
@@ -449,17 +453,18 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addBodyLine(toLowerCaseFirstOne(domainObjectName) + ".setId(id);");
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper."
                 + introspectedTable.getUpdateByPrimaryKeySelectiveStatementId() + "(" + toLowerCaseFirstOne(domainObjectName) + ");");
-        if (context.getPlugins()
-                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
-                        topLevelClass, introspectedTable)) {
-            topLevelClass.addImportedTypes(importedTypes);
-            topLevelClass.addMethod(method);
-        }
+
+        topLevelClass.addImportedTypes(importedTypes);
+        topLevelClass.addMethod(method);
+//        if (context.getPlugins()
+//                .clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
+//                        topLevelClass, introspectedTable)) {
+//        }
     }
 
     private void addUpdateByPrimaryKeySelectiveMethod4Impl(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         FullyQualifiedJavaType generatorParameterType = new FullyQualifiedJavaType(generatorParam.getBodyFullName());
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getUpdateByPrimaryKeySelectiveStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getUpdateByPrimaryKeySelectiveStatementId());
@@ -469,17 +474,18 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addBodyLine("BeanUtils.copyProperties(record, " + toLowerCaseFirstOne(domainObjectName) + ");");
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper."
                 + introspectedTable.getUpdateByPrimaryKeySelectiveStatementId() + "(" + toLowerCaseFirstOne(domainObjectName) + ");");
-        if (context.getPlugins().clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
-                topLevelClass, introspectedTable)) {
-            topLevelClass.addImportedTypes(Collections.singleton(generatorParameterType));
-            topLevelClass.addMethod(method);
-        }
+
+        topLevelClass.addImportedTypes(Collections.singleton(generatorParameterType));
+        topLevelClass.addMethod(method);
+//        if (context.getPlugins().clientUpdateByPrimaryKeySelectiveMethodGenerated(method,
+//                topLevelClass, introspectedTable)) {
+//        }
     }
 
     private void addSelectByPrimaryKeyMethod4Impl(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getSelectByPrimaryKeyStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         FullyQualifiedJavaType returnType = introspectedTable.getRules().calculateAllFieldsClass();
         method.setReturnType(returnType);
@@ -493,15 +499,16 @@ public class ControllerServicePlugin extends PluginAdapter {
         }
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper."
                 + introspectedTable.getSelectByPrimaryKeyStatementId() + "(" + getParameterStr(method) + ");");
-        if (context.getPlugins().clientSelectByPrimaryKeyMethodGenerated(method, topLevelClass, introspectedTable)) {
-            topLevelClass.addImportedTypes(importedTypes);
-            topLevelClass.addMethod(method);
-        }
+
+        topLevelClass.addImportedTypes(importedTypes);
+        topLevelClass.addMethod(method);
+//        if (context.getPlugins().clientSelectByPrimaryKeyMethodGenerated(method, topLevelClass, introspectedTable)) {
+//        }
     }
 
     private void addInsertSelectiveMethod4Impl(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getInsertSelectiveStatementId());
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName(introspectedTable.getInsertSelectiveStatementId());
@@ -511,16 +518,17 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addBodyLine("BeanUtils.copyProperties(record, " + toLowerCaseFirstOne(domainObjectName) + ");");
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper."
                 + introspectedTable.getInsertSelectiveStatementId() + "(" + toLowerCaseFirstOne(domainObjectName) + ");");
-        if (context.getPlugins().clientInsertSelectiveMethodGenerated(method, topLevelClass, introspectedTable)) {
-            topLevelClass.addMethod(method);
-        }
+        topLevelClass.addMethod(method);
+
+//        if (context.getPlugins().clientInsertSelectiveMethodGenerated(method, topLevelClass, introspectedTable)) {
+//        }
     }
 
     private void addInsertMethod4Impl(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
 
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getInsertStatementId());
 
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setVisibility(JavaVisibility.PUBLIC);
@@ -535,17 +543,17 @@ public class ControllerServicePlugin extends PluginAdapter {
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper."
                 + introspectedTable.getInsertStatementId() + "(" + toLowerCaseFirstOne(domainObjectName) + ");");
 
-        if (context.getPlugins().clientInsertMethodGenerated(method, topLevelClass,
-                introspectedTable)) {
-            topLevelClass.addImportedTypes(importedTypes);
-            topLevelClass.addMethod(method);
-        }
+        topLevelClass.addImportedTypes(importedTypes);
+        topLevelClass.addMethod(method);
+//        if (context.getPlugins().clientInsertMethodGenerated(method, topLevelClass,
+//                introspectedTable)) {
+//        }
     }
 
     public void addDeleteByPrimaryKeyMethod4Impl(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         String domainObjectName = introspectedTable.getTableConfiguration().getDomainObjectName();
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<>();
-        Method method = new Method();
+        Method method = new Method(introspectedTable.getDeleteByPrimaryKeyStatementId());
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getDeleteByPrimaryKeyStatementId());
@@ -561,11 +569,11 @@ public class ControllerServicePlugin extends PluginAdapter {
         String sb = getParameterStr(method);
         method.addBodyLine("return this." + toLowerCaseFirstOne(domainObjectName) + "Mapper." + introspectedTable.getDeleteByPrimaryKeyStatementId() + "(" + sb + ");");
 
-        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
-                method, topLevelClass, introspectedTable)) {
-            topLevelClass.addImportedTypes(importedTypes);
-            topLevelClass.addMethod(method);
-        }
+        topLevelClass.addImportedTypes(importedTypes);
+        topLevelClass.addMethod(method);
+//        if (context.getPlugins().clientDeleteByPrimaryKeyMethodGenerated(
+//                method, topLevelClass, introspectedTable)) {
+//        }
     }
 
     private String getParameterStr(Method method) {

@@ -30,8 +30,8 @@ public class KaptchaController {
     @ApiOperation(value = "获取图形验证码", notes = "图形验证")
     public void render(@ApiIgnore HttpSession httpSession) {
         String code = kaptcha.render();
-        log.debug("图形验证码：{}", code);
-        log.debug("SessionId: {}", httpSession.getId());
+        log.info("图形验证码：{}", code);
+        log.info("SessionId: {}", httpSession.getId());
     }
 
     @PostMapping("/valid")

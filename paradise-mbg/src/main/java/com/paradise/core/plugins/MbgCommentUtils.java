@@ -7,6 +7,10 @@ package com.paradise.core.plugins;
  */
 public class MbgCommentUtils {
 
+    private MbgCommentUtils() {
+        throw new IllegalStateException();
+    }
+
     /**
      * 生成类注释
      *
@@ -14,7 +18,7 @@ public class MbgCommentUtils {
      * @return 类注释
      */
     public static String genClassRemarks(String remark, String params) {
-        remark = remark.replaceAll("表", "");
+        remark = remark.replace("表", "");
         if (params != null) {
             remark = remark + params;
         }

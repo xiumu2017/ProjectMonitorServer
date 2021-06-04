@@ -9,6 +9,10 @@ import org.mybatis.generator.config.Context;
 import java.util.List;
 
 public class MbgCommonUtils {
+    private MbgCommonUtils() {
+        throw new IllegalStateException();
+    }
+
     public static TopLevelClass generate(IntrospectedTable introspectedTable, Context context, String targetPackage) {
 
         List<GeneratedJavaFile> generatedJavaFileList = introspectedTable.getGeneratedJavaFiles();

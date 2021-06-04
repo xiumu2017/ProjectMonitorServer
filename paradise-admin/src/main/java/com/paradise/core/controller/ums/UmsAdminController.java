@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -75,13 +76,15 @@ public class UmsAdminController {
 
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
-    public Result<Map<String, String>> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam) {
+    public Result<Map<String, String>> login(@RequestBody UmsAdminLoginParam umsAdminLoginParam,
+                                             @ApiIgnore HttpSession httpSession) {
+        log.info("Login-Session_id:{}", httpSession.getId());
         try {
             if (!kaptcha.validate(umsAdminLoginParam.getCode())) {
                 return Result.failed("验证码不正确");
             }
         } catch (KaptchaException e) {
-            log.error(e.getLocalizedMessage(), e);
+            log.error("验证码校验失败：{}", e.getMessage());
             return Result.failed("验证码不正确");
         }
         String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
