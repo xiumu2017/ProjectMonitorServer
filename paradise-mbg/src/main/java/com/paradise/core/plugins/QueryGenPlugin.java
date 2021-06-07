@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class QueryGenPlugin extends PluginAdapter {
 
-    private Boolean enable;
+    private boolean enable;
     private String targetPackage;
     private String baseQuery;
 
@@ -32,7 +32,7 @@ public class QueryGenPlugin extends PluginAdapter {
     public boolean validate(List<String> warnings) {
         targetPackage = getProperties().getProperty("targetPackage");
         baseQuery = getProperties().getProperty("baseQuery");
-        enable = Boolean.valueOf(getProperties().getProperty("enable"));
+        enable = Boolean.parseBoolean(getProperties().getProperty("enable"));
         if (StringUtils.isEmpty(targetPackage) || StringUtils.isEmpty(baseQuery)) {
             warnings.add("targetPackage baseQuery must not be empty");
             return false;
@@ -84,7 +84,7 @@ public class QueryGenPlugin extends PluginAdapter {
         //添加注释
         topLevelClass.addJavaDocLine(MbgCommentUtils.genClassRemarks(introspectedTable.getRemarks(), "查询参数"));
         // 添加注解
-        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getRemarks().replaceAll("表", "") + "查询参数\")");
+        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getRemarks().replace("表", "") + "查询参数\")");
         topLevelClass.addAnnotation("@Data");
         topLevelClass.addAnnotation("@EqualsAndHashCode(callSuper = true)");
         //继承基类
@@ -135,6 +135,9 @@ public class QueryGenPlugin extends PluginAdapter {
             return true;
         }
         if ("createBy".equals(column.getJavaProperty()) || "updateBy".equals(column.getJavaProperty())) {
+            return true;
+        }
+        if ("deleted".equals(column.getJavaProperty())) {
             return true;
         }
         return "id".equals(column.getJavaProperty()) || "remark".equals(column.getJavaProperty());

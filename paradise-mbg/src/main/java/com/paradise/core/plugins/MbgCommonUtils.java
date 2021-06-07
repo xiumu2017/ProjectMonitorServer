@@ -29,6 +29,7 @@ public class MbgCommonUtils {
         if (
                 "createBy".equals(column.getJavaProperty()) ||
                         "updateBy".equals(column.getJavaProperty()) ||
+                        "deleted".equals(column.getJavaProperty()) ||
                         "createAt".equals(column.getJavaProperty()) ||
                         "updateAt".equals(column.getJavaProperty())
         ) {

@@ -26,12 +26,12 @@ import java.util.List;
 public class BodyGenPlugin extends PluginAdapter {
 
     private String targetPackage;
-    private Boolean enable;
+    private boolean enable;
 
     @Override
     public boolean validate(List<String> warnings) {
         targetPackage = getProperties().getProperty("targetPackage");
-        enable = Boolean.valueOf(getProperties().getProperty("enable"));
+        enable = Boolean.parseBoolean(getProperties().getProperty("enable"));
         if (StringUtils.isEmpty(targetPackage)) {
             warnings.add("targetPackage must not be empty");
             return false;
@@ -67,7 +67,7 @@ public class BodyGenPlugin extends PluginAdapter {
         //添加注释
         topLevelClass.addJavaDocLine(MbgCommentUtils.genClassRemarks(introspectedTable.getRemarks(), "Body"));
         // 添加注解
-        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getRemarks().replaceAll("表", "") + "Body\")");
+        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getRemarks().replace("表", "") + "Body\")");
         topLevelClass.addAnnotation("@Data");
         topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
         topLevelClass.addImportedType("io.swagger.annotations.ApiModelProperty");
