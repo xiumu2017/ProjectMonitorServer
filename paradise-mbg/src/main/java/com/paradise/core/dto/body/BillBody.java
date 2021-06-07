@@ -51,13 +51,6 @@ public class BillBody {
     private java.util.Date date;
 
     /**
-     * 是否删除
-     */
-    @ApiModelProperty(value = "是否删除", required = true, example = "0")
-    @NotNull(message = "是否删除不能为空!")
-    private Integer deleted;
-
-    /**
      * 标签
      */
     @ApiModelProperty(value = "标签", required = true, example = "")

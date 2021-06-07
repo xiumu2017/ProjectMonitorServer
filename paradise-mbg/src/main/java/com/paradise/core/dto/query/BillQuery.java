@@ -37,13 +37,6 @@ public class BillQuery extends BaseQuery {
      */
     @ApiModelProperty(value = "名称")
     private String name;
-
-    /**
-     * 是否删除
-     */
-    @ApiModelProperty(value = "是否删除")
-    private Integer deleted;
-
     /**
      * 标签
      */

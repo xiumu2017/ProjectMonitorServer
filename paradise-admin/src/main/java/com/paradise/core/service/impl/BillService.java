@@ -1,9 +1,10 @@
 package com.paradise.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.paradise.core.dao.BillDao;
 import com.paradise.core.dto.body.BillBody;
+import com.paradise.core.dto.detail.BillDto;
 import com.paradise.core.dto.query.BillQuery;
-import com.paradise.core.example.BillExample;
 import com.paradise.core.mapper.BillMapper;
 import com.paradise.core.model.Bill;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BillService {
     private final BillMapper billMapper;
+    private final BillDao billDao;
 
     public int deleteByPrimaryKey(Long id) {
         return this.billMapper.deleteByPrimaryKey(id);
@@ -57,8 +59,8 @@ public class BillService {
         return this.billMapper.updateByPrimaryKeySelective(bill);
     }
 
-    public List<Bill> selectByPage(BillQuery query) {
+    public List<BillDto> selectByPage(BillQuery query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
-        return this.billMapper.selectByExample(new BillExample());
+        return this.billDao.query(query);
     }
 }

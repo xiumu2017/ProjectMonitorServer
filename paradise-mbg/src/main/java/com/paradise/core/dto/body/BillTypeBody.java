@@ -44,13 +44,6 @@ public class BillTypeBody {
     private Integer enable;
 
     /**
-     * 是否删除
-     */
-    @ApiModelProperty(value = "是否删除", required = true, example = "0")
-    @NotNull(message = "是否删除不能为空!")
-    private Integer deleted;
-
-    /**
      * 备注信息
      */
     @ApiModelProperty(value = "备注信息", required = true, example = "")

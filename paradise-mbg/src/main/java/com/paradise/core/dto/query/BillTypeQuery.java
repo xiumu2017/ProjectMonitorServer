@@ -38,9 +38,4 @@ public class BillTypeQuery extends BaseQuery {
     @ApiModelProperty(value = "是否启用")
     private Integer enable;
 
-    /**
-     * 是否删除
-     */
-    @ApiModelProperty(value = "是否删除")
-    private Integer deleted;
 }

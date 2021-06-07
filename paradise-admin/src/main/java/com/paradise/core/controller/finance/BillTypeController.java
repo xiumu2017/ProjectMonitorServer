@@ -4,6 +4,7 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.BillTypeBody;
+import com.paradise.core.dto.detail.BillTypeDto;
 import com.paradise.core.dto.query.BillTypeQuery;
 import com.paradise.core.model.BillType;
 import com.paradise.core.service.impl.BillTypeService;
@@ -30,8 +31,8 @@ public class BillTypeController {
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "分页查询")
     @GetMapping(value = "/s")
-    public Result<CommonPage<BillType>> selectByPage(BillTypeQuery query) {
-        List<BillType> list = this.billTypeService.selectByPage(query);
+    public Result<CommonPage<BillTypeDto>> selectByPage(BillTypeQuery query) {
+        List<BillTypeDto> list = this.billTypeService.selectByPage(query);
         return Result.success(CommonPage.restPage(list));
     }
 
@@ -74,5 +75,13 @@ public class BillTypeController {
             return Result.success(count);
         }
         return Result.failed();
+    }
+
+    @ApiOperationSupport(order = 6)
+    @ApiOperation("查询全部分类列表")
+    @GetMapping(value = "/list")
+    public Result<List<BillTypeDto>> queryAll() {
+        List<BillTypeDto> billTypeList = this.billTypeService.queryAll();
+        return Result.success(billTypeList);
     }
 }

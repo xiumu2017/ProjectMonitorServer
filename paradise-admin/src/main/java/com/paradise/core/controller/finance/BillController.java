@@ -4,6 +4,7 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.BillBody;
+import com.paradise.core.dto.detail.BillDto;
 import com.paradise.core.dto.query.BillQuery;
 import com.paradise.core.model.Bill;
 import com.paradise.core.service.impl.BillService;
@@ -30,8 +31,8 @@ public class BillController {
     @ApiOperationSupport(order = 1)
     @ApiOperation(value = "分页查询")
     @GetMapping(value = "/s")
-    public Result<CommonPage<Bill>> selectByPage(BillQuery query) {
-        List<Bill> list = this.billService.selectByPage(query);
+    public Result<CommonPage<BillDto>> selectByPage(BillQuery query) {
+        List<BillDto> list = this.billService.selectByPage(query);
         return Result.success(CommonPage.restPage(list));
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paradise.core.dao.BillDao">
+    <select id="query" resultType="com.paradise.core.dto.detail.BillDto">
+        select a.*,
+        b.name as typeName,
+        b.icon as typeIcon
+        from f_bill a
+        left join f_bill_type b on a.type_id = b.id
+        where a.deleted = 0
+        <if test="typeId != null">
+            and a.type_id = #{typeId,jdbcType=BIGINT}
+        </if>
+        <if test="direction != null">
+            and a.direction = #{direction,jdbcType=INTEGER}
+        </if>
+        order by a.update_at desc
+    </select>
+</mapper>
