@@ -4,6 +4,7 @@ import com.paradise.core.common.api.Result;
 import com.paradise.core.common.domain.MinioUploadDto;
 import com.paradise.core.common.domain.OssConfiguration;
 import com.paradise.core.common.domain.oss.OssInfo;
+import com.paradise.core.common.oss.CosStsClientUtils;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.AnonymousCOSCredentials;
@@ -27,6 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 腾讯云 Oss
@@ -225,5 +227,9 @@ public class QCloudOssService {
         URL url = cosClient.generatePresignedUrl(req);
         cosClient.shutdown();
         return url.toString();
+    }
+
+    public Map<String, Object> getCredential() {
+        return CosStsClientUtils.getCredential(ossConfiguration);
     }
 }

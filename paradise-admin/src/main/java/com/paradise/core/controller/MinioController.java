@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * MinIO对象存储管理
@@ -35,7 +36,7 @@ public class MinioController {
     }
 
     @ApiOperation("文件上传")
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @PostMapping(value = "/upload")
     public Result<MinioUploadDto> upload(@RequestParam("file") MultipartFile file) {
         try {
             return minIoService.upload(file);
@@ -46,14 +47,14 @@ public class MinioController {
     }
 
     @ApiOperation("文件删除")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping(value = "/delete")
     public Result<Object> delete(@RequestParam("objectName") String objectName) {
         return minIoService.delete(objectName);
     }
 
 
     @ApiOperation("文件上传")
-    @RequestMapping(value = "/oss/upload", method = RequestMethod.POST)
+    @PostMapping(value = "/oss/upload")
     public Result<MinioUploadDto> uploadByOss(@RequestParam("file") MultipartFile file) {
         try {
             return ossService.upload(file, GeneratorUtil.generateFileName(file.getOriginalFilename()));
@@ -85,5 +86,10 @@ public class MinioController {
         return Result.failed();
     }
 
+    @ApiOperation("获取临时秘钥")
+    @GetMapping("/credential")
+    public Result<Map<String, Object>> getCredential() {
+        return Result.success(ossService.getCredential());
+    }
 
 }

@@ -26,7 +26,7 @@ public class GeneratorUtil {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(getNonceString());
     }
 
     public static String encode(String source) {

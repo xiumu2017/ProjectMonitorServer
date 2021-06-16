@@ -223,6 +223,11 @@
                 <artifactId>cos_api</artifactId>
                 <version>${qcloud.cos_api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.tencent.cloud</groupId>
+                <artifactId>cos-sts-java</artifactId>
+                <version>3.0.8</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
