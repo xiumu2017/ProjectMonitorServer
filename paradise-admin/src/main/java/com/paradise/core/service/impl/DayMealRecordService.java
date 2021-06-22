@@ -161,7 +161,7 @@ public class DayMealRecordService {
         // 查询缓存数据
         // 数据库查询 根据月度和type 汇总数据
         List<DayMealRecordGroupData> list = dayMealRecordDao.queryByMonth();
-        Map<String, DayMealRecordMonthData> resMap = new HashMap<>();
+        Map<String, DayMealRecordMonthData> resMap = new TreeMap<>();
         for (DayMealRecordGroupData data : list) {
             DayMealRecordMonthData monthData = resMap.get(data.getMonth());
             if (monthData == null) {
