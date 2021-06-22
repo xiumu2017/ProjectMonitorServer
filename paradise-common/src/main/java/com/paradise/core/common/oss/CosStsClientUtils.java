@@ -56,7 +56,7 @@ public class CosStsClientUtils {
             log.info(credential.toString(4));
             return credential.toMap();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error(e.getMessage(), e);
             throw new IllegalArgumentException("no valid secret !");
         }
     }

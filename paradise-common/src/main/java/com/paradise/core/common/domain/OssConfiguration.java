@@ -19,4 +19,15 @@ public class OssConfiguration {
     private String appId;
     private String regionName;
     private String bucketName;
+
+    @Override
+    public String toString() {
+        return "OssConfiguration{" +
+                "secretId='" + secretId + '\'' +
+                ", secretKey='" + secretKey + '\'' +
+                ", appId='" + appId + '\'' +
+                ", regionName='" + regionName + '\'' +
+                ", bucketName='" + bucketName + '\'' +
+                '}';
+    }
 }
