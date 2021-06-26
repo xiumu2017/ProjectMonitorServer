@@ -58,6 +58,8 @@ public class DayMealRecordBody {
      * 备注信息
      */
     @ApiModelProperty(value = "备注信息", required = true, example = "")
-    @NotEmpty(message = "备注信息不能为空!")
     private String remark;
+
+    @ApiModelProperty(value = "图片信息", example = "https://paradise-113289.qcloud.com/123.jpg")
+    private String photos;
 }

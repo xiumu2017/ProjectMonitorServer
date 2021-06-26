@@ -9,6 +9,7 @@
     <result column="place" jdbcType="VARCHAR" property="place" />
     <result column="cost" jdbcType="INTEGER" property="cost" />
     <result column="pay_type" jdbcType="INTEGER" property="payType" />
+    <result column="photos" jdbcType="VARCHAR" property="photos" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `date`, `type`, what, place, cost, pay_type, remark, create_at, update_at, create_by, 
-    update_by
+    id, `date`, `type`, what, place, cost, pay_type, photos, remark, create_at, update_at, 
+    create_by, update_by
   </sql>
   <select id="selectByExample" parameterType="com.paradise.core.example.DayMealRecordExample" resultMap="BaseResultMap">
     select
@@ -151,12 +152,14 @@
     </selectKey>
     insert into day_meal_record (`date`, `type`, what, 
       place, cost, pay_type, 
-      remark, create_at, update_at, 
-      create_by, update_by)
+      photos, remark, create_at, 
+      update_at, create_by, update_by
+      )
     values (#{date,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{what,jdbcType=VARCHAR}, 
       #{place,jdbcType=VARCHAR}, #{cost,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT})
+      #{photos,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="map">
     <selectKey keyProperty="record.id" order="AFTER" resultType="java.lang.Long">
@@ -188,6 +191,9 @@
           </if>
           <if test="record.payType != null">
             pay_type,
+          </if>
+          <if test="record.photos != null">
+            photos,
           </if>
           <if test="record.remark != null">
             remark,
@@ -234,6 +240,9 @@
           </if>
           <if test="record.payType != null">
             #{record.payType,jdbcType=INTEGER},
+          </if>
+          <if test="record.photos != null">
+            #{record.photos,jdbcType=VARCHAR},
           </if>
           <if test="record.remark != null">
             #{record.remark,jdbcType=VARCHAR},
@@ -292,6 +301,9 @@
           <if test="record.payType != null">
             pay_type = #{record.payType,jdbcType=INTEGER},
           </if>
+          <if test="record.photos != null">
+            photos = #{record.photos,jdbcType=VARCHAR},
+          </if>
           <if test="record.remark != null">
             remark = #{record.remark,jdbcType=VARCHAR},
           </if>
@@ -323,6 +335,7 @@
       place = #{record.place,jdbcType=VARCHAR},
       cost = #{record.cost,jdbcType=INTEGER},
       pay_type = #{record.payType,jdbcType=INTEGER},
+      photos = #{record.photos,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP},
@@ -361,6 +374,9 @@
           <if test="record.payType != null">
             pay_type = #{record.payType,jdbcType=INTEGER},
           </if>
+          <if test="record.photos != null">
+            photos = #{record.photos,jdbcType=VARCHAR},
+          </if>
           <if test="record.remark != null">
             remark = #{record.remark,jdbcType=VARCHAR},
           </if>
@@ -389,6 +405,7 @@
       place = #{place,jdbcType=VARCHAR},
       cost = #{cost,jdbcType=INTEGER},
       pay_type = #{payType,jdbcType=INTEGER},
+      photos = #{photos,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       create_at = #{createAt,jdbcType=TIMESTAMP},
       update_at = #{updateAt,jdbcType=TIMESTAMP},
@@ -431,14 +448,15 @@
   </select>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     insert into day_meal_record
-    (`date`, `type`, what, place, cost, pay_type, remark, create_at, update_at, create_by, 
-      update_by)
+    (`date`, `type`, what, place, cost, pay_type, photos, remark, create_at, update_at, 
+      create_by, update_by)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.date,jdbcType=TIMESTAMP}, #{item.type,jdbcType=INTEGER}, #{item.what,jdbcType=VARCHAR}, 
         #{item.place,jdbcType=VARCHAR}, #{item.cost,jdbcType=INTEGER}, #{item.payType,jdbcType=INTEGER}, 
-        #{item.remark,jdbcType=VARCHAR}, #{item.createAt,jdbcType=TIMESTAMP}, #{item.updateAt,jdbcType=TIMESTAMP}, 
-        #{item.createBy,jdbcType=BIGINT}, #{item.updateBy,jdbcType=BIGINT})
+        #{item.photos,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}, #{item.createAt,jdbcType=TIMESTAMP}, 
+        #{item.updateAt,jdbcType=TIMESTAMP}, #{item.createBy,jdbcType=BIGINT}, #{item.updateBy,jdbcType=BIGINT}
+        )
     </foreach>
   </insert>
   <insert id="batchInsertSelective" keyColumn="id" keyProperty="list.id" parameterType="map" useGeneratedKeys="true">
@@ -468,6 +486,9 @@
         </if>
         <if test="'pay_type'.toString() == column.value">
           #{item.payType,jdbcType=INTEGER}
+        </if>
+        <if test="'photos'.toString() == column.value">
+          #{item.photos,jdbcType=VARCHAR}
         </if>
         <if test="'remark'.toString() == column.value">
           #{item.remark,jdbcType=VARCHAR}

@@ -1,6 +1,7 @@
 package com.paradise.core.example;
 
 import com.paradise.core.model.DayMealRecord;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -791,6 +792,106 @@ public class DayMealRecordExample {
 
         public Criteria andPayTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("pay_type not between", value1, value2, "payType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosIsNull() {
+            addCriterion("photos is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosIsNotNull() {
+            addCriterion("photos is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosEqualTo(String value) {
+            addCriterion("photos =", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosEqualToColumn(DayMealRecord.Column column) {
+            addCriterion(new StringBuilder("photos = ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosNotEqualTo(String value) {
+            addCriterion("photos <>", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosNotEqualToColumn(DayMealRecord.Column column) {
+            addCriterion(new StringBuilder("photos <> ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosGreaterThan(String value) {
+            addCriterion("photos >", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosGreaterThanColumn(DayMealRecord.Column column) {
+            addCriterion(new StringBuilder("photos > ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosGreaterThanOrEqualTo(String value) {
+            addCriterion("photos >=", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosGreaterThanOrEqualToColumn(DayMealRecord.Column column) {
+            addCriterion(new StringBuilder("photos >= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosLessThan(String value) {
+            addCriterion("photos <", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosLessThanColumn(DayMealRecord.Column column) {
+            addCriterion(new StringBuilder("photos < ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosLessThanOrEqualTo(String value) {
+            addCriterion("photos <=", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosLessThanOrEqualToColumn(DayMealRecord.Column column) {
+            addCriterion(new StringBuilder("photos <= ").append(column.getEscapedColumnName()).toString());
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosLike(String value) {
+            addCriterion("photos like", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosNotLike(String value) {
+            addCriterion("photos not like", value, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosIn(List<String> values) {
+            addCriterion("photos in", values, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosNotIn(List<String> values) {
+            addCriterion("photos not in", values, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosBetween(String value1, String value2) {
+            addCriterion("photos between", value1, value2, "photos");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotosNotBetween(String value1, String value2) {
+            addCriterion("photos not between", value1, value2, "photos");
             return (Criteria) this;
         }
 

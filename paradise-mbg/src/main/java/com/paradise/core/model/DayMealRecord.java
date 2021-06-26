@@ -2,21 +2,22 @@ package com.paradise.core.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * 用餐记录表
  *
  * @author Paradise
  */
-@ApiModel(value="用餐记录")
+@ApiModel(value = "用餐记录")
 @Data
 @Builder
 @AllArgsConstructor
@@ -34,22 +35,25 @@ public class DayMealRecord implements Serializable {
     @ApiModelProperty(value="吃什么")
     private String what;
 
-    @ApiModelProperty(value="在哪儿吃")
+    @ApiModelProperty(value = "在哪儿吃")
     private String place;
 
-    @ApiModelProperty(value="花了多少")
+    @ApiModelProperty(value = "花了多少")
     private Integer cost;
 
-    @ApiModelProperty(value="支付方式")
+    @ApiModelProperty(value = "支付方式")
     private Integer payType;
 
-    @ApiModelProperty(value="备注信息")
+    @ApiModelProperty(value = "")
+    private String photos;
+
+    @ApiModelProperty(value = "备注信息")
     private String remark;
 
-    @ApiModelProperty(value="创建时间")
+    @ApiModelProperty(value = "创建时间")
     private Date createAt;
 
-    @ApiModelProperty(value="更新时间")
+    @ApiModelProperty(value = "更新时间")
     private Date updateAt;
 
     @ApiModelProperty(value="创建ID")
@@ -68,6 +72,7 @@ public class DayMealRecord implements Serializable {
         place("place", "place", "VARCHAR", false),
         cost("cost", "cost", "INTEGER", false),
         payType("pay_type", "payType", "INTEGER", false),
+        photos("photos", "photos", "VARCHAR", false),
         remark("remark", "remark", "VARCHAR", false),
         createAt("create_at", "createAt", "TIMESTAMP", false),
         updateAt("update_at", "updateAt", "TIMESTAMP", false),
