@@ -3,6 +3,7 @@ package com.paradise.core.app.service;
 import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageHelper;
 import com.paradise.core.dto.body.DaySleepRecordAppBody;
+import com.paradise.core.dto.body.DaySleepRecordBody;
 import com.paradise.core.dto.query.DaySleepRecordQuery;
 import com.paradise.core.example.DaySleepRecordExample;
 import com.paradise.core.mapper.DaySleepRecordMapper;
@@ -89,4 +90,27 @@ public class MpSleepRecordService {
         return Math.toIntExact(mis / (1_000));
     }
 
+    public int insert(DaySleepRecordBody record) {
+        DaySleepRecord daySleepRecord = new DaySleepRecord();
+        BeanUtils.copyProperties(record, daySleepRecord);
+        dealRecord(record, daySleepRecord);
+        daySleepRecord.setCreateAt(new Date());
+        daySleepRecord.setUpdateAt(new Date());
+        return this.daySleepRecordMapper.insertSelective(daySleepRecord);
+    }
+
+    private void dealRecord(DaySleepRecordBody record, DaySleepRecord daySleepRecord) {
+        daySleepRecord.setDate(new Date(record.getDate()));
+        daySleepRecord.setBedTime(new Date(record.getBedTime()));
+        daySleepRecord.setSleepTime(new Date(record.getSleepTime()));
+        daySleepRecord.setWakeTime(new Date(record.getWakeTime()));
+        daySleepRecord.setUpTime(new Date(record.getUpTime()));
+        // 计算睡眠时长
+        daySleepRecord.setDuration(cal(record));
+    }
+
+    private Integer cal(DaySleepRecordBody record) {
+        long mis = record.getWakeTime() - record.getSleepTime();
+        return Math.toIntExact(mis / (1_000));
+    }
 }

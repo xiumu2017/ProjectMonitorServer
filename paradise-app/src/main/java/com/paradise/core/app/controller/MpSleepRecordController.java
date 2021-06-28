@@ -6,6 +6,7 @@ import com.paradise.core.app.service.MpSleepRecordService;
 import com.paradise.core.common.api.CommonPage;
 import com.paradise.core.common.api.Result;
 import com.paradise.core.dto.body.DaySleepRecordAppBody;
+import com.paradise.core.dto.body.DaySleepRecordBody;
 import com.paradise.core.dto.query.DaySleepRecordQuery;
 import com.paradise.core.model.DaySleepRecord;
 import com.paradise.core.model.UmsMember;
@@ -68,4 +69,13 @@ public class MpSleepRecordController {
         return Result.failed();
     }
 
+    @ApiOperation("添加")
+    @PostMapping
+    public Result<Integer> insert(@RequestBody @Validated DaySleepRecordBody record) {
+        int count = this.sleepRecordService.insert(record);
+        if (count > 0) {
+            return Result.success(count);
+        }
+        return Result.failed();
+    }
 }
