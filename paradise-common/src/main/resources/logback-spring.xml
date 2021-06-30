@@ -186,7 +186,7 @@
         <appender-ref ref="LOG_STASH_ERROR"/>
     </root>
 
-    <logger name="com.paradise.core.common.log.WebLogAspect" level="DEBUG">
+    <logger name="com.paradise.core.common.log.WebLogAspect" level="INFO">
         <appender-ref ref="LOG_STASH_RECORD"/>
     </logger>
 
